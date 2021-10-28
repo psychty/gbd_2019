@@ -3,8 +3,10 @@ library(easypackages)
 
 libraries(c("readxl", "readr", "plyr", "dplyr", "ggplot2", "png", "tidyverse", "reshape2", "scales", "viridis", "rgdal", "officer", "flextable", "tmaptools", "lemon", "fingertipsR", "jsonlite"))
 
-data_directory <- './Source_files/Raw'
+setwd('~/GitHub/gbd_2019/')
 
+data_directory <- './Source_files/Raw'
+output_directory <- './Outputs'
 meta_directory <- './Source_files'
 
 # download.file('http://ghdx.healthdata.org/sites/default/files/ihme_query_tool/IHME_GBD_2019_CODEBOOK.zip', destfile = paste0(meta_directory, '/codebook.zip'), mode = 'wb')
@@ -12,94 +14,115 @@ meta_directory <- './Source_files'
 
 list.files('./Source_files')
 
+codebook <- read_csv(paste0(meta_directory,'/IHME_GBD_2019_CODEBOOK_Y2020M11D25.csv'))
 
+cause_hierarchy <- read_excel(paste0(meta_directory, '/IHME_GBD_2019_CAUSE_HIERARCHY_Y2020M11D25.xlsx'))
 
+wsx_df <- unique(list.files("~/gbd_data")[grepl("Cause_", list.files("~/gbd_data")) == TRUE]) %>%
+  map_df(~read_csv(paste0("~/gbd_data/",.)))
 
+unique(wsx_df$measure_name)
 
+wsx_yll <- wsx_df %>% 
+  filter(measure_name == 'YLLs (Years of Life Lost)')
 
+wsx_daly <- wsx_df %>% 
+  filter(measure_name == 'DALYs (Disability-Adjusted Life Years)')
 
+wsx_yld <- wsx_df %>% 
+  filter(measure_name == 'YLDs (Years Lived with Disability)')
 
+wsx_deaths <- wsx_df %>% 
+  filter(measure_name == 'Deaths')
 
-# impairment data
+wsx_incidence <- wsx_df %>% 
+  filter(measure_name == 'Incidence')
 
-if(!(file.exists("~/GBD data downloads/IHME-GBD_2017_DATA-0f178e33-34.csv"))){
-impairment_files = 34
+wsx_prevalence <- wsx_df %>% 
+  filter(measure_name == 'Prevalence')
 
-for(i in 1:impairment_files){
-download.file(paste0("http://s3.healthdata.org/gbd-api-2017-public/0f178e33785a9f50c01c9def1c03dfb9_files/IHME-GBD_2017_DATA-0f178e33-", i , ".zip"), paste0("~/GBD data downloads/impairment_file_",i,".zip"), mode = "wb")
-  unzip(paste0("~/GBD data downloads/impairment_file_",i,".zip"), exdir = "~/GBD data downloads")
-  file.remove(paste0("~/GBD data downloads/impairment_file_",i,".zip"))
-}
+nrow(wsx_yll) + nrow(wsx_daly) + nrow(wsx_yld) + nrow(wsx_deaths) + nrow(wsx_incidence) + nrow(wsx_prevalence)
 
-}
+wsx_df %>% 
+  select(measure_name, location_name, sex_name, age_name, cause_id, cause_name, metric_name, year, val) %>%
+  rename(Name = location_name,
+         Sex = sex_name,
+         Age = age_name,
+         Cause = cause_name,
+         Year = year,
+         Measure = measure_name) %>% 
+  left_join(cause_hierarchy[c('Cause ID', 'Level')], by = c('cause_id' = 'Cause ID')) %>% 
+  filter(Level == 2) %>% 
+  filter(Age == 'All Ages') %>% 
+  pivot_wider(names_from = 'metric_name',
+              values_from = 'val') %>% 
+  group_by(Measure, Name, Sex, Age, Year) %>% 
+  mutate(Number_rank = rank(desc(Number))) %>% 
+  filter(Number_rank <= 10) %>% 
+  toJSON() %>% 
+  write_lines(paste0(output_directory, '/top_ten_wsx.json'))
 
-# impairment_df <- unique(list.files("~/GBD data downloads")[grepl("0f178e33", list.files("~/GBD data downloads/")) == TRUE]) %>%
-#  map_df(~read_csv(paste0("~/GBD data downloads/",.)))
+# Life expectancy
+le_raw <- read_csv('https://raw.githubusercontent.com/psychty/gbd_2019/ecd33659ad73f41d90e9296cc3d55da3555e420d/Source_files/Raw/Life_expectancy_SE_2019.csv')
+hale_raw <- read_csv('https://raw.githubusercontent.com/psychty/gbd_2019/ecd33659ad73f41d90e9296cc3d55da3555e420d/Source_files/Raw/Health_Adjusted_Life_expectancy_SE_2019.csv')
 
-if(!(file.exists("~/GBD data downloads/IHME-GBD_2017_DATA-e004c73d-11.csv"))){
-mortality_files = 11 
+le_raw %>% 
+  filter(location == 'South East England') %>% 
+  filter(year %in% c(1990, 2019)) %>% 
+  filter(sex != 'Both') %>% 
+  filter(age == '<1 year') %>% 
+  select(sex, year, val) %>% 
+  pivot_wider(values_from = val,
+              names_from = year)
 
-for(i in 1:mortality_files){
-  download.file(paste0("http://s3.healthdata.org/gbd-api-2017-public/e004c73d48d84b69fc85d6d3955a93e1_files/IHME-GBD_2017_DATA-e004c73d-", i , ".zip"), paste0("~/GBD data downloads/mortality_file_",i,".zip"), mode = "wb")
-  unzip(paste0("~/GBD data downloads/mortality_file_",i,".zip"), exdir = "~/GBD data downloads")
-  file.remove(paste0("~/GBD data downloads/mortality_file_",i,".zip"))
-}
-}
+le_wsx <- le_raw %>% 
+  filter(location == 'West Sussex') %>% 
+  filter(age == '<1 year') %>% 
+  select(location, sex, year, val) %>% 
+  rename(Name = location,
+         Sex = sex,
+         Year = year,
+         LE = val)
 
-# mortality_df <- unique(list.files("~/GBD data downloads")[grepl("dce9e906", list.files("~/GBD data downloads/")) == TRUE]) %>% 
-#   map_df(~read_csv(paste0("~/GBD data downloads/",.)))
-http://s3.healthdata.org/gbd-api-2017-public/dce9e9067631bf55f9745237627df9c8_files/IHME-GBD_2017_DATA-dce9e906-
+hale_wsx <- hale_raw %>% 
+  filter(location == 'West Sussex') %>% 
+  filter(age == '<1 year') %>% 
+  select(location, sex, year, val) %>% 
+  rename(Name = location,
+         Sex = sex,
+         Year = year,
+         HALE = val)
 
+le_wsx %>% 
+  left_join(hale_wsx, by = c('Name', 'Sex', 'Year')) %>% 
+  mutate(Sub_optimal_health = LE - HALE) %>% 
+  toJSON() %>% 
+  write_lines(paste0(output_directory, '/le_wsx.json'))
 
-# if(!(file.exists("~/GBD data downloads/IHME-GBD_2017_DATA-dce9e906-10.csv"))){
-#   mortality_wsx_files = 10
-# for(i in 3:mortality_wsx_files){
-#   download.file(paste0("http://s3.healthdata.org/gbd-api-2017-public/dce9e9067631bf55f9745237627df9c8_files/IHME-GBD_2017_DATA-dce9e906-", i , ".zip"), paste0("~/GBD data downloads/mortality_wsx_files",i,".zip"), mode = "wb")
-#   unzip(paste0("~/GBD data downloads/mortality_wsx_files",i,".zip"), exdir = "~/GBD data downloads")
-#   file.remove(paste0("~/GBD data downloads/mortality_wsx_files",i,".zip"))
-# }
-# }
+# Mortality ####
+# wsx_deaths %>% 
+#   select(measure_name, location_name, sex_name, age_name, cause_id, cause_name, metric_name, year, val, upper, lower) %>% 
+#   left_join(cause_hierarchy[c('Cause ID', 'Level')], by = c('cause_id' = 'Cause ID')) %>% 
+#   filter(Level == 2) %>% 
+#   view()
+#   write_rds(., paste0(data_directory, '/wsx_level_2_deaths.rds'))
 
-# mortality_wsx_df <- unique(list.files("~/GBD data downloads")[grepl("dce9e906", list.files("~/GBD data downloads/")) == TRUE]) %>% 
-#   map_df(~read_csv(paste0("~/GBD data downloads/",.)))
+top_ten <- wsx_deaths %>% 
+  select(measure_name, location_name, sex_name, age_name, cause_id, cause_name, metric_name, year, val) %>%
+  rename(Name = location_name,
+         Sex = sex_name,
+         Age = age_name,
+         Cause = cause_name,
+         Year = year) %>% 
+  left_join(cause_hierarchy[c('Cause ID', 'Level')], by = c('cause_id' = 'Cause ID')) %>% 
+  filter(Level == 2) %>% 
+  filter(Age == 'All Ages') %>% 
+  pivot_wider(names_from = 'metric_name',
+              values_from = 'val') %>% 
+  group_by(Name, Sex, Age, Year) %>% 
+  mutate(Number_rank = rank(desc(Number))) %>% 
+  filter(Number_rank <= 10)
 
-# if(!(file.exists("~/GBD data downloads/IHME-GBD_2017_DATA-0f1da8e2-231.csv"))){
-#   mortality_files_all_age = 231   
-# for(i in 88:mortality_files_all_age){
-#   download.file(paste0("http://s3.healthdata.org/gbd-api-2017-public/0f1da8e2f4a06cae620ed9b9feb55600_files/IHME-GBD_2017_DATA-0f1da8e2-", i , ".zip"), paste0("~/GBD data downloads/mortality_files_all_age",i,".zip"), mode = "wb")
-#   unzip(paste0("~/GBD data downloads/mortality_files_all_age",i,".zip"), exdir = "~/GBD data downloads")
-#   file.remove(paste0("~/GBD data downloads/mortality_files_all_age",i,".zip"))
-# }
-# }
-
-# mortality_df <- unique(list.files("~/GBD data downloads")[grepl("0f1da8e2", list.files("~/GBD data downloads/")) == TRUE]) %>% 
-#   map_df(~read_csv(paste0("~/GBD data downloads/",.)))
-
-if(!(file.exists("./GBD data downloads/IHME-GBD_2017_DATA-b475904c-22.csv"))){
-risk_files = 22
-for(i in 1:risk_files){
-  download.file(paste0("http://s3.healthdata.org/gbd-api-2017-public/b475904cadeca9cccc4b12c1a7a72197_files/IHME-GBD_2017_DATA-b475904c-", i , ".zip"), paste0("~/GBD data downloads/risk_files",i,".zip"), mode = "wb")
-  unzip(paste0("./GBD data downloads/risk_files",i,".zip"), exdir = "./GBD data downloads")
-  file.remove(paste0("./GBD data downloads/risk_files",i,".zip"))
-}
-}
-
-# risk_df <- unique(list.files("~/GBD data downloads")[grepl("b475904c", list.files("~/GBD data downloads/")) == TRUE]) %>% 
-#   map_df(~read_csv(paste0("~/GBD data downloads/",.)))
-
-
-if(!(file.exists("~/GBD data downloads/IHME-GBD_2017_DATA-d07dcbe7-19.csv"))){
-  risk_files = 19
-  for(i in 1:risk_files){
-    download.file(paste0("http://s3.healthdata.org/gbd-api-2017-public/d07dcbe7dd7b0fc33d6ccc179360edad_files/IHME-GBD_2017_DATA-d07dcbe7-", i , ".zip"), paste0("~/GBD data downloads/risk_files",i,".zip"), mode = "wb")
-    unzip(paste0("~/GBD data downloads/risk_files",i,".zip"), exdir = "~/GBD data downloads")
-    file.remove(paste0("~/GBD data downloads/risk_files",i,".zip"))
-  }
-}
-
-# risk_wsx_df <- unique(list.files("~/GBD data downloads")[grepl("d07dcbe7", list.files("~/GBD data downloads/")) == TRUE]) %>%
-#   map_df(~read_csv(paste0("~/GBD data downloads/",.)))
-
-# Create a GBD directory ####
-
-
+top_ten %>% 
+  toJSON() %>% 
+  write_lines(paste0(output_directory, '/top_ten_mortality_wsx.json'))

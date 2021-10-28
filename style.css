@@ -1,0 +1,88 @@
+* {
+  font-family: "Open Sans", sans-serif;
+  font-size: 0.95rem;
+}
+
+p {
+  font-size: 0.95rem;
+  text-align: justify;
+  color: #4c4c4e;
+}
+
+li {
+  font-size: 0.95rem;
+  color: #4c4c4e;
+  text-align: justify;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-right: 20px;
+}
+
+a {
+  font-size: 0.9rem;
+  color: #cc0052;
+}
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #256cb2;
+}
+
+.browser_compat {
+  font-size: 0.8rem;
+  text-align: justify;
+  color: #ad25b2;
+  margin-top: 5px;
+}
+
+.give_me_some_space {
+  margin-top: 20vh;
+}
+
+.title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #256cb2;
+}
+
+.header {
+  margin: auto;
+  /* width: calc(60%); */
+  text-align: left;
+  margin-top: 20px;
+  /* margin-bottom: 0px; */
+  /* display: flex; */
+}
+
+.container {
+  width: calc(70%);
+  margin: auto;
+}
+
+/* The inline-block display positions the #sections and #vis elements side-by-side while still providing a width and height. We also make the #vis position fixed, which makes it stay in the same place, even as we scroll.  */
+
+#sections {
+  position: relative;
+  display: inline-block;
+  width: calc(35% - 40px);
+  margin-left: 5px;
+  margin-right: 5px;
+  top: 0px;
+  z-index: 90;
+}
+
+/* The margin on the .step elements ensures we have some space to scroll in for each section. */
+.step {
+  margin-bottom: 300px;
+}
+
+#vis {
+  display: inline-block;
+  position: fixed;
+  top: 60px;
+  margin-left: 20px;
+  margin-right: 20px;
+  background-color: #ddd;
+  z-index: 1;
+}
