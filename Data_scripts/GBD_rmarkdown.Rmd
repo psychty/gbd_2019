@@ -1,0 +1,70 @@
+---
+title: "Global Burden of Disease - West Sussex 2019 summary"
+author: "Dr Rich Tyler"
+date: '2021'
+output: pdf_document
+---
+
+```{r setup, echo=FALSE}
+library(easypackages)
+
+libraries(c("readxl", "readr", "plyr", "dplyr", "ggplot2", "png", "tidyverse", "reshape2", "scales", "viridis", "rgdal", "officer", "flextable", "tmaptools", "lemon", "fingertipsR", "jsonlite"))
+
+setwd('~/GitHub/gbd_2019/')
+
+data_directory <- './Source_files/Raw'
+output_directory <- './Outputs'
+meta_directory <- './Source_files'
+
+codebook <- read_csv(paste0(meta_directory,'/IHME_GBD_2019_CODEBOOK_Y2020M11D25.csv'))
+cause_hierarchy <- read_excel(paste0(meta_directory, '/IHME_GBD_2019_CAUSE_HIERARCHY_Y2020M11D25.xlsx'))
+
+le_wsx <- fromJSON(paste0(output_directory, '/le_wsx.json')) %>% 
+  mutate(Sex = factor(Sex, levels = c('Male', 'Both', 'Female')))
+
+le_wsx_gap <- le_wsx %>% 
+  select(!Sub_optimal_health) %>% 
+  pivot_longer(names_to = 'Measure',
+               cols = c('LE', 'HALE')) %>% 
+  select(Name, Sex, Year, Measure, value) %>% 
+  pivot_wider(names_from = 'Sex',
+              values_from = 'value') %>% 
+  mutate(Sex_gap_female_minus_male = Female - Male) %>% 
+  select(Name, Year, Measure, Sex_gap_female_minus_male) %>% 
+  pivot_wider(names_from = 'Measure',
+              values_from = 'Sex_gap_female_minus_male')
+```
+
+## Key findings
+
+# Measures of burden, what is the Global Burden of Disease?
+
+The Global Burden of Disease (GBD) is one of the most comprehensive, worldwide, epidemiological collaborations describing life expectancy, as well as mortality and morbidity from major diseases and injuries as well as risk factors at local, regional, national, and global levels.
+
+## Exploring the data
+
+## Is life expectancy improving in West Sussex?
+
+Life expectancy increased from 1990 to 
+
+``` {r Life_expectancy, echo = FALSE} 
+
+
+ggplot(le_wsx,
+       aes(x = Year,
+           colour = Sex,
+           fill = Sex)) +
+  geom_line(aes(y = LE)) +
+  geom_point(aes(y = LE)) +
+  geom_line(aes(y = HALE)) +
+  labs(title = 'Life expectancy and healthy life expectancy at birth by sex; West Sussex; 1990-2019',
+       y = 'Years',
+       x = 'Year') +
+  scale_y_continuous(limits = c(0,90)) +
+  scale_x_continuous(limits = c(1990, 2019),
+                     breaks = seq(1990, 2019, 1)) +
+  scale_color_manual(values = c('#fd6400', '#172243', '#00c3ff')) +
+  scale_fill_manual(values = c('#fd6400', '#172243', '#00c3ff')) +
+  theme(legend.position = 'none')
+
+```

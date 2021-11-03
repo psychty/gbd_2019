@@ -99,6 +99,68 @@ le_wsx %>%
   toJSON() %>% 
   write_lines(paste0(output_directory, '/le_wsx.json'))
 
+# Population ####
+
+population_df <- unique(list.files("~/gbd_data/Population")) %>%
+  map_df(~read_csv(paste0("~/gbd_data/Population/",.))) %>% 
+  select(location_name, sex_name, age_group_name, year_id, val, upper, lower) %>% 
+  filter(location_name == 'West Sussex') %>% 
+  filter(age_group_name %in% c('Early Neonatal', 'Late Neonatal', 'Post Neonatal', '1 to 4', '5 to 9', "10 to 14","15 to 19","20 to 24", "25 to 29","30 to 34","35 to 39","40 to 44", "45 to 49", "50 to 54", "55 to 59", "60 to 64", "65 to 69", "70 to 74", "75 to 79", "80 plus",'All Ages'))
+
+All_age_pop <- population_df %>% 
+  filter(age_group_name == 'All Ages') %>% 
+  select(location_name, sex_name, age_group_name, year_id, val) %>% 
+  pivot_wider(names_from = 'sex_name',
+              values_from = 'val')
+
+All_age_pop %>% 
+  toJSON() %>% 
+  write_lines(paste0(output_directory, '/wsx_population.json'))
+
+# comparisons ####
+
+comparison_label_df_1 <- unique(list.files("~/gbd_data")[grepl("Comparison", list.files("~/gbd_data")) == TRUE]) %>%
+  map_df(~read_csv(paste0("~/gbd_data/",.))) %>% 
+  select(measure, location, sex, cause, metric, year, val) %>% 
+  mutate(val = ifelse(metric == 'Percent', paste0(ifelse(val * 100 < 0.01, '<0.01', ifelse(val * 100 < 0.1, '<0.1', round(val * 100, 1))), '%'), paste0(ifelse(val == 0, 0, ifelse(val < 0.01, '<0.01', ifelse(val < 0.05, '<0.05', format(round(val, 1), big.mark = ',', trim = TRUE))))))) %>% 
+  pivot_wider(names_from = 'metric',
+              values_from = 'val')
+
+comparison_rate_label_df_2 <- unique(list.files("~/gbd_data")[grepl("Comparison", list.files("~/gbd_data")) == TRUE]) %>%
+  map_df(~read_csv(paste0("~/gbd_data/",.))) %>% 
+  filter(metric == 'Rate') %>% 
+  mutate(rate_label = paste0(ifelse(val == 0, 0, ifelse(val < 0.01, '<0.01', ifelse(val < 0.05, '<0.05', format(round(val, 1), big.mark = ',', trim = TRUE)))), ' (', ifelse(lower == 0, 0, ifelse(lower < 0.01, '<0.01', ifelse(lower < 0.05, '<0.05', format(round(lower, 1), big.mark = ',', trim = TRUE)))), '-', ifelse(upper == 0, 0, ifelse(upper < 0.01, '<0.01', ifelse(upper < 0.05, '<0.05', format(round(upper, 1), big.mark = ',', trim = TRUE)))), ')')) %>% 
+  select(measure, location, sex, cause, year, rate_label)
+
+comparison_label_df <- comparison_label_df_1 %>% 
+  left_join(comparison_rate_label_df_2, by = c('measure', 'location', 'sex', 'cause', 'year'))
+
+comparison_df <- unique(list.files("~/gbd_data")[grepl("Comparison", list.files("~/gbd_data")) == TRUE]) %>%
+  map_df(~read_csv(paste0("~/gbd_data/",.))) %>% 
+  filter(metric == 'Rate') %>% 
+  pivot_longer(cols = c('lower', 'upper'),
+               names_to = 'Bounds') %>% 
+  mutate(Bounds = paste(gsub(' ', '_', location), Bounds, sep = '_')) %>% 
+  select(!c(val, location)) %>% 
+  pivot_wider(names_from = 'Bounds',
+              values_from = 'value') %>% 
+  mutate(West_Sussex_SE_significance = ifelse(West_Sussex_lower > South_East_England_upper, 'Significantly higher', ifelse(West_Sussex_upper < South_East_England_lower, 'Significantly lower', 'Similar'))) %>% 
+  mutate(West_Sussex_Eng_significance = ifelse(West_Sussex_lower > England_upper, 'Significantly higher', ifelse(West_Sussex_upper < England_lower, 'Significantly lower', 'Similar')))
+
+final_comparison_df <- comparison_label_df %>% 
+  filter(location == 'West Sussex') %>% 
+  left_join(comparison_df[c('measure', 'sex', 'cause', 'year', 'West_Sussex_SE_significance', 'West_Sussex_Eng_significance')], by = c('measure', 'sex', 'cause', 'year')) %>% 
+  mutate(Age = 'All ages') %>% 
+  rename(Sex = sex,
+         Cause = cause,
+         Year = year,
+         Area = location,
+         Measure = measure)
+
+final_comparison_df %>% 
+  toJSON() %>% 
+  write_lines(paste0(output_directory, '/wsx_compare_df.json'))
+
 # Mortality ####
 # wsx_deaths %>% 
 #   select(measure_name, location_name, sex_name, age_name, cause_id, cause_name, metric_name, year, val, upper, lower) %>% 

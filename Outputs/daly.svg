@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="750"
+   height="500"
+   viewBox="0 0 198.43754 132.29166"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.0.2-2 (e86c870879, 2021-01-15)"
+   sodipodi:docname="daly.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="282.93607"
+     inkscape:cy="257.41752"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     units="px"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:snap-bbox="true"
+     inkscape:snap-global="false"
+     inkscape:snap-page="true"
+     inkscape:window-width="1920"
+     inkscape:window-height="1027"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid884" />
+    <sodipodi:guide
+       position="99.218758,66.145838"
+       orientation="-1,0"
+       id="guide886"
+       inkscape:label=""
+       inkscape:locked="false"
+       inkscape:color="rgb(0,0,255)" />
+    <sodipodi:guide
+       position="-34.9628,30.049109"
+       orientation="0,-1"
+       id="guide888" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:#70e3ff;fill-opacity:1;stroke:#000000;stroke-width:0.33787294;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path20"
+       sodipodi:type="arc"
+       sodipodi:cx="99.323563"
+       sodipodi:cy="110.10162"
+       sodipodi:rx="80.44754"
+       sodipodi:ry="76.103073"
+       sodipodi:start="3.1415927"
+       sodipodi:end="0"
+       sodipodi:arc-type="slice"
+       d="M 18.876022,110.10162 A 80.44754,76.103073 0 0 1 99.323563,33.99855 80.44754,76.103073 0 0 1 179.7711,110.10162 H 99.323563 Z"
+       clip-path="none" />
+    <path
+       style="fill:#fde725;fill-opacity:1;stroke:#000000;stroke-width:0.337917;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path20-1-2"
+       clip-path="none"
+       d="m 160.7231,60.92889 a 80.44754,76.103073 0 0 1 19.048,49.17273 H 99.323563 Z"
+       sodipodi:type="arc"
+       sodipodi:arc-type="slice"
+       sodipodi:start="5.580678"
+       sodipodi:end="0"
+       sodipodi:ry="76.103073"
+       sodipodi:rx="80.44754"
+       sodipodi:cy="110.10162"
+       sodipodi:cx="99.323563" />
+    <text
+       xml:space="preserve"
+       style="font-size:3.175px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="51.593754"
+       y="130.59079"
+       id="text12"><tspan
+         sodipodi:role="line"
+         id="tspan10"
+         x="51.593754"
+         y="130.59079"
+         style="font-size:3.175px;stroke-width:0.264583">Adapted from Public Health England (2015). Reproduced under Open Government Licence.</tspan></text>
+    <path
+       style="fill:#2a788e;fill-opacity:1;stroke:#000000;stroke-width:0.337917;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path20-1-29"
+       sodipodi:type="arc"
+       sodipodi:cx="99.323563"
+       sodipodi:cy="110.10162"
+       sodipodi:rx="80.44754"
+       sodipodi:ry="76.103073"
+       sodipodi:start="3.7755539"
+       sodipodi:end="3.7972528"
+       sodipodi:arc-type="slice"
+       clip-path="none"
+       d="m 34.507991,65.022659 a 80.44754,76.103073 0 0 1 1.049181,-1.319758 l 63.766391,46.398719 z" />
+    <path
+       style="fill:#2a788e;fill-opacity:1;stroke:#000000;stroke-width:0.337917;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path20-1-29-8"
+       sodipodi:type="arc"
+       sodipodi:cx="99.323563"
+       sodipodi:cy="110.10162"
+       sodipodi:rx="80.44754"
+       sodipodi:ry="76.103073"
+       sodipodi:start="4.3699861"
+       sodipodi:end="4.4598856"
+       sodipodi:arc-type="slice"
+       clip-path="none"
+       d="m 72.313184,38.416287 a 80.44754,76.103073 0 0 1 6.912271,-2.004511 l 20.098108,73.689844 z" />
+    <path
+       style="fill:#2a788e;fill-opacity:1;stroke:#000000;stroke-width:0.337917;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path20-1-29-0"
+       sodipodi:type="arc"
+       sodipodi:cx="99.323563"
+       sodipodi:cy="110.10162"
+       sodipodi:rx="80.44754"
+       sodipodi:ry="76.103073"
+       sodipodi:start="4.0374658"
+       sodipodi:end="4.0677097"
+       sodipodi:arc-type="slice"
+       clip-path="none"
+       d="m 49.056935,50.683772 a 80.44754,76.103073 0 0 1 1.922312,-1.410767 l 48.344316,60.828615 z" />
+    <text
+       xml:space="preserve"
+       style="font-size:3.52778px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="64.758186"
+       y="8.6260052"
+       id="text892-8"><tspan
+         sodipodi:role="line"
+         x="64.758186"
+         y="8.6260052"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.52778px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:0.264583"
+         id="tspan1175">Episodes </tspan><tspan
+         sodipodi:role="line"
+         x="64.758186"
+         y="13.035729"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.52778px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:0.264583"
+         id="tspan1410">(years)</tspan><tspan
+         sodipodi:role="line"
+         x="64.758186"
+         y="17.445456"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.52778px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:0.264583"
+         id="tspan1187">of ill health</tspan></text>
+    <circle
+       id="path1177"
+       style="fill:#dbe3db;stroke:#000000;stroke-width:0.264583"
+       cx="52.195843"
+       cy="31.056316"
+       r="0.017661069" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 75.439949,37.751029 75.316288,19.785139"
+       id="path1189"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 126.14012,38.02571 84.483364,18.674139"
+       id="path1191"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 50.435074,49.742667 70.486443,19.18575"
+       id="path1193"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 34.904055,64.342207 66.578607,19.18575"
+       id="path1195"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:#2a788e;fill-opacity:1;stroke:#000000;stroke-width:0.337917;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path20-1"
+       sodipodi:type="arc"
+       sodipodi:cx="99.323563"
+       sodipodi:cy="110.10162"
+       sodipodi:rx="80.44754"
+       sodipodi:ry="76.103073"
+       sodipodi:start="5.0150852"
+       sodipodi:end="5.5737178"
+       sodipodi:arc-type="slice"
+       clip-path="none"
+       d="M 123.30457,37.458483 A 80.44754,76.103073 0 0 1 160.35982,60.52581 L 99.323563,110.10162 Z" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.82222px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="118.55713"
+       y="16.654556"
+       id="text1285"><tspan
+         sodipodi:role="line"
+         id="tspan1283"
+         x="118.55713"
+         y="16.654556"
+         style="font-size:2.82222px;stroke-width:0.264583">An individual may have </tspan><tspan
+         sodipodi:role="line"
+         x="118.55713"
+         y="20.182331"
+         style="font-size:2.82222px;stroke-width:0.264583"
+         id="tspan1287">several episodes of ill health </tspan><tspan
+         sodipodi:role="line"
+         x="118.55713"
+         y="23.710108"
+         style="font-size:2.82222px;stroke-width:0.264583"
+         id="tspan1289">over their life time for </tspan><tspan
+         sodipodi:role="line"
+         x="118.55713"
+         y="27.237881"
+         style="font-size:2.82222px;stroke-width:0.264583"
+         id="tspan1291">different reasons or causes </tspan></text>
+    <path
+       style="fill:#ffffff;fill-opacity:0.85000002;stroke:#000000;stroke-width:0.385531;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path873"
+       sodipodi:type="arc"
+       sodipodi:cx="99.323563"
+       sodipodi:cy="110.27058"
+       sodipodi:rx="65.607574"
+       sodipodi:ry="62.064529"
+       sodipodi:start="3.1415927"
+       sodipodi:end="0"
+       sodipodi:arc-type="arc"
+       sodipodi:open="true"
+       d="M 33.715988,110.27058 A 65.607574,62.064529 0 0 1 99.323563,48.206047 65.607574,62.064529 0 0 1 164.93114,110.27058" />
+    <path
+       style="fill:#aaeeff;fill-opacity:1;stroke:#000000;stroke-width:0.266453;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path873-9-2"
+       sodipodi:type="arc"
+       sodipodi:cx="99.323563"
+       sodipodi:cy="110.27058"
+       sodipodi:rx="45.343506"
+       sodipodi:ry="42.894791"
+       sodipodi:start="3.1415927"
+       sodipodi:end="0"
+       sodipodi:arc-type="arc"
+       sodipodi:open="true"
+       d="M 53.980057,110.27058 A 45.343506,42.894791 0 0 1 99.323563,67.375786 45.343506,42.894791 0 0 1 144.66707,110.27058" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.377264;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.13179, 0.377264;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 99.323755,110.10138 180.59738,44.32613"
+       id="path922"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-size:3.52778px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="81.381294"
+       y="88.284592"
+       id="text892"><tspan
+         sodipodi:role="line"
+         id="tspan890"
+         x="81.381294"
+         y="88.284592"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.82222px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;text-anchor:middle;stroke-width:0.264583">Healthy</tspan><tspan
+         sodipodi:role="line"
+         x="81.381294"
+         y="92.694313"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.82222px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;text-anchor:middle;stroke-width:0.264583"
+         id="tspan1426">(disease and </tspan><tspan
+         sodipodi:role="line"
+         x="81.381294"
+         y="97.104042"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.82222px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;text-anchor:middle;stroke-width:0.264583"
+         id="tspan1430">injury free) </tspan><tspan
+         sodipodi:role="line"
+         x="81.381294"
+         y="101.51376"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.82222px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;text-anchor:middle;stroke-width:0.264583"
+         id="tspan1143">life</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:3.52778px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="173.70622"
+       y="114.03336"
+       id="text892-9"><tspan
+         sodipodi:role="line"
+         id="tspan890-8"
+         x="173.70622"
+         y="114.03336"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.52778px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;text-anchor:middle;stroke-width:0.264583">Expected </tspan><tspan
+         sodipodi:role="line"
+         x="173.70622"
+         y="118.44308"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.52778px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;text-anchor:middle;stroke-width:0.264583"
+         id="tspan918">life years</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:3.52778px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="181.62283"
+       y="44.599468"
+       id="text892-1"><tspan
+         sodipodi:role="line"
+         id="tspan890-4"
+         x="181.62283"
+         y="44.599468"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.52778px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:0.264583">Death</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:3.52778px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="21.453053"
+       y="114.12103"
+       id="text892-17"><tspan
+         sodipodi:role="line"
+         id="tspan890-9"
+         x="21.453053"
+         y="114.12103"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.52778px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:0.264583">Birth</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle;stroke-width:0.264583"
+       x="151.07402"
+       y="88.275139"
+       id="text892-1-5"><tspan
+         sodipodi:role="line"
+         id="tspan890-4-0"
+         x="151.07402"
+         y="88.275139"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.82222px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle;stroke-width:0.264583">YLL</tspan><tspan
+         sodipodi:role="line"
+         x="151.07402"
+         y="92.243889"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82222px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         id="tspan1233">Years of </tspan><tspan
+         sodipodi:role="line"
+         x="151.07402"
+         y="96.212639"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         id="tspan1235"><tspan
+           style="font-size:2.82222px"
+           id="tspan1275">life los</tspan><tspan
+           style="font-size:2.82222px"
+           id="tspan1279">t</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle;stroke-width:0.264583"
+       x="130.36775"
+       y="61.125938"
+       id="text892-1-5-6"><tspan
+         sodipodi:role="line"
+         id="tspan890-4-0-3"
+         x="130.36775"
+         y="61.125938"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.82222px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle;stroke-width:0.264583">YLD</tspan><tspan
+         sodipodi:role="line"
+         x="130.36775"
+         y="65.094688"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82222px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         id="tspan1233-0">Years lived with</tspan><tspan
+         sodipodi:role="line"
+         x="130.36775"
+         y="69.063438"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82222px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         id="tspan1235-0">disability, illness </tspan><tspan
+         sodipodi:role="line"
+         x="130.36775"
+         y="73.032188"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82222px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         id="tspan1293">or injury</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.93889px;line-height:1.25;font-family:sans-serif;white-space:pre;inline-size:33.4918;stroke-width:0.264583"
+       x="2.2986062"
+       y="5.1527557"
+       id="text892-8-8"
+       transform="translate(0.37797622,1.1339287)"><tspan
+         x="2.2986062"
+         y="5.1527557"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:sans-serif;-inkscape-font-specification:sans-serif;stroke-width:0.264583">Measures of </tspan></tspan><tspan
+         x="2.2986062"
+         y="11.326368"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:sans-serif;-inkscape-font-specification:sans-serif;stroke-width:0.264583">the burden </tspan></tspan><tspan
+         x="2.2986062"
+         y="17.499981"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:sans-serif;-inkscape-font-specification:sans-serif;stroke-width:0.264583">of ill health</tspan></tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.284654;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.284654, 0.853962;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 71.626081,87.692407 31.558812,92.035199"
+       id="path1416" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.304698;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.304698, 0.914097;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 74.255334,84.844653 49.133632,63.881121"
+       id="path1418" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.331465;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.331465, 0.994395;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 79.517673,84.27873 68.25782,51.033161"
+       id="path1420" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.284545;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.284545, 0.853634;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 82.59644,83.717653 18.12558,-38.35643"
+       id="path1422" />
+    <path
+       style="fill:#7ad151;fill-opacity:0.88;stroke:#000000;stroke-width:0.52916671;stroke-miterlimit:4;stroke-dasharray:1.58750012, 0.52916671000000004;stroke-opacity:1;stroke-dashoffset:5.29166695"
+       id="path873-9"
+       sodipodi:type="arc"
+       sodipodi:cx="99.323563"
+       sodipodi:cy="110.27058"
+       sodipodi:rx="45.343506"
+       sodipodi:ry="42.894791"
+       sodipodi:start="4.7939287"
+       sodipodi:end="0"
+       sodipodi:arc-type="slice"
+       d="m 103.01676,67.518305 a 45.343506,42.894791 0 0 1 41.65031,42.752275 H 99.323563 Z" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle;stroke-width:0.264583"
+       x="120.31582"
+       y="86.176041"
+       id="text892-1-5-6-6"><tspan
+         sodipodi:role="line"
+         id="tspan890-4-0-3-7"
+         x="120.31582"
+         y="86.176041"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.82222px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle;stroke-width:0.264583">DALY</tspan><tspan
+         sodipodi:role="line"
+         x="120.31582"
+         y="90.144791"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82222px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         id="tspan1235-0-9">Disability adjusted </tspan><tspan
+         sodipodi:role="line"
+         x="120.31582"
+         y="94.113541"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82222px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         id="tspan1293-1">life years lost</tspan><tspan
+         sodipodi:role="line"
+         x="120.31582"
+         y="98.082291"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.82222px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         id="tspan1378">(YLD + YLL)</tspan></text>
+  </g>
+</svg>

@@ -60,6 +60,52 @@ h1 {
   margin: auto;
 }
 
+/* .how_big_should_i_be {
+  width: calc(100%);
+}
+
+.how_big_should_i_be:hover {
+  color: #424242;
+  background-color: #fff;
+  -webkit-transition: all 0.3s ease-in;
+  -moz-transition: all 0.3s ease-in;
+  -ms-transition: all 0.3s ease-in;
+  -o-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+  opacity: 1;
+  -webkit-transform: translate(20px, 0); 
+  -o-transform: translate(20px, 0); 
+  -moz-transform: translate(20px, 0); 
+   width: calc(50vw);
+}
+
+@media screen and (max-width: 800px) {
+  .how_big_should_i_be:hover {
+    -webkit-transition: all 0.3s ease-in;
+    -moz-transition: all 0.3s ease-in;
+    -ms-transition: all 0.3s ease-in;
+    -o-transition: all 0.3s ease-in;
+    transition: all 0.3s ease-in;
+    opacity: 1;
+    -webkit-transform: translate(20px, 0); 
+    -o-transform: translate(20px, 0); 
+    -moz-transform: translate(20px, 0); 
+    width: calc(80vw);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .how_big_should_i_be:hover {
+    -webkit-transition: all 0.3s ease-in;
+    -moz-transition: all 0.3s ease-in;
+    -ms-transition: all 0.3s ease-in;
+    -o-transition: all 0.3s ease-in;
+    transition: all 0.3s ease-in;
+    opacity: 1;
+    width: calc(100vw);
+  }
+} */
+
 /* The inline-block display positions the #sections and #vis elements side-by-side while still providing a width and height. We also make the #vis position fixed, which makes it stay in the same place, even as we scroll.  */
 
 #sections {
@@ -80,9 +126,9 @@ h1 {
 #vis {
   display: inline-block;
   position: fixed;
-  top: 60px;
+  top: 80px;
   margin-left: 20px;
   margin-right: 20px;
-  background-color: #ddd;
+  /* background-color: #ddd; */
   z-index: 1;
 }

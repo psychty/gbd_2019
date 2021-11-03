@@ -12,8 +12,6 @@ var svg_width =
 
 var vh = window.innerHeight * 0.01;
 
-console.log(vh * 70);
-
 // if (svg_width < 575) {
 var svg_story = d3
   .select("#vis")
@@ -24,15 +22,6 @@ var svg_story = d3
   .append("g");
 // }
 
-// if (svg_width > 575) {
-//   var svg_story = d3
-//     .select("#vis")
-//     .append("svg")
-//     .attr("height", 700)
-//     .attr("width", svg_width)
-//     .append("g");
-// }
-
 var vis_position = $("#vis")[0].getBoundingClientRect().top; // Where is the data vis vertical position from the top of the viewport (not top of document, as some people may reload part way down)
 
 // Determine the scroll position of the start of each section, minus the vis_position. We'll be setting the application so that the trigger for a new part is when the section is in line with the top of the svg rather than the top of the viewport.
@@ -41,12 +30,15 @@ var chosen_position_2 = $("#scroll-two").offset().top - vis_position;
 var chosen_position_3 = $("#scroll-three").offset().top - vis_position;
 var chosen_position_4 = $("#scroll-four").offset().top - vis_position;
 var chosen_position_5 = $("#scroll-five").offset().top - vis_position;
+var chosen_position_6 = $("#scroll-six").offset().top - vis_position;
 
 var section_array = [
   chosen_position_1,
   chosen_position_2,
   chosen_position_3,
   chosen_position_4,
+  chosen_position_5,
+  chosen_position_6,
 ];
 
 var section_labels = [
@@ -54,6 +46,8 @@ var section_labels = [
   "Second section",
   "Third section",
   "Fourth section",
+  "Fifth section",
+  "Sixth section",
 ];
 
 var trigger_functions = [
@@ -61,6 +55,8 @@ var trigger_functions = [
   showSection_2(),
   showSection_3(),
   showSection_4(),
+  showSection_5(),
+  showSection_6(),
 ];
 
 // This sets up some identifiers for each section. We'll use this as a sort of lookup. It says if the input is chosen_position_1 then output 'First section' and so on
@@ -90,6 +86,11 @@ if (current_scroll_position < chosen_position_2) {
   current_scroll_position < chosen_position_5
 ) {
   active_section = section_index(chosen_position_4);
+} else if (
+  current_scroll_position >= chosen_position_5 &&
+  current_scroll_position < chosen_position_6
+) {
+  active_section = section_index(chosen_position_5);
 } else {
   active_section = "You have reached the end";
 }
@@ -108,6 +109,12 @@ switch (active_section) {
     break;
   case "Fourth section":
     showSection_4();
+    break;
+  case "Fifth section":
+    showSection_5();
+    break;
+  case "Sixth section":
+    showSection_6();
 }
 
 //  We want to be able to tell if the active_section changes. To do this we need to store the current section and then compare it to the new one. Store the active_section as 'old_active'
@@ -138,6 +145,12 @@ function check_scroll_pos() {
   ) {
     old_active = active_section;
     active_section = section_index(chosen_position_4);
+  } else if (
+    current_scroll_position >= chosen_position_5 &&
+    current_scroll_position < chosen_position_6
+  ) {
+    old_active = active_section;
+    active_section = section_index(chosen_position_5);
   } else {
     old_active = active_section;
     active_section = "You have reached the end";
@@ -167,6 +180,12 @@ function check_scroll_pos() {
         break;
       case "Fourth section":
         showSection_4();
+        break;
+      case "Fifth section":
+        showSection_5();
+        break;
+      case "Sixth section":
+        showSection_6();
     }
 
     console.log(active_section);
@@ -190,25 +209,61 @@ function showSection_1() {
     .remove();
 
   svg_story
-    .append("text")
-    .attr("text-anchor", "middle")
-    .attr("id", "section_vis_placeholder_text")
-    .attr("y", 200)
-    .attr("x", svg_width * 0.5)
+    .selectAll("#section_placeholder_image")
+    .transition()
+    .duration(750)
+    .style("opacity", 0)
+    .remove();
+
+  svg_story
+    .append("image")
+    .attr("id", "section_placeholder_image")
+    .attr("xlink:href", "Outputs/key_findings.svg")
+    .attr("width", svg_width)
     .attr("opacity", 0)
     .transition()
     .duration(1000)
-    .attr("opacity", 1)
-    .style("font-weight", "bold")
-    .text(
-      "The global burden of disease... In West Sussex, the key points in numbers"
-    );
+    .attr("opacity", 1);
 }
 
 // ! Section 2
 function showSection_2() {
   svg_story
     .selectAll("#section_vis_placeholder_text")
+    .transition()
+    .duration(750)
+    .style("opacity", 0)
+    .remove();
+
+  svg_story
+    .selectAll("#section_placeholder_image")
+    .transition()
+    .duration(750)
+    .style("opacity", 0)
+    .remove();
+
+  svg_story
+    .append("image")
+    .attr("id", "section_placeholder_image")
+    .attr("xlink:href", "Outputs/daly.svg")
+    .attr("width", svg_width)
+    .attr("opacity", 0)
+    .transition()
+    .duration(1000)
+    .attr("opacity", 1);
+}
+
+// ! Section 3
+function showSection_3() {
+  svg_story
+    .selectAll("#section_vis_placeholder_text")
+    .transition()
+    .duration(750)
+    .style("opacity", 0)
+    .remove();
+
+  svg_story
+    .selectAll("#section_placeholder_image")
     .transition()
     .duration(750)
     .style("opacity", 0)
@@ -228,9 +283,16 @@ function showSection_2() {
     .text("Life expectancy");
 }
 
-function showSection_3() {
+function showSection_4() {
   svg_story
     .selectAll("#section_vis_placeholder_text")
+    .transition()
+    .duration(750)
+    .style("opacity", 0)
+    .remove();
+
+  svg_story
+    .selectAll("#section_placeholder_image")
     .transition()
     .duration(750)
     .style("opacity", 0)
@@ -250,39 +312,47 @@ function showSection_3() {
     .text("Cause of death");
 }
 
-function showSection_4() {
+function showSection_5() {
   svg_story
-    .selectAll("#vis_placeholder")
+    .selectAll("#section_vis_placeholder_text")
     .transition()
     .duration(750)
     .style("opacity", 0)
     .remove();
 
-  // var svg_story = d3
-  //   .select("#vis")
-  //   .append("svg")
-  //   .attr("id", "vis_placeholder")
-  //   .attr("height", 40 * vh)
-  //   .attr("width", svg_width)
-  //   .append("g");
+  svg_story
+    .selectAll("#section_placeholder_image")
+    .transition()
+    .duration(750)
+    .style("opacity", 0)
+    .remove();
 
-  // svg_story
-  //   .selectAll("#section_vis_placeholder_text")
-  //   .transition()
-  //   .duration(750)
-  //   .style("opacity", 0)
-  //   .remove();
+  svg_story
+    .append("text")
+    .attr("text-anchor", "middle")
+    .attr("id", "section_vis_placeholder_text")
+    .attr("y", 200)
+    .attr("x", svg_width * 0.5)
+    .attr("opacity", 0)
+    .transition()
+    .duration(1000)
+    .attr("opacity", 1)
+    .style("font-weight", "bold")
+    .text("Cause of death");
+}
 
-  // svg_story
-  //   .append("text")
-  //   .attr("text-anchor", "middle")
-  //   .attr("id", "section_vis_placeholder_text")
-  //   .attr("y", 200)
-  //   .attr("x", svg_width * 0.5)
-  //   .attr("opacity", 0)
-  //   .transition()
-  //   .duration(1000)
-  //   .attr("opacity", 1)
-  //   .style("font-weight", "bold")
-  //   .text("Changes over time");
+function showSection_6() {
+  svg_story
+    .selectAll("#section_vis_placeholder_text")
+    .transition()
+    .duration(750)
+    .style("opacity", 0)
+    .remove();
+
+  svg_story
+    .selectAll("#section_placeholder_image")
+    .transition()
+    .duration(750)
+    .style("opacity", 0)
+    .remove();
 }
