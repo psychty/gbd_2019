@@ -5,12 +5,15 @@ date: '2021'
 output: pdf_document
 ---
 
-```{r setup, echo=FALSE}
+```{r, setup, include=FALSE}
+knitr::opts_knit$set(root.dir = '~/GitHub/gbd_2019/')
+```
+
+
+```{r data, echo=FALSE}
 library(easypackages)
 
 libraries(c("readxl", "readr", "plyr", "dplyr", "ggplot2", "png", "tidyverse", "reshape2", "scales", "viridis", "rgdal", "officer", "flextable", "tmaptools", "lemon", "fingertipsR", "jsonlite"))
-
-setwd('~/GitHub/gbd_2019/')
 
 data_directory <- './Source_files/Raw'
 output_directory <- './Outputs'
@@ -33,9 +36,65 @@ le_wsx_gap <- le_wsx %>%
   select(Name, Year, Measure, Sex_gap_female_minus_male) %>% 
   pivot_wider(names_from = 'Measure',
               values_from = 'Sex_gap_female_minus_male')
+
+wsx_compare <- fromJSON(paste0(output_directory, '/wsx_compare_df.json'))
+
+wsx_ranks_compare <- fromJSON(paste0(output_directory, '/wsx_ranks_df.json'))
+
+wsx_ranks_compare %>% 
+  filter(sex == 'Both') %>% 
+  mutate(Label = paste0(cause, ' ', format(round(`DALYs (Disability-Adjusted Life Years)_value`,1), big.mark = ',', trim = TRUE), ' DALYs (', format(round(Deaths_value, 0), big.mark = ',', trim = TRUE), ' deaths)')) %>% 
+  filter(metric == 'Number') %>% 
+  arrange(`DALYs (Disability-Adjusted Life Years)_rank`) %>% 
+  view()
+
+le_comp <- read_csv('https://raw.githubusercontent.com/psychty/gbd_2019/ecd33659ad73f41d90e9296cc3d55da3555e420d/Source_files/Raw/Life_expectancy_SE_2019.csv') %>% 
+  filter(location %in% c('West Sussex','England','South East England')) %>% 
+  filter(year == 2019) %>% 
+  # filter(sex != 'Both') %>% 
+  filter(age == '<1 year') %>% 
+  select(sex, location, val) %>% 
+  mutate(val = round(val, 1)) %>% 
+  pivot_wider(values_from = val,
+              names_from = location)
+
+hale_comp <- read_csv('https://raw.githubusercontent.com/psychty/gbd_2019/ecd33659ad73f41d90e9296cc3d55da3555e420d/Source_files/Raw/Health_Adjusted_Life_expectancy_SE_2019.csv') %>% 
+  filter(location %in% c('West Sussex','England','South East England')) %>% 
+  filter(year == 2019) %>% 
+  # filter(sex != 'Both') %>% 
+  filter(age == '<1 year') %>% 
+  select(sex, location, val) %>% 
+  mutate(val = round(val, 1)) %>% 
+  pivot_wider(values_from = val,
+              names_from = location)
+
+population_df <- fromJSON(paste0(output_directory, '/wsx_population.json'))
+
 ```
 
 ## Key findings
+
+``` {r, infographic echo = FALSE}
+
+wsx_compare %>% 
+  filter(Year == 2019) %>% 
+  filter(Sex == 'Both') %>% 
+  filter(Cause == 'All causes') %>% 
+  # filter(Cause %in% c('All causes', 'Communicable, maternal, neonatal, and nutritional diseases', 'Non-communicable diseases','Injuries')) %>% 
+  view()
+
+```
+
+``` {r, infographic_top_five echo = FALSE}
+
+wsx_compare %>% 
+  filter(Year == 2019) %>% 
+  filter(Sex == 'Both') %>% 
+  filter(Measure == 'DALYs (Disability-Adjusted Life Years)') %>% 
+  filter(!Cause %in% c('All causes', 'Communicable, maternal, neonatal, and nutritional diseases', 'Non-communicable diseases','Injuries')) %>% 
+  view()
+
+```
 
 # Measures of burden, what is the Global Burden of Disease?
 
@@ -48,7 +107,6 @@ The Global Burden of Disease (GBD) is one of the most comprehensive, worldwide, 
 Life expectancy increased from 1990 to 
 
 ``` {r Life_expectancy, echo = FALSE} 
-
 
 ggplot(le_wsx,
        aes(x = Year,

@@ -5,6 +5,15 @@
 // Whilst I have not used code from Jim, the approach is very inspired from it. // When scroll position reaches x do y etc.
 // https://vallandingham.me/scroller.html
 
+// ! html components
+d3.select("#LE_text_1").html(function () {
+  return "Life expectancy has increased in the last 20 years, from 79.5 years in 1999 to 82.2 years in 2019 (81.6 years to 84.1 years among females and from 77.1 years to 80.2 years among males). This shows a gap of almost four years between males and females in West Sussex in the latest estimated life expectancy at birth.";
+});
+
+d3.select("#HALE_text_1").html(function () {
+  return "Healthy life expectancy has also increased since 1999 from 68.1 years overall (68.8 years and 67.2 years for females and males respectively) to 70 years in 2019 (70.6 years and 69.4 years for females and males respectively). The gain in healthy life expectancy has not been as high (in terms of percentage increase or actual years) compared to gains in overall life expectancy, and similar to overall life expectancy, male healthy life expectancy trails behind females although the gap is much smaller at just over one years difference.";
+});
+
 var svg_width =
   document.getElementById("graphic").offsetWidth -
   document.getElementById("sections").offsetWidth -

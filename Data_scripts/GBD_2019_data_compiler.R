@@ -132,8 +132,49 @@ comparison_rate_label_df_2 <- unique(list.files("~/gbd_data")[grepl("Comparison"
   mutate(rate_label = paste0(ifelse(val == 0, 0, ifelse(val < 0.01, '<0.01', ifelse(val < 0.05, '<0.05', format(round(val, 1), big.mark = ',', trim = TRUE)))), ' (', ifelse(lower == 0, 0, ifelse(lower < 0.01, '<0.01', ifelse(lower < 0.05, '<0.05', format(round(lower, 1), big.mark = ',', trim = TRUE)))), '-', ifelse(upper == 0, 0, ifelse(upper < 0.01, '<0.01', ifelse(upper < 0.05, '<0.05', format(round(upper, 1), big.mark = ',', trim = TRUE)))), ')')) %>% 
   select(measure, location, sex, cause, year, rate_label)
 
+comparison_label_df_3 <- unique(list.files("~/gbd_data")[grepl("Comparison", list.files("~/gbd_data")) == TRUE]) %>%
+  map_df(~read_csv(paste0("~/gbd_data/",.))) %>% 
+  left_join(cause_hierarchy[c('Cause Name', 'Level')], by = c('cause' = 'Cause Name')) %>% 
+  select(measure, location, sex, cause, metric, year, Level, val) %>% 
+  group_by(measure, location, sex, metric, year, Level) %>% 
+  mutate(Rank = rank(desc(val))) 
+
+ranks_df_1 <- comparison_label_df_3 %>% 
+  filter(Level == 2) %>% 
+  filter(year %in% c(2019)) %>% 
+  filter(metric != 'Percent') %>% 
+  filter(location == 'West Sussex') %>% 
+  mutate(measure = paste0(measure, '_rank')) %>% 
+  select(measure, location, sex, cause, metric, year, Level, Rank) %>% 
+  pivot_wider(names_from = 'measure',
+              values_from = 'Rank') 
+
+ranks_df_2 <- comparison_label_df_3 %>% 
+  filter(Level == 2) %>% 
+  filter(year %in% c(2019)) %>% 
+  filter(metric != 'Percent') %>% 
+  filter(location == 'West Sussex') %>% 
+  mutate(measure = paste0(measure, '_value')) %>% 
+  select(measure, location, sex, cause, metric, year, Level, val) %>% 
+  pivot_wider(names_from = 'measure',
+              values_from = 'val') 
+
+ranks_df <- ranks_df_1 %>% 
+  left_join(ranks_df_2, by = c('location', 'sex', 'cause', 'metric', 'year', 'Level'))
+
+ranks_df %>% 
+  toJSON() %>% 
+  write_lines(paste0(output_directory, '/wsx_ranks_df.json'))
+
 comparison_label_df <- comparison_label_df_1 %>% 
   left_join(comparison_rate_label_df_2, by = c('measure', 'location', 'sex', 'cause', 'year'))
+
+comparison_label_df %>% 
+  filter(year == 2019) %>% 
+  filter(sex == 'Both') %>% 
+  filter(cause == 'All causes') %>% 
+  view()
+
 
 comparison_df <- unique(list.files("~/gbd_data")[grepl("Comparison", list.files("~/gbd_data")) == TRUE]) %>%
   map_df(~read_csv(paste0("~/gbd_data/",.))) %>% 
