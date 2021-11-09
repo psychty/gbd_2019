@@ -190,7 +190,7 @@
          id="tspan918-6-0"
          x="4.0697122"
          y="58.239727"
-         style="font-size:3.175px;stroke-width:0.264583">Number of deaths </tspan></text>
+         style="font-size:3.175px;stroke-width:0.264583">Estimated number of deaths </tspan></text>
     <path
        style="fill:#fde725;fill-opacity:1;stroke:#000000;stroke-width:0.0228136;stroke-miterlimit:4;stroke-dasharray:0.0684406, 0.0228136;stroke-dashoffset:0.228136;stroke-opacity:1"
        id="path873-9-8"
@@ -498,22 +498,22 @@
     <text
        xml:space="preserve"
        style="font-size:3.175px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
-       x="71.093704"
-       y="120.00403"
+       x="64.411964"
+       y="120.2713"
        id="text1340"><tspan
          sodipodi:role="line"
-         x="71.093704"
-         y="120.00403"
+         x="64.411964"
+         y="120.2713"
          style="font-size:3.175px;stroke-width:0.264583"
          id="tspan1342">Whilst neoplasms (cancer) and cardiovascular diseases are the biggest </tspan><tspan
          sodipodi:role="line"
-         x="71.093704"
-         y="123.97278"
+         x="64.411964"
+         y="124.24005"
          style="font-size:3.175px;stroke-width:0.264583"
-         id="tspan1356">contributors to mortality, some conditions which have low mortality rates </tspan><tspan
+         id="tspan1356">contributors to mortality (deaths), some conditions which have low mortality rates </tspan><tspan
          sodipodi:role="line"
-         x="71.093704"
-         y="127.94153"
+         x="64.411964"
+         y="128.2088"
          style="font-size:3.175px;stroke-width:0.264583"
          id="tspan1506">(such as musculoskeletal disorders) can cause significant levels of disability.</tspan></text>
     <rect
