@@ -132,3 +132,35 @@ h1 {
   /* background-color: #ddd; */
   z-index: 1;
 }
+
+.mobile_places {
+  display: none;
+}
+
+@media screen and (max-width: 900px) {
+  #sections {
+    position: relative;
+    display: inline;
+    width: 100%;
+    margin-left: 5px;
+    margin-right: 5px;
+    top: 0px;
+    z-index: 90;
+  }
+
+  #vis {
+    display: none;
+  }
+
+  /* We might want to turn the scrolling off completely on smaller screens and instead show each svg in place in the sections # */
+
+  .mobile_places {
+    position: relative;
+    display: inline;
+    width: 100%;
+    margin-left: 5px;
+    margin-right: 5px;
+    top: 0px;
+    z-index: 90;
+  }
+}
