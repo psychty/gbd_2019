@@ -5,7 +5,24 @@
 // Whilst I have not used code from Jim, the approach is very inspired from it. // When scroll position reaches x do y etc.
 // https://vallandingham.me/scroller.html
 
-// ! html components
+// ! Components
+// Bring data in for life expectancy
+var request = new XMLHttpRequest();
+request.open("GET", "./Outputs/le_wsx.json", false);
+request.send(null);
+
+var le_df = JSON.parse(request.responseText); // parse the fetched json data into a variable
+
+sex_group_le = d3
+  .nest()
+  .key(function (d) {
+    return d.Sex;
+  })
+  .entries(le_df);
+
+// List of years in the dataset
+var years_gbd = d3.range(1990, 2020); // I cannot explain why it returns up to 2019 and not 2020, its to do with index starting on 0, it just does ok.
+
 d3.select("#LE_text_1").html(function () {
   return "Life expectancy has increased in the last 20 years, from 79.5 years in 1999 to 82.2 years in 2019 (81.6 years to 84.1 years among females and from 77.1 years to 80.2 years among males). This shows a gap of almost four years between males and females in West Sussex in the latest estimated life expectancy at birth.";
 });
@@ -21,15 +38,42 @@ var svg_width =
 
 var vh = window.innerHeight * 0.01;
 
+svg_height = 70 * vh;
+
 // if (svg_width < 575) {
 var svg_story = d3
   .select("#vis")
   .append("svg")
   .attr("id", "vis_placeholder")
-  .attr("height", 70 * vh)
+  .attr("height", svg_height)
   .attr("width", svg_width)
   .append("g");
 // }
+
+var sex = ["Males", "Females", "Persons"];
+var sex_transformed = d3
+  .scaleOrdinal()
+  .domain(sex)
+  .range(["Male", "Female", "Both"]);
+
+// We need to create a dropdown button for the user to choose which area to be displayed on the figure.
+d3.select("#select_deaths_sex_filter_button")
+  .selectAll("myOptions")
+  .data(sex)
+  .enter()
+  .append("option")
+  .text(function (d) {
+    return d;
+  }) // text to appear in the menu - this does not have to be as it is in the data (you can concatenate other values).
+  .attr("value", function (d) {
+    return d;
+  });
+
+var selectedsexOption = sex_transformed(
+  d3.select("#select_deaths_sex_filter_button").property("value")
+);
+
+// ! Scrolly
 
 var vis_position = $("#vis")[0].getBoundingClientRect().top; // Where is the data vis vertical position from the top of the viewport (not top of document, as some people may reload part way down)
 
@@ -206,10 +250,10 @@ window.onscroll = function () {
   check_scroll_pos();
 };
 
-// Remember everything should have a transition, even if it is duration(0).
-
-// ! Section 1
+// ! Section 1 Key summary
 function showSection_1() {
+  svg_story.selectAll(".life_expectancy_figure").remove();
+
   svg_story
     .selectAll("#section_vis_placeholder_text")
     .transition()
@@ -235,8 +279,10 @@ function showSection_1() {
     .attr("opacity", 1);
 }
 
-// ! Section 2
+// ! Section 2 Whats a DALY
 function showSection_2() {
+  svg_story.selectAll(".life_expectancy_figure").remove();
+
   svg_story
     .selectAll("#section_vis_placeholder_text")
     .transition()
@@ -262,7 +308,7 @@ function showSection_2() {
     .attr("opacity", 1);
 }
 
-// ! Section 3
+// ! Section 3 Life Expectancy
 function showSection_3() {
   svg_story
     .selectAll("#section_vis_placeholder_text")
@@ -282,6 +328,7 @@ function showSection_3() {
     .append("text")
     .attr("text-anchor", "middle")
     .attr("id", "section_vis_placeholder_text")
+    .attr("class", "life_expectancy_figure")
     .attr("y", 200)
     .attr("x", svg_width * 0.5)
     .attr("opacity", 0)
@@ -290,9 +337,55 @@ function showSection_3() {
     .attr("opacity", 1)
     .style("font-weight", "bold")
     .text("Life expectancy");
+
+  var x_years_gbd = d3
+    .scaleLinear()
+    .domain(
+      d3.extent(le_df, function (d) {
+        return d.Year;
+      })
+    )
+    .range([0, svg_width - 100]);
+
+  var y_le = d3
+    .scaleLinear()
+    .domain([0, 90]) // Add the ceiling
+    .range([svg_height - 50, 50]);
+
+  svg_story
+    .append("g")
+    .attr("class", "life_expectancy_figure")
+    .attr("transform", "translate(50, 0)")
+    .attr("opacity", 0)
+    .transition()
+    .duration(1000)
+    .attr("opacity", 1)
+    .call(d3.axisLeft(y_le).ticks(20));
+
+  // append the axis to the svg_story and also rotate just the text labels
+  svg_story
+    .append("g")
+    .attr("class", "life_expectancy_figure")
+    .attr("transform", "translate(50," + (svg_height - 50) + ")")
+    .attr("opacity", 0)
+    .transition()
+    .duration(1000)
+    .attr("opacity", 1)
+    .call(d3.axisBottom(x_years_gbd).ticks(years_gbd.length, "0f"))
+    .selectAll("text")
+    .style("text-anchor", "end")
+    .attr("dx", "-.8em")
+    .attr("dy", ".15em")
+    .attr("transform", function (d) {
+      return "rotate(-45)";
+    });
+
+  console.log(years_gbd.length);
 }
 
 function showSection_4() {
+  svg_story.selectAll(".life_expectancy_figure").remove();
+
   svg_story
     .selectAll("#section_vis_placeholder_text")
     .transition()
@@ -322,6 +415,13 @@ function showSection_4() {
 }
 
 function showSection_5() {
+  // svg_story
+  //   .selectAll(".life_expectancy_figure")
+  //   .transition()
+  //   .duration(750)
+  //   .style("opacity", 0)
+  //   .remove();
+
   svg_story
     .selectAll("#section_vis_placeholder_text")
     .transition()
@@ -347,10 +447,17 @@ function showSection_5() {
     .duration(1000)
     .attr("opacity", 1)
     .style("font-weight", "bold")
-    .text("Cause of death");
+    .text("Change over time");
 }
 
 function showSection_6() {
+  // svg_story
+  // .selectAll(".life_expectancy_figure")
+  // .transition()
+  // .duration(750)
+  // .style("opacity", 0)
+  // .remove();
+
   svg_story
     .selectAll("#section_vis_placeholder_text")
     .transition()
