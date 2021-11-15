@@ -202,6 +202,7 @@ final_comparison_df %>%
   toJSON() %>% 
   write_lines(paste0(output_directory, '/wsx_compare_df.json'))
 
+
 # Mortality ####
 # wsx_deaths %>% 
 #   select(measure_name, location_name, sex_name, age_name, cause_id, cause_name, metric_name, year, val, upper, lower) %>% 

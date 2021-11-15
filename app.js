@@ -11,8 +11,13 @@ var request = new XMLHttpRequest();
 request.open("GET", "./Outputs/le_wsx.json", false);
 request.send(null);
 
-var le_df = JSON.parse(request.responseText); // parse the fetched json data into a variable
+var area_x = "West Sussex";
 
+var le_df = JSON.parse(request.responseText).sort(function (a, b) {
+  return +a.Year - +b.Year;
+}); // parse the fetched json data into a variable and sort from earliest year to latest (d3 has trouble with the line figure later if it isnt sorted).
+
+// Nest the le_df into sub arrays for each sex
 sex_group_le = d3
   .nest()
   .key(function (d) {
@@ -20,15 +25,93 @@ sex_group_le = d3
   })
   .entries(le_df);
 
-// List of years in the dataset
+// List of years in the life expectancy dataset
 var years_gbd = d3.range(1990, 2020); // I cannot explain why it returns up to 2019 and not 2020, its to do with index starting on 0, it just does ok.
 
+// Grab some values to use in our report
+var area_male_le_1990 = le_df.filter(function (d) {
+  return d.Name === area_x && d.Sex === "Male" && d.Year === 1990;
+});
+
+var area_female_le_1990 = le_df.filter(function (d) {
+  return d.Name === area_x && d.Sex === "Female" && d.Year === 1990;
+});
+
+var area_person_le_1990 = le_df.filter(function (d) {
+  return d.Name === area_x && d.Sex === "Both" && d.Year === 1990;
+});
+
+var area_male_le_2019 = le_df.filter(function (d) {
+  return d.Name === area_x && d.Sex === "Male" && d.Year === 2019;
+});
+
+var area_female_le_2019 = le_df.filter(function (d) {
+  return d.Name === area_x && d.Sex === "Female" && d.Year === 2019;
+});
+
+var area_person_le_2019 = le_df.filter(function (d) {
+  return d.Name === area_x && d.Sex === "Both" && d.Year === 2019;
+});
+
 d3.select("#LE_text_1").html(function () {
-  return "Life expectancy has increased in the last 20 years, from 79.5 years in 1999 to 82.2 years in 2019 (81.6 years to 84.1 years among females and from 77.1 years to 80.2 years among males). This shows a gap of almost four years between males and females in West Sussex in the latest estimated life expectancy at birth.";
+  return (
+    "Life expectancy has increased in the last 20 years, from " +
+    d3.format(".1f")(area_person_le_1990[0]["LE"]) +
+    " years in 1999 to <b>" +
+    d3.format(".1f")(area_person_le_2019[0]["LE"]) +
+    " years in 2019 </b>(" +
+    d3.format(".1f")(area_female_le_1990[0]["LE"]) +
+    " years to " +
+    d3.format(".1f")(area_female_le_2019[0]["LE"]) +
+    " years among females and from " +
+    d3.format(".1f")(area_male_le_1990[0]["LE"]) +
+    " years to " +
+    d3.format(".1f")(area_male_le_2019[0]["LE"]) +
+    " years among males). This shows a gap of almost four years between males and females in " +
+    area_x +
+    " in the latest estimated life expectancy at birth."
+  );
 });
 
 d3.select("#HALE_text_1").html(function () {
-  return "Healthy life expectancy has also increased since 1999 from 68.1 years overall (68.8 years and 67.2 years for females and males respectively) to 70 years in 2019 (70.6 years and 69.4 years for females and males respectively). The gain in healthy life expectancy has not been as high (in terms of percentage increase or actual years) compared to gains in overall life expectancy, and similar to overall life expectancy, male healthy life expectancy trails behind females although the gap is much smaller at just over one years difference.";
+  return (
+    "Healthy life expectancy has also increased since 1999 from " +
+    d3.format(".1f")(area_person_le_1990[0]["HALE"]) +
+    " years overall (" +
+    d3.format(".1f")(area_female_le_1990[0]["HALE"]) +
+    " years and " +
+    d3.format(".1f")(area_male_le_1990[0]["HALE"]) +
+    " years, for females and males respectively) to " +
+    d3.format(".1f")(area_person_le_2019[0]["HALE"]) +
+    " years in 2019 (" +
+    d3.format(".1f")(area_female_le_2019[0]["HALE"]) +
+    " years and " +
+    d3.format(".1f")(area_male_le_2019[0]["HALE"]) +
+    " years, for females and males respectively). The gain in healthy life expectancy has not been as high (in terms of percentage increase or actual years) compared to gains in overall life expectancy, and similar to overall life expectancy, male healthy life expectancy trails behind females although the gap is much smaller at just over one years difference."
+  );
+});
+
+d3.select("#sub_optimal_health_text_1").html(function () {
+  return (
+    "Indeed, the modelled estimates suggest that, on average, a female born in 2019 can expect to live " +
+    d3.format(".1f")(
+      area_female_le_2019[0]["LE"] - area_male_le_2019[0]["LE"]
+    ) +
+    " years longer overall compared to males. However, they can expect to live around <b>" +
+    d3.format(".1f")(area_female_le_2019[0]["Sub_optimal_health"]) +
+    " years (or " +
+    d3.format(".1%")(
+      area_female_le_2019[0]["Sub_optimal_health"] /
+        area_female_le_2019[0]["LE"]
+    ) +
+    " of their lifetime)</b> in sub-optimal health whilst males can expect to spend <b>" +
+    d3.format(".1f")(area_male_le_2019[0]["Sub_optimal_health"]) +
+    " years (or " +
+    d3.format(".1%")(
+      area_male_le_2019[0]["Sub_optimal_health"] / area_male_le_2019[0]["LE"]
+    ) +
+    " of thier lifetime)</b> with the burden of ill health."
+  );
 });
 
 var svg_width =
@@ -55,6 +138,11 @@ var sex_transformed = d3
   .scaleOrdinal()
   .domain(sex)
   .range(["Male", "Female", "Both"]);
+
+var sex_colour = d3
+  .scaleOrdinal()
+  .domain(["Both", "Female", "Male"])
+  .range(["#172243", "#00C3FF", "#fd6400"]);
 
 // We need to create a dropdown button for the user to choose which area to be displayed on the figure.
 d3.select("#select_deaths_sex_filter_button")
@@ -326,17 +414,147 @@ function showSection_3() {
 
   svg_story
     .append("text")
-    .attr("text-anchor", "middle")
-    .attr("id", "section_vis_placeholder_text")
-    .attr("class", "life_expectancy_figure")
-    .attr("y", 200)
-    .attr("x", svg_width * 0.5)
+    .attr("text-anchor", "left")
+    .attr("class", "life_expectancy_figure chart_title_text")
+    .attr("y", 50)
+    .attr("x", svg_width * 0.05)
+    .attr("opacity", 0)
+    .transition()
+    .duration(1000)
+    .attr("opacity", 1)
+    .text("Life expectancy and health-adjusted life expectancy at birth;");
+
+  svg_story
+    .append("text")
+    .attr("text-anchor", "left")
+    .attr("class", "life_expectancy_figure chart_title_text")
+    .attr("y", 65)
+    .attr("x", svg_width * 0.05)
+    .attr("opacity", 0)
+    .transition()
+    .duration(1000)
+    .attr("opacity", 1)
+    .text(area_x + "; 1990-2019");
+
+  svg_story
+    .append("text")
+    .attr("text-anchor", "left")
+    .attr("class", "life_expectancy_figure chart_title_text")
+    .attr("y", svg_height * 0.55)
+    .attr("x", svg_width * 0.1)
+    .attr("opacity", 0)
+    .transition()
+    .duration(1000)
+    .attr("opacity", 1)
+    .text("2019");
+
+  svg_story
+    .append("text")
+    .attr("text-anchor", "left")
+    .attr("class", "life_expectancy_figure chart_text")
+    .attr("y", svg_height * 0.6)
+    .attr("x", svg_width * 0.1)
     .attr("opacity", 0)
     .transition()
     .duration(1000)
     .attr("opacity", 1)
     .style("font-weight", "bold")
-    .text("Life expectancy");
+    .text("Life expectancy at birth");
+
+  svg_story
+    .append("text")
+    .attr("text-anchor", "left")
+    .attr("class", "life_expectancy_figure chart_text")
+    .attr("y", svg_height * 0.6 + 15)
+    .attr("x", svg_width * 0.1)
+    .attr("opacity", 0)
+    .transition()
+    .duration(1000)
+    .attr("opacity", 1)
+    .text(
+      "Females: " + d3.format(".1f")(area_female_le_2019[0]["LE"]) + " years"
+    );
+
+  svg_story
+    .append("text")
+    .attr("text-anchor", "left")
+    .attr("class", "life_expectancy_figure chart_text")
+    .attr("y", svg_height * 0.6 + 30)
+    .attr("x", svg_width * 0.1)
+    .attr("opacity", 0)
+    .transition()
+    .duration(1000)
+    .attr("opacity", 1)
+    .text("Males: " + d3.format(".1f")(area_male_le_2019[0]["LE"]) + " years");
+
+  svg_story
+    .append("text")
+    .attr("text-anchor", "left")
+    .attr("class", "life_expectancy_figure chart_text")
+    .attr("y", svg_height * 0.6 + 45)
+    .attr("x", svg_width * 0.1)
+    .attr("opacity", 0)
+    .transition()
+    .duration(1000)
+    .attr("opacity", 1)
+    .text(
+      "Persons: " + d3.format(".1f")(area_person_le_2019[0]["LE"]) + " years"
+    );
+
+  svg_story
+    .append("text")
+    .attr("text-anchor", "left")
+    .attr("class", "life_expectancy_figure chart_text")
+    .attr("y", svg_height * 0.6 + 70)
+    .attr("x", svg_width * 0.1)
+    .attr("opacity", 0)
+    .transition()
+    .duration(1000)
+    .attr("opacity", 1)
+    .style("font-weight", "bold")
+    .text("Healthy life expectancy at birth");
+
+  svg_story
+    .append("text")
+    .attr("text-anchor", "left")
+    .attr("class", "life_expectancy_figure chart_text")
+    .attr("y", svg_height * 0.6 + 85)
+    .attr("x", svg_width * 0.1)
+    .attr("opacity", 0)
+    .transition()
+    .duration(1000)
+    .attr("opacity", 1)
+    .text(
+      "Females: " + d3.format(".1f")(area_female_le_2019[0]["HALE"]) + " years"
+    );
+
+  svg_story
+    .append("text")
+    .attr("text-anchor", "left")
+    .attr("class", "life_expectancy_figure chart_text")
+    .attr("y", svg_height * 0.6 + 100)
+    .attr("x", svg_width * 0.1)
+    .attr("opacity", 0)
+    .transition()
+    .duration(1000)
+    .attr("opacity", 1)
+    .text(
+      "Males: " + d3.format(".1f")(area_male_le_2019[0]["HALE"]) + " years"
+    );
+
+  svg_story
+    .append("text")
+    .attr("text-anchor", "left")
+    .attr("class", "life_expectancy_figure chart_text")
+    .attr("y", svg_height * 0.6 + 115)
+    .attr("x", svg_width * 0.1)
+    .attr("opacity", 0)
+    .transition()
+    .duration(1000)
+    .attr("opacity", 1)
+    .text(
+      "Persons: " + d3.format(".1f")(area_person_le_2019[0]["HALE"]) + " years"
+    );
 
   var x_years_gbd = d3
     .scaleLinear()
@@ -345,16 +563,16 @@ function showSection_3() {
         return d.Year;
       })
     )
-    .range([0, svg_width - 100]);
+    .range([50, svg_width - 50]);
 
   var y_le = d3
     .scaleLinear()
     .domain([0, 90]) // Add the ceiling
-    .range([svg_height - 50, 50]);
+    .range([svg_height - 50, 100]);
 
   svg_story
     .append("g")
-    .attr("class", "life_expectancy_figure")
+    .attr("class", "life_expectancy_figure axis_text")
     .attr("transform", "translate(50, 0)")
     .attr("opacity", 0)
     .transition()
@@ -365,8 +583,8 @@ function showSection_3() {
   // append the axis to the svg_story and also rotate just the text labels
   svg_story
     .append("g")
-    .attr("class", "life_expectancy_figure")
-    .attr("transform", "translate(50," + (svg_height - 50) + ")")
+    .attr("class", "life_expectancy_figure axis_text")
+    .attr("transform", "translate(0," + (svg_height - 50) + ")")
     .attr("opacity", 0)
     .transition()
     .duration(1000)
@@ -380,12 +598,157 @@ function showSection_3() {
       return "rotate(-45)";
     });
 
-  console.log(years_gbd.length);
+  // Legend
+
+  // Add one dot in the legend for each name.
+  svg_story
+    .selectAll("dots")
+    .data(sex)
+    .enter()
+    .append("circle")
+    .attr("class", "life_expectancy_figure axis_text")
+    .attr("cx", svg_width * 0.6)
+    .attr("cy", function (d, i) {
+      return svg_height * 0.6 + i * 20;
+    }) // 100 is where the first dot appears. 20 is the distance between dots
+    .attr("r", 4)
+    .style("fill", function (d) {
+      return sex_colour(sex_transformed(d));
+    })
+    .style("alignment-baseline", "middle")
+    .attr("opacity", 0)
+    .transition()
+    .duration(1000)
+    .attr("opacity", 1);
+
+  console.log(sex);
+
+  svg_story
+    .selectAll("legend_labels")
+    .data(sex)
+    .enter()
+    .append("text")
+    .attr("class", "life_expectancy_figure axis_text")
+    .attr("x", svg_width * 0.6 + 10)
+    .attr("y", function (d, i) {
+      return svg_height * 0.6 + i * 20;
+    }) // 100 is where the first dot appears. 20 is the distance between dots
+    .style("fill", function (d) {
+      return sex_colour(sex_transformed(d));
+    })
+    .text(function (d) {
+      return d.replace("Persons", "Both males and female");
+    })
+    // .style("font-size", "11px")
+    .attr("text-anchor", "left")
+    .style("alignment-baseline", "middle")
+    .on("click", function (d) {
+      currentOpacity = d3.selectAll("." + d).style("opacity"); // is the element currently visible ?
+      d3.selectAll("." + d)
+        .transition()
+        .style("opacity", currentOpacity == 1 ? 0 : 1); // Change the opacity: from 0 to 1 or from 1 to 0
+    })
+    .attr("opacity", 0)
+    .transition()
+    .duration(1000)
+    .attr("opacity", 1);
+
+  svg_story
+    .append("text")
+    .attr("class", "life_expectancy_figure axis_text")
+    .attr("x", svg_width * 0.1)
+    .attr("y", 110)
+    // .style("font-size", "10px")
+    .text("The solid top line shows life expectancy");
+
+  svg_story
+    .append("text")
+    .attr("class", "life_expectancy_figure axis_text")
+    .attr("x", svg_width * 0.4)
+    .attr("y", svg_height * 0.4)
+    // .style("font-size", "11px")
+    .text("The dashed bottom line shows healthy life expectancy");
+
+  // Draw the line
+  svg_story
+    .selectAll(".line")
+    .data(sex_group_le)
+    .enter()
+    .append("path")
+    .attr("class", "life_expectancy_figure")
+    .style("fill", "none")
+    .attr("stroke", function (d) {
+      return sex_colour(d.key);
+    })
+    .attr("stroke-width", 1)
+    .attr("d", function (d) {
+      return d3
+        .line()
+        .x(function (d) {
+          return x_years_gbd(d.Year);
+        })
+        .y(function (d) {
+          return y_le(+d.LE);
+        })(d.values);
+    });
+
+  console.log(sex_group_le);
+
+  svg_story
+    .selectAll("myDots")
+    .data(sex_group_le)
+    .enter()
+    .append("g")
+    .attr("class", "life_expectancy_figure")
+    // .attr("class", function (d) {
+    //   return d.key;
+    // })
+    .style("fill", function (d) {
+      return sex_colour(d.key);
+    })
+    .selectAll("myPoints")
+    .data(function (d) {
+      return d.values;
+    })
+    .enter()
+    .append("circle")
+    .attr("cx", function (d) {
+      return x_years_gbd(d.Year);
+    })
+    .attr("cy", function (d) {
+      return y_le(+d.LE);
+    })
+    .attr("r", 3.5)
+    .attr("stroke", "white");
+
+  svg_story
+    .selectAll(".line")
+    .data(sex_group_le)
+    .enter()
+    .append("path")
+    .attr("class", "life_expectancy_figure")
+    .attr("fill", "none")
+    .attr("stroke", function (d) {
+      return sex_colour(d.key);
+    })
+    // .attr("stroke-width", 1.5)
+    .style("stroke-dasharray", "6,2")
+    .attr("d", function (d) {
+      return d3
+        .line()
+        .x(function (d) {
+          return x_years_gbd(d.Year);
+        })
+        .y(function (d) {
+          return y_le(+d.HALE);
+        })(d.values);
+    });
 }
 
 function showSection_4() {
   svg_story.selectAll(".life_expectancy_figure").remove();
 
+  //  once we have created section 4 content and section 5 content, we can just use the class selection rather than select by id to remove, this should make it slightly less code
   svg_story
     .selectAll("#section_vis_placeholder_text")
     .transition()

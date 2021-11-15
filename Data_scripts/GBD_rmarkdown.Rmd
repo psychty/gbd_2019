@@ -10,7 +10,7 @@ knitr::opts_knit$set(root.dir = '~/GitHub/gbd_2019/')
 ```
 
 
-```{r data, echo=FALSE}
+```{r data, echo=FALSE, include=FALSE}
 library(easypackages)
 
 libraries(c("readxl", "readr", "plyr", "dplyr", "ggplot2", "png", "tidyverse", "reshape2", "scales", "viridis", "rgdal", "officer", "flextable", "tmaptools", "lemon", "fingertipsR", "jsonlite"))
@@ -45,8 +45,7 @@ wsx_ranks_compare %>%
   filter(sex == 'Both') %>% 
   mutate(Label = paste0(cause, ' ', format(round(`DALYs (Disability-Adjusted Life Years)_value`,1), big.mark = ',', trim = TRUE), ' DALYs (', format(round(Deaths_value, 0), big.mark = ',', trim = TRUE), ' deaths)')) %>% 
   filter(metric == 'Number') %>% 
-  arrange(`DALYs (Disability-Adjusted Life Years)_rank`) %>% 
-  view()
+  arrange(`DALYs (Disability-Adjusted Life Years)_rank`) 
 
 le_comp <- read_csv('https://raw.githubusercontent.com/psychty/gbd_2019/ecd33659ad73f41d90e9296cc3d55da3555e420d/Source_files/Raw/Life_expectancy_SE_2019.csv') %>% 
   filter(location %in% c('West Sussex','England','South East England')) %>% 
@@ -69,6 +68,7 @@ hale_comp <- read_csv('https://raw.githubusercontent.com/psychty/gbd_2019/ecd336
               names_from = location)
 
 population_df <- fromJSON(paste0(output_directory, '/wsx_population.json'))
+
 
 ```
 

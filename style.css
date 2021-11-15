@@ -29,6 +29,16 @@ h1 {
   color: #256cb2;
 }
 
+.chart_title_text {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #256cb2;
+}
+
+.axis_text {
+  font-size: 0.8rem;
+}
+
 .browser_compat {
   font-size: 0.8rem;
   text-align: justify;
