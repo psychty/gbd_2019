@@ -25,6 +25,16 @@ sex_group_le = d3
   })
   .entries(le_df);
 
+var request = new XMLHttpRequest();
+request.open("GET", "./Outputs/wsx_ranks_df.json", false);
+request.send(null);
+
+var rank_df = JSON.parse(request.responseText).sort(function (a, b) {
+  return +a.Year - +b.Year;
+});
+
+console.log(rank_df);
+
 // List of years in the life expectancy dataset
 var years_gbd = d3.range(1990, 2020); // I cannot explain why it returns up to 2019 and not 2020, its to do with index starting on 0, it just does ok.
 
@@ -160,6 +170,60 @@ d3.select("#select_deaths_sex_filter_button")
 var selectedsexOption = sex_transformed(
   d3.select("#select_deaths_sex_filter_button").property("value")
 );
+
+// Specify a colour palette and order for the level 2 causes
+var cause_categories = [
+  "HIV/AIDS and sexually transmitted infections",
+  "Respiratory infections and tuberculosis",
+  "Enteric infections",
+  "Neglected tropical diseases and malaria",
+  "Other infectious diseases",
+  "Maternal and neonatal disorders",
+  "Nutritional deficiencies",
+  "Neoplasms",
+  "Cardiovascular diseases",
+  "Chronic respiratory diseases",
+  "Digestive diseases",
+  "Neurological disorders",
+  "Mental disorders",
+  "Substance use disorders",
+  "Diabetes and kidney diseases",
+  "Skin and subcutaneous diseases",
+  "Sense organ diseases",
+  "Musculoskeletal disorders",
+  "Other non-communicable diseases",
+  "Transport injuries",
+  "Unintentional injuries",
+  "Self-harm and interpersonal violence",
+];
+
+var color_cause_group = d3
+  .scaleOrdinal()
+  .domain(cause_categories)
+  .range([
+    "#F8DDEB",
+    "#F2B9BF",
+    "#EE9187",
+    "#EA695C",
+    "#D84D42",
+    "#AD3730",
+    "#7A1C1C",
+    "#BCD6F7",
+    "#97C4F0",
+    "#67A8E7",
+    "#528CDB",
+    "#376ACB",
+    "#1845A5",
+    "#CFD6F6",
+    "#ADB9ED",
+    "#8B96DD",
+    "#6978D0",
+    "#4E4FB8",
+    "#3E3294",
+    "#B5DCD0",
+    "#76B786",
+    "#477A49",
+  ]);
 
 // ! Scrolly
 
@@ -621,8 +685,6 @@ function showSection_3() {
     .duration(1000)
     .attr("opacity", 1);
 
-  console.log(sex);
-
   svg_story
     .selectAll("legend_labels")
     .data(sex)
@@ -658,7 +720,10 @@ function showSection_3() {
     .attr("class", "life_expectancy_figure axis_text")
     .attr("x", svg_width * 0.1)
     .attr("y", 110)
-    // .style("font-size", "10px")
+    .attr("opacity", 0)
+    .transition()
+    .duration(1000)
+    .attr("opacity", 1)
     .text("The solid top line shows life expectancy");
 
   svg_story
@@ -666,7 +731,10 @@ function showSection_3() {
     .attr("class", "life_expectancy_figure axis_text")
     .attr("x", svg_width * 0.4)
     .attr("y", svg_height * 0.4)
-    // .style("font-size", "11px")
+    .attr("opacity", 0)
+    .transition()
+    .duration(1000)
+    .attr("opacity", 1)
     .text("The dashed bottom line shows healthy life expectancy");
 
   // Draw the line
@@ -690,36 +758,87 @@ function showSection_3() {
         .y(function (d) {
           return y_le(+d.LE);
         })(d.values);
-    });
+    })
+    .attr("opacity", 0)
+    .transition()
+    .duration(1000)
+    .attr("opacity", 1);
 
-  console.log(sex_group_le);
+  var tooltip_le = d3
+    .select("#vis")
+    .append("div")
+    .style("opacity", 0)
+    .attr("class", "tooltips")
+    .style("position", "absolute")
+    .style("z-index", "10")
+    .style("background-color", "white")
+    .style("border", "solid")
+    .style("border-width", "1px")
+    .style("border-radius", "5px")
+    .style("padding", "10px");
+
+  var showTooltip_le = function (d) {
+    tooltip_le.transition().duration(200).style("opacity", 1);
+
+    tooltip_le
+      .html(
+        "<h3>" +
+          area_x +
+          " - " +
+          d.Sex.replace("Both", "Persons") +
+          " - " +
+          d.Year +
+          "</h3><p>In " +
+          d.Year +
+          " the life expectancy among " +
+          d.Sex.replace(
+            "Both",
+            "overall (among both males and female)"
+          ).toLowerCase() +
+          "s was <b>" +
+          d3.format(".1f")(d.LE) +
+          "</b> and the health-adjusted life expectancy was <b>" +
+          d3.format(".1f")(d.HALE) +
+          "</b>.</p><p>This means living, on average, <b>" +
+          d3.format(".1f")(d.Sub_optimal_health) +
+          " years in sub-optimal health</b>.</p> "
+      )
+      .style("opacity", 1);
+    // .style("top", d3.select(this).attr("cy") + "10px")
+    // .style("left", d3.select(this).attr("cx") + "10px");
+  };
 
   svg_story
     .selectAll("myDots")
-    .data(sex_group_le)
-    .enter()
-    .append("g")
-    .attr("class", "life_expectancy_figure")
-    // .attr("class", function (d) {
-    //   return d.key;
-    // })
-    .style("fill", function (d) {
-      return sex_colour(d.key);
-    })
-    .selectAll("myPoints")
-    .data(function (d) {
-      return d.values;
-    })
+    .data(le_df)
     .enter()
     .append("circle")
+    .attr("class", "life_expectancy_figure le_dots")
+    .style("fill", function (d) {
+      return sex_colour(d.Sex);
+    })
     .attr("cx", function (d) {
       return x_years_gbd(d.Year);
     })
     .attr("cy", function (d) {
       return y_le(+d.LE);
     })
-    .attr("r", 3.5)
-    .attr("stroke", "white");
+    .attr("r", 4)
+    .attr("stroke", "white")
+    .attr("opacity", 0)
+    .transition()
+    .duration(1000)
+    .attr("opacity", 1);
+
+  svg_story
+    .selectAll(".le_dots")
+    .on("mouseover", function () {
+      return tooltip_le.style("visibility", "visible");
+    })
+    .on("mousemove", showTooltip_le)
+    .on("mouseout", function () {
+      return tooltip_le.style("visibility", "hidden");
+    });
 
   svg_story
     .selectAll(".line")
@@ -742,7 +861,11 @@ function showSection_3() {
         .y(function (d) {
           return y_le(+d.HALE);
         })(d.values);
-    });
+    })
+    .attr("opacity", 0)
+    .transition()
+    .duration(1000)
+    .attr("opacity", 1);
 }
 
 function showSection_4() {
@@ -762,19 +885,6 @@ function showSection_4() {
     .duration(750)
     .style("opacity", 0)
     .remove();
-
-  svg_story
-    .append("text")
-    .attr("text-anchor", "middle")
-    .attr("id", "section_vis_placeholder_text")
-    .attr("y", 200)
-    .attr("x", svg_width * 0.5)
-    .attr("opacity", 0)
-    .transition()
-    .duration(1000)
-    .attr("opacity", 1)
-    .style("font-weight", "bold")
-    .text("Cause of death");
 }
 
 function showSection_5() {
