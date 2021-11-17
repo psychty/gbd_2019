@@ -33,7 +33,9 @@ var rank_df = JSON.parse(request.responseText).sort(function (a, b) {
   return +a.Year - +b.Year;
 });
 
-console.log(rank_df);
+rank_df_number = rank_df.filter(function (d) {
+  return d.Level === 2 && d.metric === "Number";
+});
 
 // List of years in the life expectancy dataset
 var years_gbd = d3.range(1990, 2020); // I cannot explain why it returns up to 2019 and not 2020, its to do with index starting on 0, it just does ok.
@@ -143,11 +145,11 @@ var svg_story = d3
   .append("g");
 // }
 
-var sex = ["Males", "Females", "Persons"];
+var sex = ["Persons", "Males", "Females"];
 var sex_transformed = d3
   .scaleOrdinal()
   .domain(sex)
-  .range(["Male", "Female", "Both"]);
+  .range(["Both", "Male", "Female"]);
 
 var sex_colour = d3
   .scaleOrdinal()
@@ -170,6 +172,40 @@ d3.select("#select_deaths_sex_filter_button")
 var selectedsexOption = sex_transformed(
   d3.select("#select_deaths_sex_filter_button").property("value")
 );
+
+var chosen_sex_mortality_df = rank_df_number
+  .filter(function (d) {
+    return d.sex === selectedsexOption;
+  })
+  .sort(function (a, b) {
+    return +a.Deaths_rank - +b.Deaths_rank;
+  })
+  .filter(function (d, i) {
+    return i < 10;
+  });
+
+var y_top_ten_mortality = d3
+  .scaleLinear()
+  .domain([
+    0,
+    d3.max(chosen_sex_mortality_df, function (d) {
+      return +d.Deaths_value;
+    }),
+  ]) // Add the ceiling
+  .range([svg_height - 200, 100])
+  .nice();
+
+var x_top_ten = d3
+  .scaleBand()
+  .domain(
+    d3
+      .map(chosen_sex_mortality_df, function (d) {
+        return d.cause;
+      })
+      .keys()
+  )
+  .range([50, svg_width - 50])
+  .padding(0.2);
 
 // Specify a colour palette and order for the level 2 causes
 var cause_categories = [
@@ -227,7 +263,7 @@ var color_cause_group = d3
 
 // ! Scrolly
 
-var vis_position = $("#vis")[0].getBoundingClientRect().top; // Where is the data vis vertical position from the top of the viewport (not top of document, as some people may reload part way down)
+var vis_position = $("#vis")[0].getBoundingClientRect().top + 30 * vh; // Where is the data vis vertical position from the top of the viewport (not top of document, as some people may reload part way down)
 
 // Determine the scroll position of the start of each section, minus the vis_position. We'll be setting the application so that the trigger for a new part is when the section is in line with the top of the svg rather than the top of the viewport.
 var chosen_position_1 = $("#scroll-one").offset().top - vis_position;
@@ -236,6 +272,7 @@ var chosen_position_3 = $("#scroll-three").offset().top - vis_position;
 var chosen_position_4 = $("#scroll-four").offset().top - vis_position;
 var chosen_position_5 = $("#scroll-five").offset().top - vis_position;
 var chosen_position_6 = $("#scroll-six").offset().top - vis_position;
+var chosen_position_7 = $("#scroll-seven").offset().top - vis_position;
 
 var section_array = [
   chosen_position_1,
@@ -244,6 +281,7 @@ var section_array = [
   chosen_position_4,
   chosen_position_5,
   chosen_position_6,
+  chosen_position_7,
 ];
 
 var section_labels = [
@@ -253,6 +291,7 @@ var section_labels = [
   "Fourth section",
   "Fifth section",
   "Sixth section",
+  "Seventh section",
 ];
 
 var trigger_functions = [
@@ -262,6 +301,7 @@ var trigger_functions = [
   showSection_4(),
   showSection_5(),
   showSection_6(),
+  showSection_7(),
 ];
 
 // This sets up some identifiers for each section. We'll use this as a sort of lookup. It says if the input is chosen_position_1 then output 'First section' and so on
@@ -296,6 +336,11 @@ if (current_scroll_position < chosen_position_2) {
   current_scroll_position < chosen_position_6
 ) {
   active_section = section_index(chosen_position_5);
+} else if (
+  current_scroll_position >= chosen_position_6 &&
+  current_scroll_position < chosen_position_7
+) {
+  active_section = section_index(chosen_position_6);
 } else {
   active_section = "You have reached the end";
 }
@@ -320,6 +365,9 @@ switch (active_section) {
     break;
   case "Sixth section":
     showSection_6();
+    break;
+  case "Seventh section":
+    showSection_7();
 }
 
 //  We want to be able to tell if the active_section changes. To do this we need to store the current section and then compare it to the new one. Store the active_section as 'old_active'
@@ -356,6 +404,12 @@ function check_scroll_pos() {
   ) {
     old_active = active_section;
     active_section = section_index(chosen_position_5);
+  } else if (
+    current_scroll_position >= chosen_position_6 &&
+    current_scroll_position < chosen_position_7
+  ) {
+    old_active = active_section;
+    active_section = section_index(chosen_position_6);
   } else {
     old_active = active_section;
     active_section = "You have reached the end";
@@ -391,6 +445,9 @@ function check_scroll_pos() {
         break;
       case "Sixth section":
         showSection_6();
+        break;
+      case "Seventh section":
+        showSection_7();
     }
 
     console.log(active_section);
@@ -405,6 +462,7 @@ window.onscroll = function () {
 // ! Section 1 Key summary
 function showSection_1() {
   svg_story.selectAll(".life_expectancy_figure").remove();
+  svg_story.selectAll(".mortality_1_figure").remove();
 
   svg_story
     .selectAll("#section_vis_placeholder_text")
@@ -434,6 +492,7 @@ function showSection_1() {
 // ! Section 2 Whats a DALY
 function showSection_2() {
   svg_story.selectAll(".life_expectancy_figure").remove();
+  svg_story.selectAll(".mortality_1_figure").remove();
 
   svg_story
     .selectAll("#section_vis_placeholder_text")
@@ -462,6 +521,8 @@ function showSection_2() {
 
 // ! Section 3 Life Expectancy
 function showSection_3() {
+  svg_story.selectAll(".mortality_1_figure").remove();
+
   svg_story
     .selectAll("#section_vis_placeholder_text")
     .transition()
@@ -793,7 +854,7 @@ function showSection_3() {
           " the life expectancy among " +
           d.Sex.replace(
             "Both",
-            "overall (among both males and female)"
+            "overall among both males and female"
           ).toLowerCase() +
           "s was <b>" +
           d3.format(".1f")(d.LE) +
@@ -868,8 +929,25 @@ function showSection_3() {
     .attr("opacity", 1);
 }
 
+// ! Mortality
 function showSection_4() {
   svg_story.selectAll(".life_expectancy_figure").remove();
+  svg_story.selectAll(".mortality_1_figure_title").remove();
+
+  var selectedsexOption = sex_transformed(
+    d3.select("#select_deaths_sex_filter_button").property("value")
+  );
+
+  var chosen_sex_mortality_df = rank_df_number
+    .filter(function (d) {
+      return d.sex === selectedsexOption;
+    })
+    .sort(function (a, b) {
+      return +a.Deaths_rank - +b.Deaths_rank;
+    })
+    .filter(function (d, i) {
+      return i < 10;
+    });
 
   //  once we have created section 4 content and section 5 content, we can just use the class selection rather than select by id to remove, this should make it slightly less code
   svg_story
@@ -885,15 +963,75 @@ function showSection_4() {
     .duration(750)
     .style("opacity", 0)
     .remove();
+
+  var x_top_ten = d3
+    .scaleBand()
+    .domain(
+      d3
+        .map(chosen_sex_mortality_df, function (d) {
+          return d.cause;
+        })
+        .keys()
+    )
+    .range([50, svg_width - 50])
+    .padding(0.2);
+
+  var y_top_ten_mortality = d3
+    .scaleLinear()
+    .domain([
+      0,
+      d3.max(chosen_sex_mortality_df, function (d) {
+        return +d.Deaths_value;
+      }),
+    ]) // Add the ceiling
+    .range([svg_height - 200, 100])
+    .nice();
+
+  svg_story
+    .append("g")
+    .attr("class", "mortality_1_figure axis_text mortality_1_figure_y_axis")
+    // .attr("id", "mortality_1_figure_y_axis")
+    .attr("transform", "translate(50, 0)")
+    .attr("opacity", 0)
+    .transition()
+    .duration(1000)
+    .attr("opacity", 1)
+    .call(d3.axisLeft(y_top_ten_mortality));
+
+  // append the axis to the svg_story and also rotate just the text labels
+  svg_story
+    .append("g")
+    .attr("class", "mortality_1_figure axis_text mortality_1_figure_x_axis")
+    .attr("transform", "translate(0," + (svg_height - 200) + ")")
+    .attr("opacity", 0)
+    .transition()
+    .duration(1000)
+    .attr("opacity", 1)
+    .call(d3.axisBottom(x_top_ten))
+    .selectAll("text")
+    .style("text-anchor", "end")
+    .attr("dx", "-.8em")
+    .attr("dy", ".15em")
+    .attr("transform", function (d) {
+      return "rotate(-45)";
+    });
+
+  update_sex_change_mortality();
 }
 
+d3.select("#select_deaths_sex_filter_button").on("change", function (d) {
+  var selectedsexOption = sex_transformed(
+    d3.select("#select_deaths_sex_filter_button").property("value")
+  );
+
+  console.log(selectedsexOption);
+  update_sex_change_mortality();
+});
+
+// ! Table of ranks
 function showSection_5() {
-  // svg_story
-  //   .selectAll(".life_expectancy_figure")
-  //   .transition()
-  //   .duration(750)
-  //   .style("opacity", 0)
-  //   .remove();
+  svg_story.selectAll(".life_expectancy_figure").remove();
+  svg_story.selectAll(".mortality_1_figure").remove();
 
   svg_story
     .selectAll("#section_vis_placeholder_text")
@@ -920,10 +1058,14 @@ function showSection_5() {
     .duration(1000)
     .attr("opacity", 1)
     .style("font-weight", "bold")
-    .text("Change over time");
+    .text("Beyond deaths - a table");
 }
 
+// ! DALYs
 function showSection_6() {
+  svg_story.selectAll(".life_expectancy_figure").remove();
+  svg_story.selectAll(".mortality_1_figure").remove();
+
   // svg_story
   // .selectAll(".life_expectancy_figure")
   // .transition()
@@ -944,4 +1086,217 @@ function showSection_6() {
     .duration(750)
     .style("opacity", 0)
     .remove();
+
+  svg_story
+    .append("text")
+    .attr("text-anchor", "middle")
+    .attr("id", "section_vis_placeholder_text")
+    .attr("y", 200)
+    .attr("x", svg_width * 0.5)
+    .attr("opacity", 0)
+    .transition()
+    .duration(1000)
+    .attr("opacity", 1)
+    .style("font-weight", "bold")
+    .text("Level three death bubbles (and other bubbles)");
+}
+
+// ! Trends over time
+function showSection_7() {
+  svg_story.selectAll(".life_expectancy_figure").remove();
+  svg_story.selectAll(".mortality_1_figure").remove();
+
+  // svg_story
+  // .selectAll(".life_expectancy_figure")
+  // .transition()
+  // .duration(750)
+  // .style("opacity", 0)
+  // .remove();
+
+  svg_story
+    .selectAll("#section_vis_placeholder_text")
+    .transition()
+    .duration(750)
+    .style("opacity", 0)
+    .remove();
+
+  svg_story
+    .selectAll("#section_placeholder_image")
+    .transition()
+    .duration(750)
+    .style("opacity", 0)
+    .remove();
+
+  svg_story
+    .append("text")
+    .attr("text-anchor", "middle")
+    .attr("id", "section_vis_placeholder_text")
+    .attr("y", 200)
+    .attr("x", svg_width * 0.5)
+    .attr("opacity", 0)
+    .transition()
+    .duration(1000)
+    .attr("opacity", 1)
+    .style("font-weight", "bold")
+    .text("Changes over time");
+}
+
+// ! Function to redraw mortality top ten
+// When the drop down menu button for sex is changed run this (basically filter the data for mortality, sort by rank and keep the top ten). This function is called again any time you go back into section four.
+
+// TODO We only want this to work when the user is in the section on deaths. If they click it when they are outside of the section it will overwrite whatever svg is there.
+function update_sex_change_mortality() {
+  svg_story.selectAll(".mortality_1_figure_title").remove();
+
+  var selectedsexOption = sex_transformed(
+    d3.select("#select_deaths_sex_filter_button").property("value")
+  );
+
+  var chosen_sex_mortality_df = rank_df_number
+    .filter(function (d) {
+      return d.sex === selectedsexOption;
+    })
+    .sort(function (a, b) {
+      return +a.Deaths_rank - +b.Deaths_rank;
+    })
+    .filter(function (d, i) {
+      return i < 10;
+    });
+
+  // reconfigure the y axis range
+  y_top_ten_mortality
+    .domain([
+      0,
+      d3.max(chosen_sex_mortality_df, function (d) {
+        return +d.Deaths_value;
+      }),
+    ])
+    .nice(); // Add the ceiling
+
+  x_top_ten.domain(
+    d3
+      .map(chosen_sex_mortality_df, function (d) {
+        return d.cause;
+      })
+      .keys()
+  );
+
+  svg_story
+    .selectAll(".mortality_1_figure_x_axis")
+    .attr("opacity", 1)
+    .transition()
+    .duration(1000)
+    .call(d3.axisBottom(x_top_ten))
+    .selectAll("text")
+    .style("text-anchor", "end")
+    .attr("dx", "-.8em")
+    .attr("dy", ".15em")
+    .attr("transform", function (d) {
+      return "rotate(-45)";
+    });
+
+  // Redraw axis
+  svg_story
+    .selectAll(".mortality_1_figure_y_axis")
+    .attr("opacity", 1)
+    .transition()
+    .duration(1000)
+    .call(d3.axisLeft(y_top_ten_mortality));
+
+  svg_story
+    .append("text")
+    .attr("text-anchor", "left")
+    .attr(
+      "class",
+      "mortality_1_figure mortality_1_figure_title chart_title_text"
+    )
+    .attr("y", 50)
+    .attr("x", svg_width * 0.05)
+    .attr("opacity", 0)
+    .transition()
+    .duration(1000)
+    .attr("opacity", 1)
+    .text(
+      "Top ten causes of death (level two groupings); all ages; " +
+        selectedsexOption
+          .replace("Both", "overall among both males and female")
+          .toLowerCase() +
+        "s; " +
+        area_x
+    );
+
+  var tooltip_fg_deaths = d3
+    .select("#vis")
+    .append("div")
+    .style("opacity", 0)
+    .attr("class", "tooltips")
+    .style("position", "absolute")
+    .style("z-index", "10")
+    .style("background-color", "white")
+    .style("border", "solid")
+    .style("border-width", "1px")
+    .style("border-radius", "5px")
+    .style("padding", "10px");
+
+  // The tooltip function
+  var showTooltip_top_ten_deaths = function (d) {
+    tooltip_fg_deaths.transition().duration(200).style("opacity", 1);
+
+    tooltip_fg_deaths
+      .html(
+        "<h3>" +
+          d.cause +
+          "</h3><p>The estimated number of deaths as a result of " +
+          d.cause +
+          " in " +
+          area_x +
+          " in 2019 among " +
+          d.sex.toLowerCase().replace("both", "both males and female") +
+          's was <font color = "#1e4b7a"><b>' +
+          d3.format(",.0f")(d.Deaths_value) +
+          "</b></font>.</p>"
+      )
+      .style("opacity", 1);
+    // .style("top", (event.pageY - 10) + "px")
+    // .style("left", (event.pageX + 10) + "px")
+  };
+
+  // Create the bars_df variable
+  svg_mort = svg_story.selectAll("rect").data(chosen_sex_mortality_df);
+
+  svg_mort
+    .enter()
+    .append("rect")
+    .merge(svg_mort)
+    .attr("class", "mortality_1_figure")
+    .attr("id", "mortality_bars")
+    .transition()
+    .duration(1000)
+    .attr("x", function (d) {
+      return x_top_ten(d.cause);
+    })
+    .attr("width", x_top_ten.bandwidth())
+    .attr("height", function (d) {
+      return svg_height - 200 - y_top_ten_mortality(d.Deaths_value);
+    })
+    .attr("y", function (d) {
+      return y_top_ten_mortality(d.Deaths_value);
+    })
+    .style("fill", function (d) {
+      return color_cause_group(d.cause);
+    });
+
+  svg_mort
+    .enter()
+    .append("rect")
+    .merge(svg_mort)
+    .on("mouseover", function () {
+      return tooltip_fg_deaths.style("visibility", "visible");
+    })
+    .on("mousemove", showTooltip_top_ten_deaths)
+    .on("mouseout", function () {
+      return tooltip_fg_deaths.style("visibility", "hidden");
+    });
+
+  svg_mort.exit().remove();
 }
