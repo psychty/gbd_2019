@@ -18,10 +18,21 @@ codebook <- read_csv(paste0(meta_directory,'/IHME_GBD_2019_CODEBOOK_Y2020M11D25.
 
 cause_hierarchy <- read_excel(paste0(meta_directory, '/IHME_GBD_2019_CAUSE_HIERARCHY_Y2020M11D25.xlsx'))
 
+cause_hierarchy %>% 
+  filter(Level == 3) %>% 
+  view()
+
+wsx_ranks_compare <- fromJSON(paste0(output_directory, '/wsx_ranks_df.json')) %>% 
+  filter(sex == 'Both',
+         metric == 'Number')
+
+
+
+
+
+
 wsx_df <- unique(list.files("~/gbd_data")[grepl("Cause_", list.files("~/gbd_data")) == TRUE]) %>%
   map_df(~read_csv(paste0("~/gbd_data/",.)))
-
-unique(wsx_df$measure_name)
 
 wsx_yll <- wsx_df %>% 
   filter(measure_name == 'YLLs (Years of Life Lost)')
