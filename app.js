@@ -791,7 +791,7 @@ function showSection_3() {
     .append("text")
     .attr("class", "life_expectancy_figure axis_text")
     .attr("x", svg_width * 0.4)
-    .attr("y", svg_height * 0.4)
+    .attr("y", svg_height * 0.5)
     .attr("opacity", 0)
     .transition()
     .duration(1000)
@@ -1216,8 +1216,23 @@ function update_sex_change_mortality() {
     .transition()
     .duration(1000)
     .attr("opacity", 1)
+    .text("Top ten causes of death (level two groupings);");
+
+  svg_story
+    .append("text")
+    .attr("text-anchor", "left")
+    .attr(
+      "class",
+      "mortality_1_figure mortality_1_figure_title chart_title_text"
+    )
+    .attr("y", 65)
+    .attr("x", svg_width * 0.05)
+    .attr("opacity", 0)
+    .transition()
+    .duration(1000)
+    .attr("opacity", 1)
     .text(
-      "Top ten causes of death (level two groupings); all ages; " +
+      "all ages; " +
         selectedsexOption
           .replace("Both", "overall among both males and female")
           .toLowerCase() +
