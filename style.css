@@ -52,6 +52,10 @@ h1 {
   color: #256cb2;
 }
 
+.chart_text {
+  font-size: 0.8rem;
+}
+
 .axis_text {
   font-size: 0.8rem;
 }
