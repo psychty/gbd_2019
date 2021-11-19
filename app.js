@@ -733,21 +733,18 @@ function showSection_3() {
     .append("g")
     .attr("class", "life_expectancy_figure axis_text")
     .attr("transform", "translate(50, 0)")
+    .call(d3.axisLeft(y_le).ticks(20))
     .attr("opacity", 0)
     .transition()
     .duration(1000)
     .attr("opacity", 1)
-    .call(d3.axisLeft(y_le).ticks(20));
+    .style("font-size", ".8rem");
 
   // append the axis to the svg_story and also rotate just the text labels
   svg_story
     .append("g")
     .attr("class", "life_expectancy_figure axis_text")
     .attr("transform", "translate(0," + (svg_height - 50) + ")")
-    .attr("opacity", 0)
-    .transition()
-    .duration(1000)
-    .attr("opacity", 1)
     .call(d3.axisBottom(x_years_gbd).ticks(years_gbd.length, "0f"))
     .selectAll("text")
     .style("text-anchor", "end")
@@ -755,7 +752,12 @@ function showSection_3() {
     .attr("dy", ".15em")
     .attr("transform", function (d) {
       return "rotate(-45)";
-    });
+    })
+    .style("font-size", ".8rem")
+    .attr("opacity", 0)
+    .transition()
+    .duration(1000)
+    .attr("opacity", 1);
 
   // Legend
 
@@ -1023,24 +1025,21 @@ function showSection_4() {
 
   svg_story
     .append("g")
-    .attr("class", "mortality_1_figure axis_text mortality_1_figure_y_axis")
-    // .attr("id", "mortality_1_figure_y_axis")
+    .attr("class", "mortality_1_figure axis_text mortality_1_figure_y_axis ")
     .attr("transform", "translate(50, 0)")
+    .call(d3.axisLeft(y_top_ten_mortality))
+    .style("font-size", ".8rem")
     .attr("opacity", 0)
     .transition()
     .duration(1000)
-    .attr("opacity", 1)
-    .call(d3.axisLeft(y_top_ten_mortality));
+    .attr("opacity", 1);
 
   // append the axis to the svg_story and also rotate just the text labels
   svg_story
     .append("g")
-    .attr("class", "mortality_1_figure axis_text mortality_1_figure_x_axis")
+    .attr("class", "mortality_1_figure mortality_1_figure_x_axis axis_text")
     .attr("transform", "translate(0," + (svg_height - 200) + ")")
-    .attr("opacity", 0)
-    .transition()
-    .duration(1000)
-    .attr("opacity", 1)
+
     .call(d3.axisBottom(x_top_ten))
     .selectAll("text")
     .style("text-anchor", "end")
@@ -1048,7 +1047,11 @@ function showSection_4() {
     .attr("dy", ".15em")
     .attr("transform", function (d) {
       return "rotate(-45)";
-    });
+    })
+    .attr("opacity", 0)
+    .transition()
+    .duration(1000)
+    .attr("opacity", 1);
 
   update_sex_change_mortality();
 }
@@ -1218,13 +1221,14 @@ function update_sex_change_mortality() {
   svg_story
     .selectAll(".mortality_1_figure_x_axis")
     .attr("opacity", 1)
-    .transition()
-    .duration(1000)
+    // .transition()
+    // .duration(1000)
     .call(d3.axisBottom(x_top_ten))
     .selectAll("text")
     .style("text-anchor", "end")
     .attr("dx", "-.8em")
     .attr("dy", ".15em")
+    .style("font-size", ".8rem")
     .attr("transform", function (d) {
       return "rotate(-45)";
     });
@@ -1235,7 +1239,8 @@ function update_sex_change_mortality() {
     .attr("opacity", 1)
     .transition()
     .duration(1000)
-    .call(d3.axisLeft(y_top_ten_mortality));
+    .call(d3.axisLeft(y_top_ten_mortality))
+    .style("font-size", ".8rem");
 
   svg_story
     .append("text")
