@@ -168,7 +168,7 @@ h1 {
   #vis {
     display: inline-block;
     position: fixed;
-    top: 0px;
+    top: 10px;
     margin-left: 20px;
     margin-right: 20px;
     /* background-color: #ddd; */
@@ -178,6 +178,10 @@ h1 {
 
 .mobile_places {
   display: none;
+}
+
+.not_showing {
+  visibility: hidden;
 }
 
 @media screen and (max-width: 900px) {

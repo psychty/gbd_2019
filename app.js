@@ -25,6 +25,7 @@ var svg_story = d3
   .select("#vis")
   .append("svg")
   .attr("id", "vis_placeholder")
+  // .attr("class", "showing")
   .attr("height", svg_height)
   .attr("width", svg_width)
   .append("g");
@@ -294,6 +295,137 @@ var color_cause_group = d3
     "#76B786",
     "#477A49",
   ]);
+
+// overall burden top ten
+
+var request = new XMLHttpRequest();
+request.open("GET", "./Outputs/top_ten_cause_two_overall_burden.json", false);
+request.send(null);
+
+var burden_top_ten_df = JSON.parse(request.responseText).sort(function (a, b) {
+  return +a.Year - +b.Year;
+});
+
+// ! Level three bubbles
+
+var measure_categories = [
+  "Deaths",
+  "YLLs (Years of Life Lost)",
+  "YLDs (Years Lived with Disability)",
+  "DALYs (Disability-Adjusted Life Years)",
+];
+
+// We need to create a dropdown button for the user to choose which area to be displayed on the figure.
+d3.select("#select_bubbles_measure_filter_button")
+  .selectAll("myOptions")
+  .data(measure_categories)
+  .enter()
+  .append("option")
+  .text(function (d) {
+    return d;
+  }) // text to appear in the menu - this does not have to be as it is in the data (you can concatenate other values).
+  .attr("value", function (d) {
+    return d;
+  });
+
+var selectedMeasureBubblesOption = d3
+  .select("#select_bubbles_measure_filter_button")
+  .property("value");
+
+var label_key = d3
+  .scaleOrdinal()
+  .domain(measure_categories)
+  .range(["deaths", "YLLs", "YLDs", " DALYs"]);
+
+var xLabel = 190;
+var xCircle = 100;
+var yCircle = 190;
+
+var request = new XMLHttpRequest();
+request.open("GET", "./Outputs/level_three_df_cause.json", false);
+request.send(null);
+
+var level_three_cause_df = JSON.parse(request.responseText);
+
+selectedMeasureBubblesOption = "Deaths";
+
+chosen_level_three_df = level_three_cause_df.filter(function (d) {
+  return (
+    d.sex_name === "Both" && d.measure_name === selectedMeasureBubblesOption
+  );
+});
+
+// Grab the lowest number of deaths
+var min_value = d3.min(chosen_level_three_df, function (d) {
+  return +d.val;
+});
+
+// Grab the highest number of value
+var max_value = d3.max(chosen_level_three_df, function (d) {
+  return +d.val;
+});
+
+// Key size
+var valuesToShow = [10, max_value / 4, max_value / 2, max_value];
+
+// Size scale for bubbles
+var size = d3.scaleLinear().domain([0, max_value]).range([1, 75]); // circle scale
+
+var svg_size_key = d3
+  .select("#chart_legend")
+  .append("svg")
+  .attr("width", document.getElementById("sections").offsetWidth)
+  .attr("height", 30 * vh);
+
+svg_size_key
+  .selectAll("chart_legend")
+  .data(valuesToShow)
+  .enter()
+  .append("circle")
+  .attr("cx", xCircle)
+  .attr("cy", function (d) {
+    return yCircle - size(d);
+  })
+  .attr("r", function (d) {
+    return size(d);
+  })
+  .style("fill", "none")
+  .attr("stroke", "black");
+
+// Add svg_size_key: segments
+svg_size_key
+  .selectAll("legend")
+  .data(valuesToShow)
+  .enter()
+  .append("line")
+  .attr("x1", function (d) {
+    return xCircle + size(d);
+  })
+  .attr("x2", xLabel)
+  .attr("y1", function (d) {
+    return yCircle - size(d);
+  })
+  .attr("y2", function (d) {
+    return yCircle - size(d);
+  })
+  .attr("stroke", "black")
+  .style("stroke-dasharray", "2,2");
+
+// Add svg_size_key: labels
+svg_size_key
+  .selectAll("legend")
+  .data(valuesToShow)
+  .enter()
+  .append("text")
+  .attr("x", xLabel)
+  .attr("y", function (d) {
+    return yCircle - size(d);
+  })
+  .text(function (d) {
+    return d3.format(",.0f")(d) + " " + label_key(selectedMeasureBubblesOption);
+  })
+  .attr("font-size", 11)
+  .attr("alignment-baseline", "top");
 
 // ! Scrolly
 
@@ -1096,20 +1228,28 @@ function showSection_5() {
     .duration(1000)
     .attr("opacity", 1)
     .style("font-weight", "bold")
-    .text("Beyond deaths - a table");
+    .text("Beyond deaths - a table, maybe");
 }
 
-// ! DALYs
+window.onload = () => {
+  loadTable_top_burden(burden_top_ten_df);
+};
+
+function loadTable_top_burden(burden_top_ten_df) {
+  const tableBody = document.getElementById("top_burden_table");
+  var dataHTML = "";
+
+  for (let item of burden_top_ten_df) {
+    dataHTML += `<tr><td>${item.sex_name}</td><td>${item["Deaths"]}</td><td>${item["YLLs (Years of Life Lost)"]}</td><td>${item["YLDs (Years Lived with Disability)"]}</td><td>${item["DALYs (Disability-Adjusted Life Years)"]}</td></tr>`;
+  }
+
+  tableBody.innerHTML = dataHTML;
+}
+
+// ! Level 3
 function showSection_6() {
   svg_story.selectAll(".life_expectancy_figure").remove();
   svg_story.selectAll(".mortality_1_figure").remove();
-
-  // svg_story
-  // .selectAll(".life_expectancy_figure")
-  // .transition()
-  // .duration(750)
-  // .style("opacity", 0)
-  // .remove();
 
   svg_story
     .selectAll("#section_vis_placeholder_text")

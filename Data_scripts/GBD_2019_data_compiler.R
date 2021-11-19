@@ -26,11 +26,6 @@ wsx_ranks_compare <- fromJSON(paste0(output_directory, '/wsx_ranks_df.json')) %>
   filter(sex == 'Both',
          metric == 'Number')
 
-
-
-
-
-
 wsx_df <- unique(list.files("~/gbd_data")[grepl("Cause_", list.files("~/gbd_data")) == TRUE]) %>%
   map_df(~read_csv(paste0("~/gbd_data/",.)))
 
@@ -241,3 +236,46 @@ top_ten <- wsx_deaths %>%
 top_ten %>% 
   toJSON() %>% 
   write_lines(paste0(output_directory, '/top_ten_mortality_wsx.json'))
+
+# top_ten_cause_two_overall_burden ####
+
+top_ten_cause_two_overall_burden <- wsx_df %>% 
+  filter(year %in% c(2019)) %>% 
+  filter(metric_name == 'Number') %>% 
+  filter(location_name == 'West Sussex') %>% 
+  left_join(cause_hierarchy[c('Cause Name', 'Level')], by = c('cause_name' = 'Cause Name')) %>% 
+  filter(Level == 2) %>% 
+  filter(age_name == 'All Ages') %>% 
+  filter(measure_name %in% c('Deaths', 'YLLs (Years of Life Lost)', 'YLDs (Years Lived with Disability)', 'DALYs (Disability-Adjusted Life Years)')) %>% 
+  select(measure_name, sex_name, cause_name, val) %>% 
+  group_by(sex_name, measure_name) %>% 
+  mutate(Rank = rank(desc(val))) %>% 
+  filter(Rank <= 10) %>% 
+  mutate(label = paste0(Rank, ') ', cause_name, ' (', format(round(val,0), big.mark = ',', trim = TRUE), ')')) %>%
+  ungroup() %>% 
+  select(sex_name, Rank, measure_name, label) %>% 
+  pivot_wider(names_from = measure_name,
+              values_from = label) %>% 
+  arrange(sex_name, Rank)
+  
+top_ten_cause_two_overall_burden %>% 
+  toJSON() %>% 
+  write_lines(paste0(output_directory, '/top_ten_cause_two_overall_burden.json'))
+
+# level 3 bubbles
+level_three_df <- wsx_df %>% 
+  filter(year %in% c(2019)) %>% 
+  filter(metric_name == 'Number') %>% 
+  filter(location_name == 'West Sussex') %>% 
+  left_join(cause_hierarchy[c('Cause Name', 'Level', 'Parent Name')], by = c('cause_name' = 'Cause Name')) %>% 
+  filter(Level == 3) %>% 
+  filter(age_name == 'All Ages') %>% 
+  filter(measure_name %in% c('Deaths', 'YLLs (Years of Life Lost)', 'YLDs (Years Lived with Disability)', 'DALYs (Disability-Adjusted Life Years)')) %>% 
+  rename(parent_cause = 'Parent Name') %>% 
+  select(measure_name, sex_name, parent_cause, cause_name, val) %>% 
+  filter(val > 0)
+  
+
+level_three_df %>% 
+  toJSON() %>% 
+  write_lines(paste0(output_directory, '/level_three_df_cause.json'))
