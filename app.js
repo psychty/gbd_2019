@@ -1027,6 +1027,7 @@ function showSection_4() {
     .append("g")
     .attr("class", "mortality_1_figure axis_text mortality_1_figure_y_axis ")
     .attr("transform", "translate(50, 0)")
+    .style("font-size", ".8rem")
     .call(d3.axisLeft(y_top_ten_mortality))
     .style("font-size", ".8rem")
     .attr("opacity", 0)
@@ -1239,6 +1240,7 @@ function update_sex_change_mortality() {
     .attr("opacity", 1)
     .transition()
     .duration(1000)
+    .style("font-size", ".8rem")
     .call(d3.axisLeft(y_top_ten_mortality))
     .style("font-size", ".8rem");
 
