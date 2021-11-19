@@ -5,6 +5,30 @@
 // Whilst I have not used code from Jim, the approach is very inspired from it. // When scroll position reaches x do y etc.
 // https://vallandingham.me/scroller.html
 
+// ! parametehrs
+var svg_width =
+  document.getElementById("graphic").offsetWidth -
+  document.getElementById("sections").offsetWidth -
+  80;
+
+var vh = window.innerHeight * 0.01;
+
+svg_height = 70 * vh;
+
+if (window.innerHeight < 600) {
+  svg_height = 80 * vh;
+}
+
+console.log(window.innerHeight);
+
+var svg_story = d3
+  .select("#vis")
+  .append("svg")
+  .attr("id", "vis_placeholder")
+  .attr("height", svg_height)
+  .attr("width", svg_width)
+  .append("g");
+
 // ! Components
 // Bring data in for life expectancy
 var request = new XMLHttpRequest();
@@ -126,25 +150,6 @@ d3.select("#sub_optimal_health_text_1").html(function () {
   );
 });
 
-var svg_width =
-  document.getElementById("graphic").offsetWidth -
-  document.getElementById("sections").offsetWidth -
-  80;
-
-var vh = window.innerHeight * 0.01;
-
-svg_height = 70 * vh;
-
-// if (svg_width < 575) {
-var svg_story = d3
-  .select("#vis")
-  .append("svg")
-  .attr("id", "vis_placeholder")
-  .attr("height", svg_height)
-  .attr("width", svg_width)
-  .append("g");
-// }
-
 var sex = ["Persons", "Males", "Females"];
 var sex_transformed = d3
   .scaleOrdinal()
@@ -232,6 +237,35 @@ var cause_categories = [
   "Unintentional injuries",
   "Self-harm and interpersonal violence",
 ];
+
+// We can use this for labels
+var shortened_causes = d3
+  .scaleOrdinal()
+  .domain(cause_categories)
+  .range([
+    "HIV/AIDS & STIs",
+    "Respiratory infections & TB",
+    "Enteric infections",
+    "Neglected tropical diseases & malaria",
+    "Other infectious diseases",
+    "Maternal and neonatal disorders",
+    "Nutritional deficiencies",
+    "Neoplasms",
+    "Cardiovascular",
+    "Chronic respiratory diseases",
+    "Digestive diseases",
+    "Neurological disorders",
+    "Mental disorders",
+    "Substance use disorders",
+    "Diabetes & kidney diseases",
+    "Skin & subcutaneous diseases",
+    "Sense organ diseases",
+    "Musculoskeletal disorders",
+    "Other non-communicable diseases",
+    "Transport injuries",
+    "Unintentional injuries",
+    "Self-harm & violence",
+  ]);
 
 var color_cause_group = d3
   .scaleOrdinal()
@@ -969,7 +1003,7 @@ function showSection_4() {
     .domain(
       d3
         .map(chosen_sex_mortality_df, function (d) {
-          return d.cause;
+          return shortened_causes(d.cause);
         })
         .keys()
     )
@@ -1176,7 +1210,7 @@ function update_sex_change_mortality() {
   x_top_ten.domain(
     d3
       .map(chosen_sex_mortality_df, function (d) {
-        return d.cause;
+        return shortened_causes(d.cause);
       })
       .keys()
   );
@@ -1288,7 +1322,7 @@ function update_sex_change_mortality() {
     .transition()
     .duration(1000)
     .attr("x", function (d) {
-      return x_top_ten(d.cause);
+      return x_top_ten(shortened_causes(d.cause));
     })
     .attr("width", x_top_ten.bandwidth())
     .attr("height", function (d) {

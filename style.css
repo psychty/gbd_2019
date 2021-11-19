@@ -164,6 +164,18 @@ h1 {
   z-index: 1;
 }
 
+@media screen and (max-height: 700px) {
+  #vis {
+    display: inline-block;
+    position: fixed;
+    top: 0px;
+    margin-left: 20px;
+    margin-right: 20px;
+    /* background-color: #ddd; */
+    z-index: 1;
+  }
+}
+
 .mobile_places {
   display: none;
 }
