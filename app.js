@@ -306,6 +306,12 @@ var burden_top_ten_df = JSON.parse(request.responseText).sort(function (a, b) {
   return +a.Year - +b.Year;
 });
 
+burden_top_ten_df = burden_top_ten_df.filter(function (d) {
+  return d.sex_name === "Both";
+});
+
+console.log(burden_top_ten_df);
+
 // ! Level three bubbles
 
 var measure_categories = [
@@ -647,6 +653,11 @@ function showSection_1() {
 
   d3.selectAll("#top_ten_burden_table").classed("top_ten_table_on", false);
   d3.selectAll("#top_ten_burden_table").classed("top_ten_table_off", true);
+  d3.selectAll("#top_ten_table_title").classed(
+    "top_ten_table_title_style",
+    false
+  );
+  d3.selectAll("#top_ten_table_title").classed("top_ten_table_off", true);
 
   svg_story
     .selectAll("#section_vis_placeholder_text")
@@ -709,6 +720,11 @@ function showSection_3() {
 
   d3.selectAll("#top_ten_burden_table").classed("top_ten_table_on", false);
   d3.selectAll("#top_ten_burden_table").classed("top_ten_table_off", true);
+  d3.selectAll("#top_ten_table_title").classed(
+    "top_ten_table_title_style",
+    false
+  );
+  d3.selectAll("#top_ten_table_title").classed("top_ten_table_off", true);
 
   svg_story
     .selectAll("#section_vis_placeholder_text")
@@ -1126,6 +1142,11 @@ function showSection_4() {
   d3.selectAll("#vis_placeholder").classed("top_ten_table_off", false);
   d3.selectAll("#top_ten_burden_table").classed("top_ten_table_on", false);
   d3.selectAll("#top_ten_burden_table").classed("top_ten_table_off", true);
+  d3.selectAll("#top_ten_table_title").classed(
+    "top_ten_table_title_style",
+    false
+  );
+  d3.selectAll("#top_ten_table_title").classed("top_ten_table_off", true);
 
   var selectedsexOption = sex_transformed(
     d3.select("#select_deaths_sex_filter_button").property("value")
@@ -1215,6 +1236,11 @@ function showSection_4() {
 
   d3.selectAll("#top_ten_burden_table").classed("top_ten_table_on", false);
   d3.selectAll("#top_ten_burden_table").classed("top_ten_table_off", true);
+  d3.selectAll("#top_ten_table_title").classed(
+    "top_ten_table_title_style",
+    false
+  );
+  d3.selectAll("#top_ten_table_title").classed("top_ten_table_off", true);
 }
 
 d3.select("#select_deaths_sex_filter_button").on("change", function (d) {
@@ -1227,6 +1253,7 @@ d3.select("#select_deaths_sex_filter_button").on("change", function (d) {
 });
 
 // svg_story.classed("top_ten_table_off", false);
+d3.selectAll("#top_ten_burden_table").classed("gbd_top_ten_table", true);
 
 // ! Table of ranks
 function showSection_5() {
@@ -1237,6 +1264,11 @@ function showSection_5() {
 
   d3.selectAll("#top_ten_burden_table").classed("top_ten_table_on", true);
   d3.selectAll("#top_ten_burden_table").classed("top_ten_table_off", false);
+  d3.selectAll("#top_ten_table_title").classed(
+    "top_ten_table_title_style",
+    true
+  );
+  d3.selectAll("#top_ten_table_title").classed("top_ten_table_off", false);
 
   // d3.selectAll("#vis").classed("top_ten_table_off", true);
 
@@ -1276,6 +1308,11 @@ function showSection_6() {
 
   d3.selectAll("#top_ten_burden_table").classed("top_ten_table_on", false);
   d3.selectAll("#top_ten_burden_table").classed("top_ten_table_off", true);
+  d3.selectAll("#top_ten_table_title").classed(
+    "top_ten_table_title_style",
+    false
+  );
+  d3.selectAll("#top_ten_table_title").classed("top_ten_table_off", true);
 
   svg_story
     .selectAll("#section_vis_placeholder_text")
