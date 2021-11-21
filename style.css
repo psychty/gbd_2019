@@ -164,6 +164,22 @@ h1 {
   z-index: 1;
 }
 
+.top_ten_table_off {
+  display: none;
+}
+
+.top_ten_table_on {
+  display: inline-block;
+  position: fixed;
+  top: 80px;
+  max-width: calc(80%);
+  margin-left: calc(30%);
+  margin-right: calc(10%);
+  z-index: 1;
+  opacity: 1;
+  transition: opacity 5s;
+}
+
 @media screen and (max-height: 700px) {
   #vis {
     display: inline-block;
@@ -171,7 +187,6 @@ h1 {
     top: 10px;
     margin-left: 20px;
     margin-right: 20px;
-    /* background-color: #ddd; */
     z-index: 1;
   }
 }

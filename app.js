@@ -427,6 +427,21 @@ svg_size_key
   .attr("font-size", 11)
   .attr("alignment-baseline", "top");
 
+window.onload = () => {
+  loadTable_top_burden(burden_top_ten_df);
+};
+
+function loadTable_top_burden(burden_top_ten_df) {
+  const tableBody = document.getElementById("top_burden_table");
+  var dataHTML = "";
+
+  for (let item of burden_top_ten_df) {
+    dataHTML += `<tr><td>${item.sex_name}</td><td>${item["Deaths"]}</td><td>${item["YLLs (Years of Life Lost)"]}</td><td>${item["YLDs (Years Lived with Disability)"]}</td><td>${item["DALYs (Disability-Adjusted Life Years)"]}</td></tr>`;
+  }
+
+  tableBody.innerHTML = dataHTML;
+}
+
 // ! Scrolly
 
 var vis_position = $("#vis")[0].getBoundingClientRect().top + 30 * vh; // Where is the data vis vertical position from the top of the viewport (not top of document, as some people may reload part way down)
@@ -630,6 +645,9 @@ function showSection_1() {
   svg_story.selectAll(".life_expectancy_figure").remove();
   svg_story.selectAll(".mortality_1_figure").remove();
 
+  d3.selectAll("#top_ten_burden_table").classed("top_ten_table_on", false);
+  d3.selectAll("#top_ten_burden_table").classed("top_ten_table_off", true);
+
   svg_story
     .selectAll("#section_vis_placeholder_text")
     .transition()
@@ -688,6 +706,9 @@ function showSection_2() {
 // ! Section 3 Life Expectancy
 function showSection_3() {
   svg_story.selectAll(".mortality_1_figure").remove();
+
+  d3.selectAll("#top_ten_burden_table").classed("top_ten_table_on", false);
+  d3.selectAll("#top_ten_burden_table").classed("top_ten_table_off", true);
 
   svg_story
     .selectAll("#section_vis_placeholder_text")
@@ -1102,6 +1123,10 @@ function showSection_4() {
   svg_story.selectAll(".life_expectancy_figure").remove();
   svg_story.selectAll(".mortality_1_figure_title").remove();
 
+  d3.selectAll("#vis_placeholder").classed("top_ten_table_off", false);
+  d3.selectAll("#top_ten_burden_table").classed("top_ten_table_on", false);
+  d3.selectAll("#top_ten_burden_table").classed("top_ten_table_off", true);
+
   var selectedsexOption = sex_transformed(
     d3.select("#select_deaths_sex_filter_button").property("value")
   );
@@ -1187,6 +1212,9 @@ function showSection_4() {
     .attr("opacity", 1);
 
   update_sex_change_mortality();
+
+  d3.selectAll("#top_ten_burden_table").classed("top_ten_table_on", false);
+  d3.selectAll("#top_ten_burden_table").classed("top_ten_table_off", true);
 }
 
 d3.select("#select_deaths_sex_filter_button").on("change", function (d) {
@@ -1198,58 +1226,56 @@ d3.select("#select_deaths_sex_filter_button").on("change", function (d) {
   update_sex_change_mortality();
 });
 
+// svg_story.classed("top_ten_table_off", false);
+
 // ! Table of ranks
 function showSection_5() {
   svg_story.selectAll(".life_expectancy_figure").remove();
   svg_story.selectAll(".mortality_1_figure").remove();
 
-  svg_story
-    .selectAll("#section_vis_placeholder_text")
-    .transition()
-    .duration(750)
-    .style("opacity", 0)
-    .remove();
+  d3.selectAll("#vis_placeholder").classed("top_ten_table_off", true);
 
-  svg_story
-    .selectAll("#section_placeholder_image")
-    .transition()
-    .duration(750)
-    .style("opacity", 0)
-    .remove();
+  d3.selectAll("#top_ten_burden_table").classed("top_ten_table_on", true);
+  d3.selectAll("#top_ten_burden_table").classed("top_ten_table_off", false);
 
-  svg_story
-    .append("text")
-    .attr("text-anchor", "middle")
-    .attr("id", "section_vis_placeholder_text")
-    .attr("y", 200)
-    .attr("x", svg_width * 0.5)
-    .attr("opacity", 0)
-    .transition()
-    .duration(1000)
-    .attr("opacity", 1)
-    .style("font-weight", "bold")
-    .text("Beyond deaths - a table, maybe");
-}
+  // d3.selectAll("#vis").classed("top_ten_table_off", true);
 
-window.onload = () => {
-  loadTable_top_burden(burden_top_ten_df);
-};
+  // svg_story
+  //   .selectAll("#section_vis_placeholder_text")
+  //   .transition()
+  //   .duration(750)
+  //   .style("opacity", 0)
+  //   .remove();
 
-function loadTable_top_burden(burden_top_ten_df) {
-  const tableBody = document.getElementById("top_burden_table");
-  var dataHTML = "";
+  // svg_story
+  //   .selectAll("#section_placeholder_image")
+  //   .transition()
+  //   .duration(750)
+  //   .style("opacity", 0)
+  //   .remove();
 
-  for (let item of burden_top_ten_df) {
-    dataHTML += `<tr><td>${item.sex_name}</td><td>${item["Deaths"]}</td><td>${item["YLLs (Years of Life Lost)"]}</td><td>${item["YLDs (Years Lived with Disability)"]}</td><td>${item["DALYs (Disability-Adjusted Life Years)"]}</td></tr>`;
-  }
-
-  tableBody.innerHTML = dataHTML;
+  // svg_story
+  //   .append("text")
+  //   .attr("text-anchor", "middle")
+  //   .attr("id", "section_vis_placeholder_text")
+  //   .attr("y", 200)
+  //   .attr("x", svg_width * 0.5)
+  //   .attr("opacity", 0)
+  //   .transition()
+  //   .duration(1000)
+  //   .attr("opacity", 1)
+  //   .style("font-weight", "bold")
+  //   .text("Beyond deaths - a table, maybe");
 }
 
 // ! Level 3
 function showSection_6() {
+  d3.selectAll("#vis_placeholder").classed("top_ten_table_off", false);
   svg_story.selectAll(".life_expectancy_figure").remove();
   svg_story.selectAll(".mortality_1_figure").remove();
+
+  d3.selectAll("#top_ten_burden_table").classed("top_ten_table_on", false);
+  d3.selectAll("#top_ten_burden_table").classed("top_ten_table_off", true);
 
   svg_story
     .selectAll("#section_vis_placeholder_text")

@@ -305,6 +305,9 @@
               <h2 class="title">
                Beyond deaths
               </h2>
+
+     
+              
               <p>The table shows the top ten level two causes of ill health for 2019 in West Sussex, with four columns representing the four measures of burden (deaths, YLLs, YLDs and DALYs). This highlights that there are stark differences in ranks of conditions depending on the measure you use.</p>
               <p>For some conditions, the majority of deaths occur at a relatively old age and as such the YLLs (the premature life years lost) may be fairly low, particularly if the condition can be managed well for a number of years, whilst YLDs (years lived with disability) may be relatively high.</p>
               <p>An example of this is the mental disorders group of conditions (which includes schizophrenia, depressive disorder, anxiety, and eating disorders as well as autism spectrum disorder). Mental disorders ranked 20th out of 22 conditions for deaths and YLLs, yet this group of conditions ranks 2nd for years lived with disability indicating that mental disorders impose a substantial burden of disability on the population with those who have these conditions expected to live a large part of their lifetime in 'sub-optimal health'. When using the overall burden, as measured by DALYs, mental disorders ranks 5th out of 22.</p>
@@ -319,19 +322,7 @@
                 <p>As a result, it is recommended to consider all measures of burden for a given condition to understand how it impacts the population.</p>
                 </div>
 
-<table style = 'display:none'>
-  <thead>
-    <tr>
-      <th>Sex</th>
-      <th>Deaths</th>
-      <th>YLLs (Years of lost life)</th>
-      <th>YLDS (Years lived with disability)</th>
-      <th>DALYs (Disability-adjusted life years lost)</th>
-    </tr>
-  
-  </thead>
-  <tbody id = 'top_burden_table'></tbody>
-</table>
+
 
           </section>
 
@@ -411,8 +402,22 @@
         </div>
 
         <div id="vis"></div>
-
-        <div id="extra-space"></div>
+        <div>  
+          <table id = 'top_ten_burden_table''>
+          <thead>
+            <tr>
+              <th>Sex</th>
+              <th>Deaths</th>
+              <th>YLLs (Years of lost life)</th>
+              <th>YLDS (Years lived with disability)</th>
+              <th>DALYs (Disability-adjusted life years lost)</th>
+            </tr>
+           </thead>
+          <tbody id = 'top_burden_table'></tbody>
+        </table>
+      </div>
+      
+        <!-- <div id="extra-space"></div> -->
       </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
