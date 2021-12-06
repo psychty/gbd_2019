@@ -149,6 +149,24 @@ h1 {
   z-index: 90;
 }
 
+@media screen and (max-width: 1200px) {
+  .container {
+    width: calc(95%);
+    margin: auto;
+    margin-right: 0;
+  }
+
+  #sections {
+    position: relative;
+    display: inline-block;
+    width: calc(30% - 40px);
+    margin-left: 5px;
+    margin-right: 5px;
+    top: 0px;
+    z-index: 90;
+  }
+}
+
 /* The margin on the .step elements ensures we have some space to scroll in for each section. */
 .step {
   margin-bottom: 300px;
@@ -160,7 +178,7 @@ h1 {
   top: 80px;
   margin-left: 20px;
   margin-right: 20px;
-  /* background-color: #ddd; */
+  border: 1px solid #ddd;
   z-index: 1;
 }
 

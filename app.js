@@ -310,8 +310,6 @@ burden_top_ten_df = burden_top_ten_df.filter(function (d) {
   return d.sex_name === "Both";
 });
 
-console.log(burden_top_ten_df);
-
 // ! Level three bubbles
 
 var measure_categories = [
@@ -320,23 +318,6 @@ var measure_categories = [
   "YLDs (Years Lived with Disability)",
   "DALYs (Disability-Adjusted Life Years)",
 ];
-
-// We need to create a dropdown button for the user to choose which area to be displayed on the figure.
-d3.select("#select_bubbles_measure_filter_button")
-  .selectAll("myOptions")
-  .data(measure_categories)
-  .enter()
-  .append("option")
-  .text(function (d) {
-    return d;
-  }) // text to appear in the menu - this does not have to be as it is in the data (you can concatenate other values).
-  .attr("value", function (d) {
-    return d;
-  });
-
-var selectedMeasureBubblesOption = d3
-  .select("#select_bubbles_measure_filter_button")
-  .property("value");
 
 var label_key = d3
   .scaleOrdinal()
@@ -353,85 +334,24 @@ request.send(null);
 
 var level_three_cause_df = JSON.parse(request.responseText);
 
-selectedMeasureBubblesOption = "Deaths";
-
-chosen_level_three_df = level_three_cause_df.filter(function (d) {
-  return (
-    d.sex_name === "Both" && d.measure_name === selectedMeasureBubblesOption
-  );
-});
-
-// Grab the lowest number of deaths
-var min_value = d3.min(chosen_level_three_df, function (d) {
-  return +d.val;
-});
-
-// Grab the highest number of value
-var max_value = d3.max(chosen_level_three_df, function (d) {
-  return +d.val;
-});
-
-// Key size
-var valuesToShow = [10, max_value / 4, max_value / 2, max_value];
-
-// Size scale for bubbles
-var size = d3.scaleLinear().domain([0, max_value]).range([1, 75]); // circle scale
+// We need to create a dropdown button for the user to choose which area to be displayed on the figure.
+d3.select("#select_bubbles_measure_filter_button")
+  .selectAll("myOptions")
+  .data(measure_categories)
+  .enter()
+  .append("option")
+  .text(function (d) {
+    return d;
+  }) // text to appear in the menu - this does not have to be as it is in the data (you can concatenate other values).
+  .attr("value", function (d) {
+    return d;
+  });
 
 var svg_size_key = d3
   .select("#chart_legend")
   .append("svg")
   .attr("width", document.getElementById("sections").offsetWidth)
-  .attr("height", 30 * vh);
-
-svg_size_key
-  .selectAll("chart_legend")
-  .data(valuesToShow)
-  .enter()
-  .append("circle")
-  .attr("cx", xCircle)
-  .attr("cy", function (d) {
-    return yCircle - size(d);
-  })
-  .attr("r", function (d) {
-    return size(d);
-  })
-  .style("fill", "none")
-  .attr("stroke", "black");
-
-// Add svg_size_key: segments
-svg_size_key
-  .selectAll("legend")
-  .data(valuesToShow)
-  .enter()
-  .append("line")
-  .attr("x1", function (d) {
-    return xCircle + size(d);
-  })
-  .attr("x2", xLabel)
-  .attr("y1", function (d) {
-    return yCircle - size(d);
-  })
-  .attr("y2", function (d) {
-    return yCircle - size(d);
-  })
-  .attr("stroke", "black")
-  .style("stroke-dasharray", "2,2");
-
-// Add svg_size_key: labels
-svg_size_key
-  .selectAll("legend")
-  .data(valuesToShow)
-  .enter()
-  .append("text")
-  .attr("x", xLabel)
-  .attr("y", function (d) {
-    return yCircle - size(d);
-  })
-  .text(function (d) {
-    return d3.format(",.0f")(d) + " " + label_key(selectedMeasureBubblesOption);
-  })
-  .attr("font-size", 11)
-  .attr("alignment-baseline", "top");
+  .attr("height", 100);
 
 window.onload = () => {
   loadTable_top_burden(burden_top_ten_df);
@@ -650,6 +570,7 @@ window.onscroll = function () {
 function showSection_1() {
   svg_story.selectAll(".life_expectancy_figure").remove();
   svg_story.selectAll(".mortality_1_figure").remove();
+  svg_story.selectAll(".level_three_bubbles_figure").remove();
 
   d3.selectAll("#top_ten_burden_table").classed("top_ten_table_on", false);
   d3.selectAll("#top_ten_burden_table").classed("top_ten_table_off", true);
@@ -688,6 +609,7 @@ function showSection_1() {
 function showSection_2() {
   svg_story.selectAll(".life_expectancy_figure").remove();
   svg_story.selectAll(".mortality_1_figure").remove();
+  svg_story.selectAll(".level_three_bubbles_figure").remove();
 
   svg_story
     .selectAll("#section_vis_placeholder_text")
@@ -717,6 +639,7 @@ function showSection_2() {
 // ! Section 3 Life Expectancy
 function showSection_3() {
   svg_story.selectAll(".mortality_1_figure").remove();
+  svg_story.selectAll(".level_three_bubbles_figure").remove();
 
   d3.selectAll("#top_ten_burden_table").classed("top_ten_table_on", false);
   d3.selectAll("#top_ten_burden_table").classed("top_ten_table_off", true);
@@ -1252,6 +1175,19 @@ d3.select("#select_deaths_sex_filter_button").on("change", function (d) {
   update_sex_change_mortality();
 });
 
+d3.select("#select_bubbles_measure_filter_button").on("change", function (d) {
+  var selectedMeasureBubblesOption = d3
+    .select("#select_bubbles_measure_filter_button")
+    .property("value");
+
+  console.log(
+    "You have changed the selection to ",
+    selectedMeasureBubblesOption
+  );
+
+  update_level_three_bubbles();
+});
+
 // svg_story.classed("top_ten_table_off", false);
 d3.selectAll("#top_ten_burden_table").classed("gbd_top_ten_table", true);
 
@@ -1259,6 +1195,7 @@ d3.selectAll("#top_ten_burden_table").classed("gbd_top_ten_table", true);
 function showSection_5() {
   svg_story.selectAll(".life_expectancy_figure").remove();
   svg_story.selectAll(".mortality_1_figure").remove();
+  svg_story.selectAll(".level_three_bubbles_figure").remove();
 
   d3.selectAll("#vis_placeholder").classed("top_ten_table_off", true);
 
@@ -1300,11 +1237,12 @@ function showSection_5() {
   //   .text("Beyond deaths - a table, maybe");
 }
 
-// ! Level 3
+// ! Level 3 bubbles
 function showSection_6() {
   d3.selectAll("#vis_placeholder").classed("top_ten_table_off", false);
   svg_story.selectAll(".life_expectancy_figure").remove();
   svg_story.selectAll(".mortality_1_figure").remove();
+  svg_story.selectAll(".level_three_bubbles_figure").remove();
 
   d3.selectAll("#top_ten_burden_table").classed("top_ten_table_on", false);
   d3.selectAll("#top_ten_burden_table").classed("top_ten_table_off", true);
@@ -1328,24 +1266,14 @@ function showSection_6() {
     .style("opacity", 0)
     .remove();
 
-  svg_story
-    .append("text")
-    .attr("text-anchor", "middle")
-    .attr("id", "section_vis_placeholder_text")
-    .attr("y", 200)
-    .attr("x", svg_width * 0.5)
-    .attr("opacity", 0)
-    .transition()
-    .duration(1000)
-    .attr("opacity", 1)
-    .style("font-weight", "bold")
-    .text("Level three death bubbles (and other bubbles)");
+  update_level_three_bubbles();
 }
 
 // ! Trends over time
 function showSection_7() {
   svg_story.selectAll(".life_expectancy_figure").remove();
   svg_story.selectAll(".mortality_1_figure").remove();
+  svg_story.selectAll(".level_three_bubbles_figure").remove();
 
   // svg_story
   // .selectAll(".life_expectancy_figure")
@@ -1558,4 +1486,362 @@ function update_sex_change_mortality() {
     });
 
   svg_mort.exit().remove();
+}
+
+// ! Function to redraw bubbles
+// When the drop down menu button for measure is changed run this (basically filter the data for measure and redraw bubbles). This function is called again any time you go back into section four.
+
+level_three_nodes = svg_story;
+
+// TODO We only want this to work when the user is in the section on deaths. If they click it when they are outside of the section it will overwrite whatever svg is there.
+function update_level_three_bubbles() {
+  svg_size_key.selectAll(".legend_key_class").remove();
+  svg_story.selectAll(".level_three_bubbles_figure").remove();
+
+  var selectedMeasureBubblesOption = d3
+    .select("#select_bubbles_measure_filter_button")
+    .property("value");
+
+  chosen_level_three_df = level_three_cause_df
+    .filter(function (d) {
+      return (
+        d.sex_name === "Both" && d.measure_name === selectedMeasureBubblesOption
+      );
+    })
+    .sort(function (a, b) {
+      return d3.descending(a["parent_cause"], b["parent_cause"]);
+    });
+
+  // Grab the lowest number of deaths
+  var min_value = d3.min(chosen_level_three_df, function (d) {
+    return +d.val;
+  });
+
+  // Grab the highest number of value
+  var max_value = d3.max(chosen_level_three_df, function (d) {
+    return +d.val;
+  });
+
+  // Key size
+  var valuesToShow = [10, max_value / 4, max_value / 2, max_value];
+
+  // Size scale for bubbles - The scaleSqrt scale is useful for sizing circles by area (rather than radius). When using circle size to represent data, it’s considered better practice to set the area, rather than the radius proportionally to the data.
+  var bubble_size = d3.scaleSqrt().domain([0, max_value]).range([0.1, 45]);
+
+  svg_size_key
+    .selectAll("chart_legend")
+    .data(valuesToShow)
+    .enter()
+    .append("circle")
+    .attr("cx", xCircle)
+    // .attr("cy", function (d) {
+    //   return yCircle - bubble_size(d);
+    // })
+    .attr("cy", function (d) {
+      return yCircle - bubble_size(d) - 90;
+    })
+    .attr("r", function (d) {
+      return bubble_size(d);
+    })
+    .style("fill", "none")
+    .attr("stroke", "black")
+    .attr("class", "legend_key_class");
+
+  // Add svg_size_key: segments
+  svg_size_key
+    .selectAll("legend")
+    .data(valuesToShow)
+    .enter()
+    .append("line")
+    .attr("x1", function (d) {
+      return xCircle + bubble_size(d);
+    })
+    .attr("x2", xLabel)
+    .attr("y1", function (d) {
+      return yCircle - bubble_size(d) - 90;
+    })
+    .attr("y2", function (d) {
+      return yCircle - bubble_size(d) - 90;
+    })
+    .attr("stroke", "black")
+    .style("stroke-dasharray", "2,2")
+    .attr("class", "legend_key_class");
+
+  // Add svg_size_key: labels
+  svg_size_key
+    .selectAll("legend")
+    .data(valuesToShow)
+    .enter()
+    .append("text")
+    .attr("x", xLabel)
+    .attr("y", function (d) {
+      return yCircle - bubble_size(d) - 90;
+    })
+    .text(function (d) {
+      return (
+        d3.format(",.0f")(d) + " " + label_key(selectedMeasureBubblesOption)
+      );
+    })
+    .attr("font-size", 11)
+    .attr("alignment-baseline", "top")
+    .attr("class", "legend_key_class");
+
+  svg_story
+    .append("text")
+    .attr("text-anchor", "start")
+    .attr("class", "level_three_bubbles_figure")
+    .attr("y", svg_height * 0.05)
+    .attr("x", svg_width * 0.05)
+    .attr("opacity", 0)
+    .transition()
+    .duration(1000)
+    .attr("opacity", 1)
+    .style("font-weight", "bold")
+    .text("Level Three " + selectedMeasureBubblesOption + "; West Sussex");
+
+  var forceXSplit = d3
+    .forceX(function (d) {
+      if (d["parent_cause"] === "Neoplasms") {
+        return svg_width * 0.25;
+      } else if (d["parent_cause"] === "Cardiovascular diseases") {
+        return svg_width * 0.25;
+      } else if (d["parent_cause"] === "Chronic respiratory diseases") {
+        return svg_width * 0.5;
+      } else if (d["parent_cause"] === "Neurological disorders") {
+        return svg_width * 0.5;
+      } else if (d["parent_cause"] === "Musculoskeletal disorders") {
+        return svg_width * 0.75;
+      } else {
+        return svg_width * 0.75;
+      }
+    })
+    .strength(0.1);
+
+  var forceYSplit = d3
+    .forceY(function (d) {
+      if (d["parent_cause"] === "Neoplasms") {
+        return svg_height * 0.35;
+      } else if (d["parent_cause"] === "Cardiovascular diseases") {
+        return svg_height * 0.8;
+      } else if (d["parent_cause"] === "Chronic respiratory diseases") {
+        return svg_height * 0.35;
+      } else if (d["parent_cause"] === "Neurological disorders") {
+        return svg_height * 0.8;
+      } else if (d["parent_cause"] === "Musculoskeletal disorders") {
+        return svg_height * 0.35;
+      } else {
+        return svg_height * 0.8;
+      }
+    })
+    .strength(0.1);
+
+  // Features of the forces applied to the nodes:
+  var simulation = d3
+    .forceSimulation()
+    .force(
+      "center",
+      d3
+        .forceCenter()
+        .x(svg_width * 0.575)
+        .y(svg_height * 0.6)
+    )
+    .force("charge", d3.forceManyBody().strength(2))
+    // Force that avoids circle overlapping
+    .force(
+      "collide",
+      d3
+        .forceCollide()
+        .strength(5)
+        .radius(function (d) {
+          return bubble_size(d.val) + 1;
+        })
+        .iterations(1)
+    );
+
+  var tooltip_level_three_bubbles = d3
+    .select("#vis")
+    .append("div")
+    .style("opacity", 0)
+    .attr("class", "tooltips")
+    .style("position", "absolute")
+    .style("z-index", "10")
+    .style("background-color", "white")
+    .style("border", "solid")
+    .style("border-width", "1px")
+    .style("border-radius", "5px")
+    .style("padding", "10px");
+
+  // This creates the function for what to do when someone moves the mouse over a circle (e.g. move the tooltip in relation to the mouse cursor).
+  var showTooltip_level_three_bubbles = function (d) {
+    tooltip_level_three_bubbles
+      .html(
+        "<h3>" +
+          d.cause_name +
+          "</h3><p>In 2019 there were <strong>" +
+          d3.format(",.0f")(d.val) +
+          "</strong> " +
+          label_key(d.measure_name) +
+          " among " +
+          d.sex_name.toLowerCase().replace("both", "both males and female") +
+          "s caused by " +
+          d.cause_name +
+          ".</p><p>This is part of the " +
+          d.parent_cause +
+          " disease group.</p>"
+      )
+      .style("opacity", 1);
+  };
+
+  // Initialize the circle
+  node = svg_story
+    .append("g")
+    .selectAll("circle")
+    .data(chosen_level_three_df)
+    .enter()
+    .append("circle")
+    .attr("class", "level_three_bubbles_figure level_three_bubbles")
+    .attr("r", function (d) {
+      return bubble_size(d.val);
+    })
+    .style("fill", function (d) {
+      return color_cause_group(d["parent_cause"]);
+    })
+    .style("stroke", "#fff")
+    .style("fill-opacity", 1)
+    .on("mouseover", function () {
+      return tooltip_level_three_bubbles.style("visibility", "visible");
+    })
+    .on("mousemove", showTooltip_level_three_bubbles)
+    .on("mouseout", function () {
+      return tooltip_level_three_bubbles.style("visibility", "hidden");
+    })
+    .call(
+      d3
+        .drag()
+        .on("start", dragstarted)
+        .on("drag", dragged)
+        .on("end", dragended)
+    );
+
+  simulation.nodes(chosen_level_three_df).on("tick", function (d) {
+    node
+      .attr("cx", function (d) {
+        return d.x;
+      })
+      .attr("cy", function (d) {
+        return d.y;
+      });
+  });
+
+  simulation
+    .force("x", forceXSplit)
+    .force("y", forceYSplit)
+    .force(
+      "collide",
+      d3
+        .forceCollide()
+        .strength(0.5)
+        .radius(function (d) {
+          return bubble_size(d.val) + 1;
+        })
+    );
+  // .alphaTarget(0);
+
+  function dragstarted(d) {
+    if (!d3.event.active) simulation.alphaTarget(0.05).restart();
+    d.fx = d.x;
+    d.fy = d.y;
+  }
+
+  function dragged(d) {
+    d.fx = d3.event.x;
+    d.fy = d3.event.y;
+  }
+
+  function dragended(d) {
+    if (!d3.event.active) simulation.alphaTarget(0.05);
+    d.fx = null;
+    d.fy = null;
+  }
+
+  if (svg_width > 700) {
+    // Labels (this might break)
+    svg_story
+      .append("text")
+      .attr("text-anchor", "start")
+      .attr("class", "level_three_bubbles_figure")
+      .attr("y", svg_height * 0.1)
+      .attr("x", svg_width * 0.15)
+      .attr("opacity", 0)
+      .transition()
+      .duration(1000)
+      .attr("opacity", 1)
+      // .style("font-weight", "bold")
+      .text("Neoplasms");
+
+    svg_story
+      .append("text")
+      .attr("text-anchor", "middle")
+      .attr("class", "level_three_bubbles_figure")
+      .attr("y", svg_height * 0.1)
+      .attr("x", svg_width * 0.5)
+      .attr("opacity", 0)
+      .transition()
+      .duration(1000)
+      .attr("opacity", 1)
+      // .style("font-weight", "bold")
+      .text("Chronic respiratory diseases");
+
+    svg_story
+      .append("text")
+      .attr("text-anchor", "end")
+      .attr("class", "level_three_bubbles_figure")
+      .attr("y", svg_height * 0.1)
+      .attr("x", svg_width * 0.85)
+      .attr("opacity", 0)
+      .transition()
+      .duration(1000)
+      .attr("opacity", 1)
+      // .style("font-weight", "bold")
+      .text("Musculoskeletal disorders");
+
+    svg_story
+      .append("text")
+      .attr("text-anchor", "start")
+      .attr("class", "level_three_bubbles_figure")
+      .attr("y", svg_height * 0.5)
+      .attr("x", svg_width * 0.15)
+      .attr("opacity", 0)
+      .transition()
+      .duration(1000)
+      .attr("opacity", 1)
+      // .style("font-weight", "bold")
+      .text("Cardiovascular diseases");
+
+    svg_story
+      .append("text")
+      .attr("text-anchor", "middle")
+      .attr("class", "level_three_bubbles_figure")
+      .attr("y", svg_height * 0.5)
+      .attr("x", svg_width * 0.5)
+      .attr("opacity", 0)
+      .transition()
+      .duration(1000)
+      .attr("opacity", 1)
+      // .style("font-weight", "bold")
+      .text("Neurological disorders");
+
+    svg_story
+      .append("text")
+      .attr("text-anchor", "end")
+      .attr("class", "level_three_bubbles_figure")
+      .attr("y", svg_height * 0.5)
+      .attr("x", svg_width * 0.85)
+      .attr("opacity", 0)
+      .transition()
+      .duration(1000)
+      .attr("opacity", 1)
+      // .style("font-weight", "bold")
+      .text("Other conditions/disorders");
+  }
 }
