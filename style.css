@@ -1,12 +1,11 @@
-* {
-  font-family: "Open Sans", sans-serif;
-  font-size: 0.95rem;
-}
-
 p {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   text-align: justify;
   color: #4c4c4e;
+}
+
+b {
+  color: #1e4b7a;
 }
 
 li {
@@ -26,24 +25,19 @@ a {
 h1 {
   font-size: 1.8rem;
   font-weight: bold;
-  color: #256cb2;
+  color: #1e4b7a;
 }
 
 .tooltips {
-  /* max-width: 60vw; */
-  padding-left: 5px;
-  padding-right: 5px;
   font-size: 0.8rem;
-  background: #ffffff;
-  color: #000000;
-  border-radius: 5px;
-  border: 1px solid #000;
+  margin-left: 20px;
 }
 
 .signposter {
   border: 2px solid #cc0052;
   border-radius: 5px;
-  padding: 15px;
+  padding: 10px;
+  padding-top: 5px;
 }
 
 .chart_title_text {
@@ -87,8 +81,9 @@ h1 {
 }
 
 .container {
-  width: calc(80%);
+  width: calc(90%);
   margin: auto;
+  margin-right: 0;
 }
 
 /* .how_big_should_i_be {
@@ -142,42 +137,25 @@ h1 {
 #sections {
   position: relative;
   display: inline-block;
-  width: calc(35% - 40px);
+  width: calc(30% - 40px);
   margin-left: 5px;
   margin-right: 5px;
   top: 0px;
   z-index: 90;
 }
 
-@media screen and (max-width: 1200px) {
-  .container {
-    width: calc(95%);
-    margin: auto;
-    margin-right: 0;
-  }
-
-  #sections {
-    position: relative;
-    display: inline-block;
-    width: calc(30% - 40px);
-    margin-left: 5px;
-    margin-right: 5px;
-    top: 0px;
-    z-index: 90;
-  }
-}
-
 /* The margin on the .step elements ensures we have some space to scroll in for each section. */
 .step {
-  margin-bottom: 300px;
+  margin-bottom: 200px;
 }
 
 #vis {
   display: inline-block;
   position: fixed;
-  top: 80px;
+  top: 60px;
   margin-left: 20px;
-  margin-right: 20px;
+  /* margin-right: 20px; */
+  font-size: 0.95rem;
   border: 1px solid #ddd;
   z-index: 1;
 }
@@ -188,7 +166,7 @@ h1 {
   top: 40px;
   margin-bottom: 20px;
   font-size: 1.1rem;
-  margin-left: calc(30%);
+  margin-left: calc(30% - 40px);
 }
 
 .top_ten_table_off {
@@ -199,9 +177,8 @@ h1 {
   display: inline-block;
   position: fixed;
   top: 100px;
-  max-width: calc(80%);
-  margin-left: calc(30%);
-  margin-right: calc(10%);
+  margin-left: calc(30% - 40px);
+  margin-right: 10px;
   z-index: 1;
   opacity: 1;
   transition: opacity 5s;
@@ -210,15 +187,13 @@ h1 {
 .gbd_top_ten_table {
   border-top: 2px solid #cc0052;
   border-bottom: 2px solid #cc0052;
+  font-size: 0.9rem;
 }
 
 .gbd_top_ten_table th {
   text-align: left;
   vertical-align: top;
-  /* background-color: #fbe5d6; */
-  /* border-top: 2px solid #cc0052; */
   border-bottom: 2px solid #cc0052;
-  /* width: 80px; */
 }
 
 .gbd_top_ten_table th:first-child {
@@ -235,15 +210,9 @@ h1 {
   background-color: #f7f7f7;
 }
 
-@media screen and (max-height: 700px) {
-  #vis {
-    display: inline-block;
-    position: fixed;
-    top: 10px;
-    margin-left: 20px;
-    margin-right: 20px;
-    z-index: 1;
-  }
+.top_ten_table_maketh_smaller_fonteth {
+  font-size: 0.7rem;
+  /* color: aqua; */
 }
 
 .mobile_places {
@@ -252,6 +221,38 @@ h1 {
 
 .not_showing {
   visibility: hidden;
+}
+
+* {
+  font-family: "Open Sans", sans-serif;
+  /* font-size: 0.95rem; */
+}
+
+@media screen and (max-width: 1400px) {
+  .container {
+    width: calc(100% - 10px);
+    margin: auto;
+    margin-right: 0;
+  }
+
+  #sections {
+    position: relative;
+    display: inline-block;
+    width: calc(30%);
+    margin-left: 5px;
+    margin-right: 5px;
+    top: 0px;
+    z-index: 90;
+  }
+
+  .top_ten_table_title_style {
+    display: inline-block;
+    position: fixed;
+    top: 40px;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    margin-left: calc(30% + 20px);
+  }
 }
 
 @media screen and (max-width: 900px) {
@@ -279,5 +280,16 @@ h1 {
     margin-right: 5px;
     top: 0px;
     z-index: 90;
+  }
+}
+
+@media screen and (max-height: 700px) {
+  #vis {
+    display: inline-block;
+    position: fixed;
+    top: 10px;
+    /* margin-left: 20px; */
+    /* margin-right: 20px; */
+    z-index: 1;
   }
 }

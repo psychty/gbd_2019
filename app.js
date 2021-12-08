@@ -13,10 +13,10 @@ var svg_width =
 
 var vh = window.innerHeight * 0.01;
 
-svg_height = 70 * vh;
+svg_height = 80 * vh;
 
 if (window.innerHeight < 600) {
-  svg_height = 80 * vh;
+  svg_height = 90 * vh;
 }
 
 console.log(window.innerHeight);
@@ -517,6 +517,9 @@ function check_scroll_pos() {
   ) {
     old_active = active_section;
     active_section = section_index(chosen_position_6);
+  } else if (current_scroll_position >= chosen_position_7) {
+    old_active = active_section;
+    active_section = section_index(chosen_position_7);
   } else {
     old_active = active_section;
     active_section = "You have reached the end";
@@ -599,6 +602,7 @@ function showSection_1() {
     .attr("id", "section_placeholder_image")
     .attr("xlink:href", "Outputs/key_findings.svg")
     .attr("width", svg_width)
+    .attr("height", svg_height)
     .attr("opacity", 0)
     .transition()
     .duration(1000)
@@ -630,6 +634,7 @@ function showSection_2() {
     .attr("id", "section_placeholder_image")
     .attr("xlink:href", "Outputs/daly.svg")
     .attr("width", svg_width)
+    .attr("height", svg_height)
     .attr("opacity", 0)
     .transition()
     .duration(1000)
@@ -829,8 +834,7 @@ function showSection_3() {
     .attr("opacity", 0)
     .transition()
     .duration(1000)
-    .attr("opacity", 1)
-    .style("font-size", ".8rem");
+    .attr("opacity", 1);
 
   // append the axis to the svg_story and also rotate just the text labels
   svg_story
@@ -864,7 +868,7 @@ function showSection_3() {
     .attr("cy", function (d, i) {
       return svg_height * 0.6 + i * 20;
     }) // 100 is where the first dot appears. 20 is the distance between dots
-    .attr("r", 4)
+    .attr("r", 5)
     .style("fill", function (d) {
       return sex_colour(sex_transformed(d));
     })
@@ -959,25 +963,14 @@ function showSection_3() {
     .style("opacity", 0)
     .attr("class", "tooltips")
     .style("position", "absolute")
-    .style("z-index", "10")
-    .style("background-color", "white")
-    .style("border", "solid")
-    .style("border-width", "1px")
-    .style("border-radius", "5px")
-    .style("padding", "10px");
+    .style("z-index", "10");
 
   var showTooltip_le = function (d) {
     tooltip_le.transition().duration(200).style("opacity", 1);
 
     tooltip_le
       .html(
-        "<h3>" +
-          area_x +
-          " - " +
-          d.Sex.replace("Both", "Persons") +
-          " - " +
-          d.Year +
-          "</h3><p>In " +
+        "<p>In " +
           d.Year +
           " the life expectancy among " +
           d.Sex.replace(
@@ -986,9 +979,9 @@ function showSection_3() {
           ).toLowerCase() +
           "s was <b>" +
           d3.format(".1f")(d.LE) +
-          "</b> and the health-adjusted life expectancy was <b>" +
+          "</b></> and the health-adjusted life expectancy was <b>" +
           d3.format(".1f")(d.HALE) +
-          "</b>.</p><p>This means living, on average, <b>" +
+          "</b>. This means living, on average, <b>" +
           d3.format(".1f")(d.Sub_optimal_health) +
           " years in sub-optimal health</b>.</p> "
       )
@@ -1012,7 +1005,7 @@ function showSection_3() {
     .attr("cy", function (d) {
       return y_le(+d.LE);
     })
-    .attr("r", 4)
+    .attr("r", 5)
     .attr("stroke", "white")
     .attr("opacity", 0)
     .transition()
@@ -1128,9 +1121,9 @@ function showSection_4() {
     .append("g")
     .attr("class", "mortality_1_figure axis_text mortality_1_figure_y_axis ")
     .attr("transform", "translate(50, 0)")
-    .style("font-size", ".8rem")
+    // .style("font-size", ".8rem")
     .call(d3.axisLeft(y_top_ten_mortality))
-    .style("font-size", ".8rem")
+    // .style("font-size", ".8rem")
     .attr("opacity", 0)
     .transition()
     .duration(1000)
@@ -1207,34 +1200,14 @@ function showSection_5() {
   );
   d3.selectAll("#top_ten_table_title").classed("top_ten_table_off", false);
 
-  // d3.selectAll("#vis").classed("top_ten_table_off", true);
+  console.log(document.getElementById("top_ten_burden_table").offsetWidth);
 
-  // svg_story
-  //   .selectAll("#section_vis_placeholder_text")
-  //   .transition()
-  //   .duration(750)
-  //   .style("opacity", 0)
-  //   .remove();
-
-  // svg_story
-  //   .selectAll("#section_placeholder_image")
-  //   .transition()
-  //   .duration(750)
-  //   .style("opacity", 0)
-  //   .remove();
-
-  // svg_story
-  //   .append("text")
-  //   .attr("text-anchor", "middle")
-  //   .attr("id", "section_vis_placeholder_text")
-  //   .attr("y", 200)
-  //   .attr("x", svg_width * 0.5)
-  //   .attr("opacity", 0)
-  //   .transition()
-  //   .duration(1000)
-  //   .attr("opacity", 1)
-  //   .style("font-weight", "bold")
-  //   .text("Beyond deaths - a table, maybe");
+  if (document.getElementById("top_ten_burden_table").offsetWidth <= 800) {
+    d3.selectAll("#top_ten_burden_table").classed(
+      "top_ten_table_maketh_smaller_fonteth",
+      true
+    );
+  }
 }
 
 // ! Level 3 bubbles
@@ -1271,6 +1244,7 @@ function showSection_6() {
 
 // ! Trends over time
 function showSection_7() {
+  console.log("You are in section seven mother flipper");
   svg_story.selectAll(".life_expectancy_figure").remove();
   svg_story.selectAll(".mortality_1_figure").remove();
   svg_story.selectAll(".level_three_bubbles_figure").remove();
@@ -1371,9 +1345,9 @@ function update_sex_change_mortality() {
     .attr("opacity", 1)
     .transition()
     .duration(1000)
-    .style("font-size", ".8rem")
-    .call(d3.axisLeft(y_top_ten_mortality))
-    .style("font-size", ".8rem");
+    // .style("font-size", ".8rem")
+    .call(d3.axisLeft(y_top_ten_mortality));
+  // .style("font-size", ".8rem");
 
   svg_story
     .append("text")
@@ -1418,12 +1392,7 @@ function update_sex_change_mortality() {
     .style("opacity", 0)
     .attr("class", "tooltips")
     .style("position", "absolute")
-    .style("z-index", "10")
-    .style("background-color", "white")
-    .style("border", "solid")
-    .style("border-width", "1px")
-    .style("border-radius", "5px")
-    .style("padding", "10px");
+    .style("z-index", "10");
 
   // The tooltip function
   var showTooltip_top_ten_deaths = function (d) {
@@ -1431,17 +1400,15 @@ function update_sex_change_mortality() {
 
     tooltip_fg_deaths
       .html(
-        "<h3>" +
+        "<p>The estimated number of deaths as a result of <b>" +
           d.cause +
-          "</h3><p>The estimated number of deaths as a result of " +
-          d.cause +
-          " in " +
+          "</b> in " +
           area_x +
           " in 2019 among " +
           d.sex.toLowerCase().replace("both", "both males and female") +
-          's was <font color = "#1e4b7a"><b>' +
+          "s was <b>" +
           d3.format(",.0f")(d.Deaths_value) +
-          "</b></font>.</p>"
+          "</b>.</p>"
       )
       .style("opacity", 1);
     // .style("top", (event.pageY - 10) + "px")
@@ -1664,29 +1631,22 @@ function update_level_three_bubbles() {
     .style("opacity", 0)
     .attr("class", "tooltips")
     .style("position", "absolute")
-    .style("z-index", "10")
-    .style("background-color", "white")
-    .style("border", "solid")
-    .style("border-width", "1px")
-    .style("border-radius", "5px")
-    .style("padding", "10px");
+    .style("z-index", "10");
 
   // This creates the function for what to do when someone moves the mouse over a circle (e.g. move the tooltip in relation to the mouse cursor).
   var showTooltip_level_three_bubbles = function (d) {
     tooltip_level_three_bubbles
       .html(
-        "<h3>" +
-          d.cause_name +
-          "</h3><p>In 2019 there were <strong>" +
+        "<p>In 2019 there were <b>" +
           d3.format(",.0f")(d.val) +
-          "</strong> " +
+          "</b> " +
           label_key(d.measure_name) +
           " among " +
           d.sex_name.toLowerCase().replace("both", "both males and female") +
-          "s caused by " +
-          d.cause_name +
-          ".</p><p>This is part of the " +
-          d.parent_cause +
+          "s caused by <b>" +
+          d.cause_name.toLowerCase() +
+          "</b>. This is part of the " +
+          d.parent_cause.toLowerCase() +
           " disease group.</p>"
       )
       .style("opacity", 1);
