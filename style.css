@@ -228,7 +228,7 @@ h1 {
   /* font-size: 0.95rem; */
 }
 
-@media screen and (max-width: 1400px) {
+@media screen and (max-width: 1450px) {
   .container {
     width: calc(100% - 10px);
     margin: auto;
