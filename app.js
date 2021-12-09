@@ -5,7 +5,7 @@
 // Whilst I have not used code from Jim, the approach is very inspired from it. // When scroll position reaches x do y etc.
 // https://vallandingham.me/scroller.html
 
-// ! parametehrs
+// ! parameters
 var svg_width =
   document.getElementById("graphic").offsetWidth -
   document.getElementById("sections").offsetWidth -
@@ -368,6 +368,50 @@ function loadTable_top_burden(burden_top_ten_df) {
   tableBody.innerHTML = dataHTML;
 }
 
+// ! Ch Ch Ch Changes
+
+var request = new XMLHttpRequest();
+request.open("GET", "./Outputs/change_over_time_df_wsx.json", false);
+request.send(null);
+
+var change_over_time_df = JSON.parse(request.responseText);
+
+// ! Comparison
+
+var request = new XMLHttpRequest();
+request.open("GET", "./Outputs/wsx_compare_df.json", false);
+request.send(null);
+
+var wsx_compare_df = JSON.parse(request.responseText);
+
+console.log(change_over_time_df, wsx_compare_df);
+
+// We need to create a dropdown button for the user to choose which area to be displayed on the figure.
+d3.select("#select_comparison_area_filter_button")
+  .selectAll("myOptions")
+  .data(["South East region", "England"])
+  .enter()
+  .append("option")
+  .text(function (d) {
+    return d;
+  }) // text to appear in the menu - this does not have to be as it is in the data (you can concatenate other values).
+  .attr("value", function (d) {
+    return d;
+  });
+
+// We need to create a dropdown button for the user to choose which area to be displayed on the figure.
+d3.select("#select_comparison_measure_filter_button")
+  .selectAll("myOptions")
+  .data(measure_categories)
+  .enter()
+  .append("option")
+  .text(function (d) {
+    return d;
+  }) // text to appear in the menu - this does not have to be as it is in the data (you can concatenate other values).
+  .attr("value", function (d) {
+    return d;
+  });
+
 // ! Scrolly
 
 var vis_position = $("#vis")[0].getBoundingClientRect().top + 30 * vh; // Where is the data vis vertical position from the top of the viewport (not top of document, as some people may reload part way down)
@@ -380,6 +424,9 @@ var chosen_position_4 = $("#scroll-four").offset().top - vis_position;
 var chosen_position_5 = $("#scroll-five").offset().top - vis_position;
 var chosen_position_6 = $("#scroll-six").offset().top - vis_position;
 var chosen_position_7 = $("#scroll-seven").offset().top - vis_position;
+var chosen_position_8 = $("#scroll-eight").offset().top - vis_position;
+var chosen_position_9 = $("#scroll-nine").offset().top - vis_position;
+var end_position = $("#end-section").offset().top - vis_position;
 
 var section_array = [
   chosen_position_1,
@@ -389,6 +436,9 @@ var section_array = [
   chosen_position_5,
   chosen_position_6,
   chosen_position_7,
+  chosen_position_8,
+  chosen_position_9,
+  end_position,
 ];
 
 var section_labels = [
@@ -399,6 +449,9 @@ var section_labels = [
   "Fifth section",
   "Sixth section",
   "Seventh section",
+  "Eighth section",
+  "Ninth section",
+  "End section",
 ];
 
 var trigger_functions = [
@@ -409,6 +462,9 @@ var trigger_functions = [
   showSection_5(),
   showSection_6(),
   showSection_7(),
+  showSection_8(),
+  showSection_9(),
+  showSection_end(),
 ];
 
 // This sets up some identifiers for each section. We'll use this as a sort of lookup. It says if the input is chosen_position_1 then output 'First section' and so on
@@ -448,6 +504,21 @@ if (current_scroll_position < chosen_position_2) {
   current_scroll_position < chosen_position_7
 ) {
   active_section = section_index(chosen_position_6);
+} else if (
+  current_scroll_position >= chosen_position_7 &&
+  current_scroll_position < chosen_position_8
+) {
+  active_section = section_index(chosen_position_7);
+} else if (
+  current_scroll_position >= chosen_position_8 &&
+  current_scroll_position < chosen_position_9
+) {
+  active_section = section_index(chosen_position_8);
+} else if (
+  current_scroll_position >= chosen_position_9 &&
+  current_scroll_position < end_position
+) {
+  active_section = section_index(chosen_position_9);
 } else {
   active_section = "You have reached the end";
 }
@@ -475,6 +546,15 @@ switch (active_section) {
     break;
   case "Seventh section":
     showSection_7();
+    break;
+  case "Eighth section":
+    showSection_8();
+    break;
+  case "Ninth section":
+    showSection_9();
+    break;
+  case "End section":
+    showSection_end();
 }
 
 //  We want to be able to tell if the active_section changes. To do this we need to store the current section and then compare it to the new one. Store the active_section as 'old_active'
@@ -517,9 +597,24 @@ function check_scroll_pos() {
   ) {
     old_active = active_section;
     active_section = section_index(chosen_position_6);
-  } else if (current_scroll_position >= chosen_position_7) {
+  } else if (
+    current_scroll_position >= chosen_position_7 &&
+    current_scroll_position < chosen_position_8
+  ) {
     old_active = active_section;
     active_section = section_index(chosen_position_7);
+  } else if (
+    current_scroll_position >= chosen_position_8 &&
+    current_scroll_position < chosen_position_9
+  ) {
+    old_active = active_section;
+    active_section = section_index(chosen_position_8);
+  } else if (
+    current_scroll_position >= chosen_position_9 &&
+    current_scroll_position < end_position
+  ) {
+    old_active = active_section;
+    active_section = section_index(chosen_position_9);
   } else {
     old_active = active_section;
     active_section = "You have reached the end";
@@ -558,6 +653,15 @@ function check_scroll_pos() {
         break;
       case "Seventh section":
         showSection_7();
+        break;
+      case "Eighth section":
+        showSection_8();
+        break;
+      case "Ninth section":
+        showSection_9();
+        break;
+      case "End section":
+        showSection_end();
     }
 
     console.log(active_section);
@@ -1249,12 +1353,39 @@ function showSection_7() {
   svg_story.selectAll(".mortality_1_figure").remove();
   svg_story.selectAll(".level_three_bubbles_figure").remove();
 
-  // svg_story
-  // .selectAll(".life_expectancy_figure")
-  // .transition()
-  // .duration(750)
-  // .style("opacity", 0)
-  // .remove();
+  svg_story
+    .selectAll("#section_vis_placeholder_text")
+    .transition()
+    .duration(750)
+    .style("opacity", 0)
+    .remove();
+
+  svg_story
+    .selectAll("#section_placeholder_image")
+    .transition()
+    .duration(750)
+    .style("opacity", 0)
+    .remove();
+
+  svg_story
+    .append("text")
+    .attr("text-anchor", "middle")
+    .attr("id", "section_vis_placeholder_text")
+    .attr("y", 200)
+    .attr("x", svg_width * 0.5)
+    .attr("opacity", 0)
+    .transition()
+    .duration(1000)
+    .attr("opacity", 1)
+    .style("font-weight", "bold")
+    .text("Changes over time - NUMBERS");
+}
+
+function showSection_8() {
+  console.log("You are in section seven mother flipper");
+  svg_story.selectAll(".life_expectancy_figure").remove();
+  svg_story.selectAll(".mortality_1_figure").remove();
+  svg_story.selectAll(".level_three_bubbles_figure").remove();
 
   svg_story
     .selectAll("#section_vis_placeholder_text")
@@ -1281,8 +1412,98 @@ function showSection_7() {
     .duration(1000)
     .attr("opacity", 1)
     .style("font-weight", "bold")
-    .text("Changes over time");
+    .text("Changes over time - RATEs");
 }
+
+function showSection_9() {
+  console.log("You are in section seven mother flipper");
+  svg_story.selectAll(".life_expectancy_figure").remove();
+  svg_story.selectAll(".mortality_1_figure").remove();
+  svg_story.selectAll(".level_three_bubbles_figure").remove();
+
+  svg_story
+    .selectAll("#section_vis_placeholder_text")
+    .transition()
+    .duration(750)
+    .style("opacity", 0)
+    .remove();
+
+  svg_story
+    .selectAll("#section_placeholder_image")
+    .transition()
+    .duration(750)
+    .style("opacity", 0)
+    .remove();
+
+  update_comparison_figure();
+}
+
+function showSection_end() {
+  svg_story.selectAll(".life_expectancy_figure").remove();
+  svg_story.selectAll(".mortality_1_figure").remove();
+  svg_story.selectAll(".level_three_bubbles_figure").remove();
+
+  svg_story
+    .selectAll("#section_vis_placeholder_text")
+    .transition()
+    .duration(750)
+    .style("opacity", 0)
+    .remove();
+
+  svg_story
+    .selectAll("#section_placeholder_image")
+    .transition()
+    .duration(750)
+    .style("opacity", 0)
+    .remove();
+}
+
+// ! Function to redraw comparison
+function update_comparison_figure() {
+  svg_story
+    .selectAll("#section_vis_placeholder_text")
+    .transition()
+    .duration(750)
+    .style("opacity", 0)
+    .remove();
+
+  var selectedAreaComparisonOption = d3
+    .select("#select_comparison_area_filter_button")
+    .property("value");
+
+  var selectedMeasureComparisonOption = d3
+    .select("#select_comparison_measure_filter_button")
+    .property("value");
+
+  svg_story
+    .append("text")
+    .attr("text-anchor", "middle")
+    .attr("id", "section_vis_placeholder_text")
+    .attr("y", 200)
+    .attr("x", svg_width * 0.5)
+    .attr("opacity", 0)
+    .transition()
+    .duration(1000)
+    .attr("opacity", 1)
+    .style("font-weight", "bold")
+    .text(
+      "Rates for " +
+        selectedMeasureComparisonOption +
+        " in West Sussex compared to " +
+        selectedAreaComparisonOption
+    );
+}
+
+d3.select("#select_comparison_area_filter_button").on("change", function (d) {
+  update_comparison_figure();
+});
+
+d3.select("#select_comparison_measure_filter_button").on(
+  "change",
+  function (d) {
+    update_comparison_figure();
+  }
+);
 
 // ! Function to redraw mortality top ten
 // When the drop down menu button for sex is changed run this (basically filter the data for mortality, sort by rank and keep the top ten). This function is called again any time you go back into section four.

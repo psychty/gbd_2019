@@ -175,13 +175,6 @@ ranks_df %>%
 comparison_label_df <- comparison_label_df_1 %>% 
   left_join(comparison_rate_label_df_2, by = c('measure', 'location', 'sex', 'cause', 'year'))
 
-comparison_label_df %>% 
-  filter(year == 2019) %>% 
-  filter(sex == 'Both') %>% 
-  filter(cause == 'All causes') %>% 
-  view()
-
-
 comparison_df <- unique(list.files("~/gbd_data")[grepl("Comparison", list.files("~/gbd_data")) == TRUE]) %>%
   map_df(~read_csv(paste0("~/gbd_data/",.))) %>% 
   filter(metric == 'Rate') %>% 
@@ -194,6 +187,7 @@ comparison_df <- unique(list.files("~/gbd_data")[grepl("Comparison", list.files(
   mutate(West_Sussex_SE_significance = ifelse(West_Sussex_lower > South_East_England_upper, 'Significantly higher', ifelse(West_Sussex_upper < South_East_England_lower, 'Significantly lower', 'Similar'))) %>% 
   mutate(West_Sussex_Eng_significance = ifelse(West_Sussex_lower > England_upper, 'Significantly higher', ifelse(West_Sussex_upper < England_lower, 'Significantly lower', 'Similar')))
 
+
 final_comparison_df <- comparison_label_df %>% 
   filter(location == 'West Sussex') %>% 
   left_join(comparison_df[c('measure', 'sex', 'cause', 'year', 'West_Sussex_SE_significance', 'West_Sussex_Eng_significance')], by = c('measure', 'sex', 'cause', 'year')) %>% 
@@ -205,9 +199,59 @@ final_comparison_df <- comparison_label_df %>%
          Measure = measure)
 
 final_comparison_df %>% 
+  left_join(cause_hierarchy[c('Cause Name', 'Level')], by = c('Cause' = 'Cause Name')) %>% 
+  filter(Year %in% seq(2009, 2019, 1)) %>% 
   toJSON() %>% 
   write_lines(paste0(output_directory, '/wsx_compare_df.json'))
 
+
+# change over time ####
+
+change_over_time_df_1 <- wsx_df %>% 
+  filter(year %in% c(2009, 2019)) %>% 
+  filter(metric_name == 'Rate') %>% 
+  left_join(cause_hierarchy[c('Cause Name', 'Level')], by = c('cause_name' = 'Cause Name')) %>% 
+  filter(Level == 2) %>% 
+  filter(age_name == 'All Ages') %>% 
+  filter(sex_name == 'Both') %>% 
+  filter(measure_name %in% c('Deaths', 'YLLs (Years of Life Lost)', 'YLDs (Years Lived with Disability)', 'DALYs (Disability-Adjusted Life Years)')) %>% 
+  select(measure_name, year, cause_name, val, lower, upper) %>% 
+  pivot_longer(cols = c(lower, val, upper), 
+               names_to = 'component',
+               values_to = 'value') %>%
+  mutate(component_year = paste0(component, '_', year)) %>% 
+  select(!c(component, year)) %>% 
+  pivot_wider(names_from = component_year,
+              values_from = value) %>% 
+  mutate(Rate_change_significance = ifelse(lower_2019 > upper_2009, 'Significantly higher', ifelse(upper_2019 < lower_2009, 'Significantly lower', 'Similar'))) %>% 
+  mutate(Rate_change_direction = ifelse(val_2019 > val_2009, 'Increase', ifelse(val_2019 < val_2009, 'Decrease', 'No change'))) %>% 
+  mutate(Percentage_change_on_rate = (val_2019 - val_2009) / val_2009) %>% 
+  mutate(rate_label = paste0(ifelse(val_2019 == 0, 0, ifelse(val_2019 < 0.01, '<0.01', ifelse(val_2019 < 0.05, '<0.05', format(round(val_2019, 1), big.mark = ',', trim = TRUE)))), ' (', ifelse(lower_2019 == 0, 0, ifelse(lower_2019 < 0.01, '<0.01', ifelse(lower_2019 < 0.05, '<0.05', format(round(lower_2019, 1), big.mark = ',', trim = TRUE)))), '-', ifelse(upper_2019 == 0, 0, ifelse(upper_2019 < 0.01, '<0.01', ifelse(upper_2019 < 0.05, '<0.05', format(round(upper_2019, 1), big.mark = ',', trim = TRUE)))), ')')) %>% 
+  select(measure_name, cause_name, rate_label, Rate_change_direction, Rate_change_significance, val_2009, val_2019, Percentage_change_on_rate)
+
+change_over_time_df_2 <- wsx_df %>% 
+  filter(year %in% c(2009, 2019)) %>% 
+  filter(metric_name == 'Number') %>% 
+  left_join(cause_hierarchy[c('Cause Name', 'Level')], by = c('cause_name' = 'Cause Name')) %>% 
+  filter(Level == 2) %>% 
+  filter(age_name == 'All Ages') %>% 
+  filter(sex_name == 'Both') %>% 
+  filter(measure_name %in% c('Deaths', 'YLLs (Years of Life Lost)', 'YLDs (Years Lived with Disability)', 'DALYs (Disability-Adjusted Life Years)')) %>% 
+  select(measure_name, year, cause_name, val) %>% 
+  pivot_wider(names_from = year,
+              values_from = val) %>% 
+  mutate(Count_direction = ifelse(`2019` > `2009`, 'Increase', ifelse(`2019` < `2009`, 'Decrease', 'No change'))) %>% 
+  mutate(Percentage_change_on_numbers = (`2019` - `2009`) / `2009`) %>% 
+  select(measure_name, cause_name, Count_direction, `2009`, `2019`, Percentage_change_on_numbers) %>% 
+  rename(Count_2009 = `2009`,
+         Count_2019 = `2019`)
+
+change_over_time_df <- change_over_time_df_2 %>% 
+  left_join(change_over_time_df_1, by = c('measure_name', 'cause_name'))
+
+change_over_time_df %>% 
+  toJSON() %>% 
+  write_lines(paste0(output_directory, '/change_over_time_df_wsx.json'))
 
 # Mortality ####
 # wsx_deaths %>% 
