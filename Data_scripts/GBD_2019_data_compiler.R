@@ -250,8 +250,13 @@ change_over_time_df <- change_over_time_df_2 %>%
   left_join(change_over_time_df_1, by = c('measure_name', 'cause_name'))
 
 change_over_time_df %>% 
+  mutate(cause_name = factor(cause_name, levels = c('HIV/AIDS and sexually transmitted infections', 'Respiratory infections and tuberculosis', 'Enteric infections', 'Neglected tropical diseases and malaria', 'Other infectious diseases', 'Maternal and neonatal disorders', 'Nutritional deficiencies', 'Neoplasms', 'Cardiovascular diseases', 'Chronic respiratory diseases', 'Digestive diseases', 'Neurological disorders', 'Mental disorders', 'Substance use disorders', 'Diabetes and kidney diseases', 'Skin and subcutaneous diseases', 'Sense organ diseases', 'Musculoskeletal disorders', 'Other non-communicable diseases', 'Transport injuries', 'Unintentional injuries', 'Self-harm and interpersonal violence'))) %>% 
+  arrange(cause_name) %>% 
   toJSON() %>% 
   write_lines(paste0(output_directory, '/change_over_time_df_wsx.json'))
+
+
+
 
 # Mortality ####
 # wsx_deaths %>% 

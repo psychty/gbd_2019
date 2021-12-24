@@ -9,7 +9,7 @@ b {
 }
 
 li {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: #4c4c4e;
   text-align: justify;
   margin-top: 10px;
@@ -251,6 +251,10 @@ h1 {
     top: 40px;
     margin-bottom: 20px;
     font-size: 1.1rem;
+    margin-left: calc(30% + 20px);
+  }
+
+  .top_ten_table_on {
     margin-left: calc(30% + 20px);
   }
 }

@@ -384,7 +384,18 @@ request.send(null);
 
 var wsx_compare_df = JSON.parse(request.responseText);
 
-console.log(change_over_time_df, wsx_compare_df);
+// We need to create a dropdown button for the user to choose which area to be displayed on the figure.
+d3.select("#select_over_tie_rate_measure_filter_button")
+  .selectAll("myOptions")
+  .data(measure_categories)
+  .enter()
+  .append("option")
+  .text(function (d) {
+    return d;
+  }) // text to appear in the menu - this does not have to be as it is in the data (you can concatenate other values).
+  .attr("value", function (d) {
+    return d;
+  });
 
 // We need to create a dropdown button for the user to choose which area to be displayed on the figure.
 d3.select("#select_comparison_area_filter_button")
@@ -678,6 +689,7 @@ function showSection_1() {
   svg_story.selectAll(".life_expectancy_figure").remove();
   svg_story.selectAll(".mortality_1_figure").remove();
   svg_story.selectAll(".level_three_bubbles_figure").remove();
+  svg_story.selectAll(".rate_over_time_comparison_figure").remove();
 
   d3.selectAll("#top_ten_burden_table").classed("top_ten_table_on", false);
   d3.selectAll("#top_ten_burden_table").classed("top_ten_table_off", true);
@@ -718,6 +730,7 @@ function showSection_2() {
   svg_story.selectAll(".life_expectancy_figure").remove();
   svg_story.selectAll(".mortality_1_figure").remove();
   svg_story.selectAll(".level_three_bubbles_figure").remove();
+  svg_story.selectAll(".rate_over_time_comparison_figure").remove();
 
   svg_story
     .selectAll("#section_vis_placeholder_text")
@@ -749,6 +762,7 @@ function showSection_2() {
 function showSection_3() {
   svg_story.selectAll(".mortality_1_figure").remove();
   svg_story.selectAll(".level_three_bubbles_figure").remove();
+  svg_story.selectAll(".rate_over_time_comparison_figure").remove();
 
   d3.selectAll("#top_ten_burden_table").classed("top_ten_table_on", false);
   d3.selectAll("#top_ten_burden_table").classed("top_ten_table_off", true);
@@ -1158,6 +1172,7 @@ function showSection_3() {
 function showSection_4() {
   svg_story.selectAll(".life_expectancy_figure").remove();
   svg_story.selectAll(".mortality_1_figure_title").remove();
+  svg_story.selectAll(".rate_over_time_comparison_figure").remove();
 
   d3.selectAll("#vis_placeholder").classed("top_ten_table_off", false);
   d3.selectAll("#top_ten_burden_table").classed("top_ten_table_on", false);
@@ -1268,7 +1283,6 @@ d3.select("#select_deaths_sex_filter_button").on("change", function (d) {
     d3.select("#select_deaths_sex_filter_button").property("value")
   );
 
-  console.log(selectedsexOption);
   update_sex_change_mortality();
 });
 
@@ -1277,10 +1291,10 @@ d3.select("#select_bubbles_measure_filter_button").on("change", function (d) {
     .select("#select_bubbles_measure_filter_button")
     .property("value");
 
-  console.log(
-    "You have changed the selection to ",
-    selectedMeasureBubblesOption
-  );
+  // console.log(
+  //   "You have changed the selection to ",
+  //   selectedMeasureBubblesOption
+  // );
 
   update_level_three_bubbles();
 });
@@ -1293,6 +1307,7 @@ function showSection_5() {
   svg_story.selectAll(".life_expectancy_figure").remove();
   svg_story.selectAll(".mortality_1_figure").remove();
   svg_story.selectAll(".level_three_bubbles_figure").remove();
+  svg_story.selectAll(".rate_over_time_comparison_figure").remove();
 
   d3.selectAll("#vis_placeholder").classed("top_ten_table_off", true);
 
@@ -1320,6 +1335,7 @@ function showSection_6() {
   svg_story.selectAll(".life_expectancy_figure").remove();
   svg_story.selectAll(".mortality_1_figure").remove();
   svg_story.selectAll(".level_three_bubbles_figure").remove();
+  svg_story.selectAll(".rate_over_time_comparison_figure").remove();
 
   d3.selectAll("#top_ten_burden_table").classed("top_ten_table_on", false);
   d3.selectAll("#top_ten_burden_table").classed("top_ten_table_off", true);
@@ -1352,6 +1368,7 @@ function showSection_7() {
   svg_story.selectAll(".life_expectancy_figure").remove();
   svg_story.selectAll(".mortality_1_figure").remove();
   svg_story.selectAll(".level_three_bubbles_figure").remove();
+  svg_story.selectAll(".rate_over_time_comparison_figure").remove();
 
   svg_story
     .selectAll("#section_vis_placeholder_text")
@@ -1379,10 +1396,11 @@ function showSection_7() {
     .attr("opacity", 1)
     .style("font-weight", "bold")
     .text("Changes over time - NUMBERS");
+
+  change_over_time_update_level_two_numbers();
 }
 
 function showSection_8() {
-  console.log("You are in section seven mother flipper");
   svg_story.selectAll(".life_expectancy_figure").remove();
   svg_story.selectAll(".mortality_1_figure").remove();
   svg_story.selectAll(".level_three_bubbles_figure").remove();
@@ -1401,18 +1419,7 @@ function showSection_8() {
     .style("opacity", 0)
     .remove();
 
-  svg_story
-    .append("text")
-    .attr("text-anchor", "middle")
-    .attr("id", "section_vis_placeholder_text")
-    .attr("y", 200)
-    .attr("x", svg_width * 0.5)
-    .attr("opacity", 0)
-    .transition()
-    .duration(1000)
-    .attr("opacity", 1)
-    .style("font-weight", "bold")
-    .text("Changes over time - RATEs");
+  change_over_time_update_level_two_rates();
 }
 
 function showSection_9() {
@@ -1420,6 +1427,7 @@ function showSection_9() {
   svg_story.selectAll(".life_expectancy_figure").remove();
   svg_story.selectAll(".mortality_1_figure").remove();
   svg_story.selectAll(".level_three_bubbles_figure").remove();
+  svg_story.selectAll(".rate_over_time_comparison_figure").remove();
 
   svg_story
     .selectAll("#section_vis_placeholder_text")
@@ -1442,6 +1450,7 @@ function showSection_end() {
   svg_story.selectAll(".life_expectancy_figure").remove();
   svg_story.selectAll(".mortality_1_figure").remove();
   svg_story.selectAll(".level_three_bubbles_figure").remove();
+  svg_story.selectAll(".rate_over_time_comparison_figure").remove();
 
   svg_story
     .selectAll("#section_vis_placeholder_text")
@@ -1457,6 +1466,204 @@ function showSection_end() {
     .style("opacity", 0)
     .remove();
 }
+
+// ! Fucntion to do comparison over time numbers
+function change_over_time_update_level_two_numbers() {}
+
+// ! Fucntion to do comparison over time rates
+function change_over_time_update_level_two_rates() {
+  svg_story.selectAll(".rate_over_time_comparison_figure").remove();
+
+  var selectedMeasureOverTimeOption = d3
+    .select("#select_over_tie_rate_measure_filter_button")
+    .property("value");
+
+  svg_story
+    .append("text")
+    .attr("text-anchor", "start")
+    .attr("class", "rate_over_time_comparison_figure")
+    .attr("y", svg_height * 0.05)
+    .attr("x", svg_width * 0.05)
+    .attr("opacity", 0)
+    .transition()
+    .duration(1000)
+    .attr("opacity", 1)
+    .style("font-weight", "bold")
+    .text("Change in age standardised rate per 100,000 population;");
+
+  svg_story
+    .append("text")
+    .attr("text-anchor", "start")
+    .attr("class", "rate_over_time_comparison_figure")
+    .attr("y", svg_height * 0.05 + 17.5)
+    .attr("x", svg_width * 0.05)
+    .attr("opacity", 0)
+    .transition()
+    .duration(1000)
+    .attr("opacity", 1)
+    .style("font-weight", "bold")
+    .text(selectedMeasureOverTimeOption + "; West Sussex; persons; 2009-2019;");
+
+  chosen_over_time_change_df = change_over_time_df.filter(function (d) {
+    return d.measure_name === selectedMeasureOverTimeOption;
+  });
+
+  abs_min = d3.min(chosen_over_time_change_df, function (d) {
+    return +d.Percentage_change_on_rate;
+  });
+
+  abs_max = d3.max(chosen_over_time_change_df, function (d) {
+    return +d.Percentage_change_on_rate;
+  });
+
+  var x_over_time_rate_change = d3
+    .scaleLinear()
+    .domain([
+      0 - d3.max([Math.abs(abs_min), Math.abs(abs_max)]),
+      d3.max([Math.abs(abs_min), Math.abs(abs_max)]),
+    ])
+    .range([30, svg_width - 30]);
+
+  var y_over_time_rate_change = d3
+    .scaleBand()
+    .domain(cause_categories)
+    .rangeRound([50, svg_height - 50])
+    .padding(0.15);
+
+  svg_story
+    .selectAll("rect")
+    .data(chosen_over_time_change_df)
+    .enter()
+    .append("rect")
+    .attr("class", "rate_over_time_comparison_figure")
+    .attr("x", function (d) {
+      if (d.Percentage_change_on_rate < 0) {
+        return x_over_time_rate_change(d.Percentage_change_on_rate);
+      } else {
+        return x_over_time_rate_change(0);
+      }
+    })
+    .attr("width", function (d) {
+      if (d.Percentage_change_on_rate < 0) {
+        return (
+          x_over_time_rate_change(d.Percentage_change_on_rate * -1) -
+          x_over_time_rate_change(0)
+        );
+      } else {
+        return (
+          x_over_time_rate_change(d.Percentage_change_on_rate) -
+          x_over_time_rate_change(0)
+        );
+      }
+    })
+    .attr("y", function (d) {
+      return y_over_time_rate_change(d.cause_name);
+    })
+    .attr("height", y_over_time_rate_change.bandwidth())
+    .style("fill", function (d) {
+      return color_cause_group(d.cause_name);
+    });
+
+  svg_story
+    .selectAll(".name")
+    .data(chosen_over_time_change_df)
+    .enter()
+    .append("text")
+    .attr("class", "rate_over_time_comparison_figure")
+    .attr("x", function (d) {
+      return d.Percentage_change_on_rate < 0
+        ? x_over_time_rate_change(0) + 2.55
+        : x_over_time_rate_change(0) - 2.55;
+    })
+    .attr("y", function (d) {
+      return y_over_time_rate_change(d.cause_name);
+    })
+    .attr("dy", y_over_time_rate_change.bandwidth() - 2.55)
+    .attr("text-anchor", function (d) {
+      return d.Percentage_change_on_rate < 0 ? "start" : "end";
+    })
+    .text(function (d) {
+      return d.cause_name;
+    });
+
+  svg_story
+    .selectAll(".value")
+    .data(chosen_over_time_change_df)
+    .enter()
+    .append("text")
+    .attr("class", "rate_over_time_comparison_figure")
+    .attr("x", function (d) {
+      if (d.Percentage_change_on_rate < 0) {
+        return x_over_time_rate_change(d.Percentage_change_on_rate * -1) -
+          x_over_time_rate_change(0) >
+          20
+          ? x_over_time_rate_change(d.Percentage_change_on_rate)
+          : x_over_time_rate_change(d.Percentage_change_on_rate) - 1;
+      } else {
+        return x_over_time_rate_change(d.Percentage_change_on_rate) -
+          x_over_time_rate_change(0) >
+          20
+          ? x_over_time_rate_change(d.Percentage_change_on_rate)
+          : x_over_time_rate_change(d.Percentage_change_on_rate) + 1;
+      }
+    })
+    .attr("y", function (d) {
+      return y_over_time_rate_change(d.cause_name);
+    })
+    .attr("dy", y_over_time_rate_change.bandwidth() - 2.55)
+    .attr("text-anchor", function (d) {
+      if (d.Percentage_change_on_rate < 0) {
+        return x_over_time_rate_change(d.Percentage_change_on_rate * -1) -
+          x_over_time_rate_change(0) >
+          90
+          ? "start"
+          : "end";
+      } else {
+        return x_over_time_rate_change(d.Percentage_change_on_rate) -
+          x_over_time_rate_change(0) >
+          90
+          ? "end"
+          : "start";
+      }
+    })
+    .style("fill", function (d) {
+      if (d.Percentage_change_on_rate < 0) {
+        return x_over_time_rate_change(d.Percentage_change_on_rate * -1) -
+          x_over_time_rate_change(0) >
+          90
+          ? "#fff"
+          : "#000";
+      } else {
+        return x_over_time_rate_change(d.Percentage_change_on_rate) -
+          x_over_time_rate_change(0) >
+          90
+          ? "#fff"
+          : "#000";
+      }
+    })
+    .text(function (d) {
+      if (d.Percentage_change_on_rate < 0) {
+        // add an if else function to say if > 0 then increase, if < 0 then decrease.
+        return (
+          d3.format(".1%")(Math.abs(d.Percentage_change_on_rate)) + " decrease"
+        );
+      } else {
+        return (
+          d3.format(".1%")(Math.abs(d.Percentage_change_on_rate)) + " increase"
+        );
+      }
+    });
+
+  console.log(chosen_over_time_change_df);
+  console.log(d3.max([Math.abs(abs_min), Math.abs(abs_max)]));
+}
+
+d3.select("#select_over_tie_rate_measure_filter_button").on(
+  "change",
+  function (d) {
+    change_over_time_update_level_two_rates();
+  }
+);
 
 // ! Function to redraw comparison
 function update_comparison_figure() {
@@ -1785,7 +1992,7 @@ function update_level_three_bubbles() {
     .duration(1000)
     .attr("opacity", 1)
     .style("font-weight", "bold")
-    .text("Level Three " + selectedMeasureBubblesOption + "; West Sussex");
+    .text(selectedMeasureBubblesOption + "; West Sussex; 2019");
 
   var forceXSplit = d3
     .forceX(function (d) {
