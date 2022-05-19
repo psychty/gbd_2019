@@ -706,6 +706,13 @@ function showSection_1() {
     .style("opacity", 0)
     .remove();
 
+    svg_story
+    .selectAll("#section_vis_placeholder_text_2")
+    .transition()
+    .duration(750)
+    .style("opacity", 0)
+    .remove();
+    
   svg_story
     .selectAll("#section_placeholder_image")
     .transition()
@@ -734,6 +741,13 @@ function showSection_2() {
 
   svg_story
     .selectAll("#section_vis_placeholder_text")
+    .transition()
+    .duration(750)
+    .style("opacity", 0)
+    .remove();
+
+    svg_story
+    .selectAll("#section_vis_placeholder_text_2")
     .transition()
     .duration(750)
     .style("opacity", 0)
@@ -774,6 +788,13 @@ function showSection_3() {
 
   svg_story
     .selectAll("#section_vis_placeholder_text")
+    .transition()
+    .duration(750)
+    .style("opacity", 0)
+    .remove();
+
+    svg_story
+    .selectAll("#section_vis_placeholder_text_2")
     .transition()
     .duration(750)
     .style("opacity", 0)
@@ -1206,6 +1227,13 @@ function showSection_4() {
     .style("opacity", 0)
     .remove();
 
+    svg_story
+    .selectAll("#section_vis_placeholder_text_2")
+    .transition()
+    .duration(750)
+    .style("opacity", 0)
+    .remove();
+
   svg_story
     .selectAll("#section_placeholder_image")
     .transition()
@@ -1352,6 +1380,13 @@ function showSection_6() {
     .style("opacity", 0)
     .remove();
 
+    svg_story
+    .selectAll("#section_vis_placeholder_text_2")
+    .transition()
+    .duration(750)
+    .style("opacity", 0)
+    .remove();
+
   svg_story
     .selectAll("#section_placeholder_image")
     .transition()
@@ -1377,6 +1412,12 @@ function showSection_7() {
     .style("opacity", 0)
     .remove();
 
+    svg_story
+    .selectAll("#section_vis_placeholder_text_2")
+    .transition()
+    .duration(750)
+    .style("opacity", 0)
+    .remove();
   svg_story
     .selectAll("#section_placeholder_image")
     .transition()
@@ -1412,6 +1453,13 @@ function showSection_8() {
     .style("opacity", 0)
     .remove();
 
+    svg_story
+    .selectAll("#section_vis_placeholder_text_2")
+    .transition()
+    .duration(750)
+    .style("opacity", 0)
+    .remove();
+
   svg_story
     .selectAll("#section_placeholder_image")
     .transition()
@@ -1436,6 +1484,13 @@ function showSection_9() {
     .style("opacity", 0)
     .remove();
 
+    svg_story
+    .selectAll("#section_vis_placeholder_text_2")
+    .transition()
+    .duration(750)
+    .style("opacity", 0)
+    .remove();
+
   svg_story
     .selectAll("#section_placeholder_image")
     .transition()
@@ -1454,6 +1509,13 @@ function showSection_end() {
 
   svg_story
     .selectAll("#section_vis_placeholder_text")
+    .transition()
+    .duration(750)
+    .style("opacity", 0)
+    .remove();
+
+    svg_story
+    .selectAll("#section_vis_placeholder_text_2")
     .transition()
     .duration(750)
     .style("opacity", 0)
@@ -1679,6 +1741,8 @@ function update_comparison_figure() {
     .style("opacity", 0)
     .remove();
 
+ 
+
   var selectedAreaComparisonOption = d3
     .select("#select_comparison_area_filter_button")
     .property("value");
@@ -1702,8 +1766,26 @@ function update_comparison_figure() {
       "Rates for " +
         selectedMeasureComparisonOption +
         " in West Sussex compared to " +
-        selectedAreaComparisonOption
+        selectedAreaComparisonOption +
+        '.'
     );
+
+    svg_story
+    .append("text")
+    .attr("text-anchor", "middle")
+    .attr("id", "section_vis_placeholder_text_2")
+    .attr("y", 250)
+    .attr("x", svg_width * 0.5)
+    .attr("opacity", 0)
+    .transition()
+    .duration(1000)
+    .attr("opacity", 1)
+    .style("font-weight", "bold")
+    .text(
+      'This section is not quite finished. It will be ready as soon as possible.'
+    );
+
+  
 }
 
 d3.select("#select_comparison_area_filter_button").on("change", function (d) {
