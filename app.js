@@ -379,7 +379,7 @@ var change_over_time_df = JSON.parse(request.responseText);
 // ! Comparison
 
 var request = new XMLHttpRequest();
-request.open("GET", "./Outputs/wsx_compare_df.json", false);
+request.open("GET", "./Outputs/rate_compare_timeseries.json", false);
 request.send(null);
 
 var wsx_compare_df = JSON.parse(request.responseText);
@@ -399,8 +399,21 @@ d3.select("#select_over_tie_rate_measure_filter_button")
 
 // We need to create a dropdown button for the user to choose which area to be displayed on the figure.
 d3.select("#select_comparison_area_filter_button")
+.selectAll("myOptions")
+.data(["England", 'South East England'])
+.enter()
+.append("option")
+.text(function (d) {
+  return d;
+}) // text to appear in the menu - this does not have to be as it is in the data (you can concatenate other values).
+.attr("value", function (d) {
+  return d;
+});
+
+// We need to create a dropdown button for the user to choose which area to be displayed on the figure.
+d3.select("#select_comparison_age_filter_button")
   .selectAll("myOptions")
-  .data(["South East region", "England"])
+  .data(["All ages", "Age standardised"])
   .enter()
   .append("option")
   .text(function (d) {
@@ -422,6 +435,93 @@ d3.select("#select_comparison_measure_filter_button")
   .attr("value", function (d) {
     return d;
   });
+
+  d3.select("#select_comparison_cause_filter_button")
+  .selectAll("myOptions")
+  .data(['All causes'].concat(cause_categories))
+  .enter()
+  .append("option")
+  .text(function (d) {
+    return d;
+  }) // text to appear in the menu - this does not have to be as it is in the data (you can concatenate other values).
+  .attr("value", function (d) {
+    return d;
+  });
+
+
+var selectedAreaComparisonOption = d3
+ .select("#select_comparison_area_filter_button")
+ .property("value");
+
+var selectedMeasureComparisonOption = d3
+ .select("#select_comparison_measure_filter_button")
+ .property("value");
+
+var selectedCauseComparisonOption = d3
+ .select("#select_comparison_cause_filter_button")
+ .property("value");
+
+var selectedAgeComparisonOption = d3
+ .select("#select_comparison_age_filter_button")
+ .property("value");
+
+chosen_wsx_compare_df = wsx_compare_df.filter(function (d) {
+    return d.Measure === selectedMeasureComparisonOption &&
+           d.Area === 'West Sussex' &&
+           d.Cause === selectedCauseComparisonOption&&
+           d.Age === selectedAgeComparisonOption;
+  });
+
+chosen_se_compare_df = wsx_compare_df.filter(function (d) {
+    return d.Measure === selectedMeasureComparisonOption &&
+           d.Area === 'South East England' &&
+           d.Cause === selectedCauseComparisonOption &&
+           d.Age === selectedAgeComparisonOption;
+     });    
+ 
+chosen_england_compare_df = wsx_compare_df.filter(function (d) {
+    return d.Measure === selectedMeasureComparisonOption &&
+           d.Area === 'England' &&
+           d.Cause === selectedCauseComparisonOption &&
+           d.Age === selectedAgeComparisonOption;
+     });   
+
+all_areas_compare_df = wsx_compare_df.filter(function (d) {
+    return d.Measure === selectedMeasureComparisonOption &&
+           d.Cause === selectedCauseComparisonOption &&
+           d.Age === selectedAgeComparisonOption;
+     });   
+
+  var x_comparison_rate = d3
+  .scaleLinear()
+  .domain([2009, 2019])
+  .range([50, svg_width - 50])
+
+  var y_comparison_rate = d3
+    .scaleLinear()
+    .domain([
+      0,
+      d3.max(all_areas_compare_df, function (d) {
+        return +d.Upper_estimate;
+      }),
+    ]) // Add the ceiling
+    .range([svg_height - 200, 100])
+    .nice();
+
+var comparison_colours = d3.scaleOrdinal()
+    .domain(['lower', 'similar', 'higher', ''])
+    .range([
+      '#00a9e0',
+      '#f0b323',
+      '#bf0d3e',
+      '#c9c9c9'
+    ])
+
+var comparison_area_colours = d3.scaleOrdinal()
+.domain(['West Sussex', 'South East England', 'England'])
+.range(['#000000','#30336b','#999999'
+])    
+
 
 // ! Scrolly
 
@@ -690,6 +790,7 @@ function showSection_1() {
   svg_story.selectAll(".mortality_1_figure").remove();
   svg_story.selectAll(".level_three_bubbles_figure").remove();
   svg_story.selectAll(".rate_over_time_comparison_figure").remove();
+  svg_story.selectAll(".comparison_figure").remove();
 
   d3.selectAll("#top_ten_burden_table").classed("top_ten_table_on", false);
   d3.selectAll("#top_ten_burden_table").classed("top_ten_table_off", true);
@@ -738,6 +839,7 @@ function showSection_2() {
   svg_story.selectAll(".mortality_1_figure").remove();
   svg_story.selectAll(".level_three_bubbles_figure").remove();
   svg_story.selectAll(".rate_over_time_comparison_figure").remove();
+  svg_story.selectAll(".comparison_figure").remove();
 
   svg_story
     .selectAll("#section_vis_placeholder_text")
@@ -777,6 +879,7 @@ function showSection_3() {
   svg_story.selectAll(".mortality_1_figure").remove();
   svg_story.selectAll(".level_three_bubbles_figure").remove();
   svg_story.selectAll(".rate_over_time_comparison_figure").remove();
+  svg_story.selectAll(".comparison_figure").remove();
 
   d3.selectAll("#top_ten_burden_table").classed("top_ten_table_on", false);
   d3.selectAll("#top_ten_burden_table").classed("top_ten_table_off", true);
@@ -1194,6 +1297,7 @@ function showSection_4() {
   svg_story.selectAll(".life_expectancy_figure").remove();
   svg_story.selectAll(".mortality_1_figure_title").remove();
   svg_story.selectAll(".rate_over_time_comparison_figure").remove();
+  svg_story.selectAll(".comparison_figure").remove();
 
   d3.selectAll("#vis_placeholder").classed("top_ten_table_off", false);
   d3.selectAll("#top_ten_burden_table").classed("top_ten_table_on", false);
@@ -1227,7 +1331,7 @@ function showSection_4() {
     .style("opacity", 0)
     .remove();
 
-    svg_story
+  svg_story
     .selectAll("#section_vis_placeholder_text_2")
     .transition()
     .duration(750)
@@ -1336,6 +1440,7 @@ function showSection_5() {
   svg_story.selectAll(".mortality_1_figure").remove();
   svg_story.selectAll(".level_three_bubbles_figure").remove();
   svg_story.selectAll(".rate_over_time_comparison_figure").remove();
+  svg_story.selectAll(".comparison_figure").remove();
 
   d3.selectAll("#vis_placeholder").classed("top_ten_table_off", true);
 
@@ -1364,6 +1469,7 @@ function showSection_6() {
   svg_story.selectAll(".mortality_1_figure").remove();
   svg_story.selectAll(".level_three_bubbles_figure").remove();
   svg_story.selectAll(".rate_over_time_comparison_figure").remove();
+  svg_story.selectAll(".comparison_figure").remove();
 
   d3.selectAll("#top_ten_burden_table").classed("top_ten_table_on", false);
   d3.selectAll("#top_ten_burden_table").classed("top_ten_table_off", true);
@@ -1404,21 +1510,23 @@ function showSection_7() {
   svg_story.selectAll(".mortality_1_figure").remove();
   svg_story.selectAll(".level_three_bubbles_figure").remove();
   svg_story.selectAll(".rate_over_time_comparison_figure").remove();
+  svg_story.selectAll(".comparison_figure").remove();
 
-  svg_story
+ svg_story
     .selectAll("#section_vis_placeholder_text")
     .transition()
     .duration(750)
     .style("opacity", 0)
     .remove();
 
-    svg_story
+ svg_story
     .selectAll("#section_vis_placeholder_text_2")
     .transition()
     .duration(750)
     .style("opacity", 0)
     .remove();
-  svg_story
+
+ svg_story
     .selectAll("#section_placeholder_image")
     .transition()
     .duration(750)
@@ -1444,7 +1552,10 @@ function showSection_7() {
 function showSection_8() {
   svg_story.selectAll(".life_expectancy_figure").remove();
   svg_story.selectAll(".mortality_1_figure").remove();
-  svg_story.selectAll(".level_three_bubbles_figure").remove();
+  svg_story.selectAll(".level_three_bubbles_figure").remove();  
+  svg_story.selectAll(".comparison_figure").remove();
+
+  
 
   svg_story
     .selectAll("#section_vis_placeholder_text")
@@ -1471,11 +1582,12 @@ function showSection_8() {
 }
 
 function showSection_9() {
-  // console.log("You are in section seven mother flipper");
+  console.log("You are in section nine mother flipper");
   svg_story.selectAll(".life_expectancy_figure").remove();
   svg_story.selectAll(".mortality_1_figure").remove();
   svg_story.selectAll(".level_three_bubbles_figure").remove();
   svg_story.selectAll(".rate_over_time_comparison_figure").remove();
+  svg_story.selectAll(".comparison_figure").remove();
 
   svg_story
     .selectAll("#section_vis_placeholder_text")
@@ -1484,7 +1596,7 @@ function showSection_9() {
     .style("opacity", 0)
     .remove();
 
-    svg_story
+  svg_story
     .selectAll("#section_vis_placeholder_text_2")
     .transition()
     .duration(750)
@@ -1497,6 +1609,67 @@ function showSection_9() {
     .duration(750)
     .style("opacity", 0)
     .remove();
+
+// append the axis to the svg_story
+svg_story
+    .append("g")
+    .attr("class", "comparison_figure comparison_figure_x_axis axis_text")
+    .attr("transform", "translate(0," + (svg_height - 200) + ")")
+    .call(d3.axisBottom(x_comparison_rate).tickFormat(d3.format("d")))
+    .selectAll("text")
+    .style("text-anchor", "middle")
+    .attr("opacity", 0)
+    .transition()
+    .duration(1000)
+    .attr("opacity", 1);
+
+  svg_story
+    .append("g")
+    .attr("class", "comparison_figure comparison_figure_y_axis axis_text")
+    .attr("transform", "translate(50, 0)")
+    .call(d3.axisLeft(y_comparison_rate))
+    .attr("opacity", 0)
+    .transition()
+    .duration(1000)
+    .attr("opacity", 1);
+
+svg_story
+  .append("text")
+  .attr("text-anchor", "left")
+  .attr("class", "comparison_figure figure_caption")
+  .attr("y", svg_height - 150)
+  .attr("x", svg_width * 0.05)
+  .attr("opacity", 0)
+  .transition()
+  .duration(1000)
+  .attr("opacity", 1)
+  .text( 'The black line and dots represent West Sussex whilst the grey line with no dots represents the comparison area.' );
+
+
+svg_story
+  .append("text")
+  .attr("text-anchor", "left")
+  .attr("class", "comparison_figure figure_caption")
+  .attr("y", svg_height - 125)
+  .attr("x", svg_width * 0.05)
+  .attr("opacity", 0)
+  .transition()
+  .duration(1000)
+  .attr("opacity", 1)
+  .text( 'Wider shaded areas around the lines denote greater uncertainty in the estimate.' );
+
+  svg_story
+  .append("text")
+  .attr("text-anchor", "left")
+  .attr("class", "comparison_figure figure_caption")
+  .attr("y", svg_height - 100)
+  .attr("x", svg_width * 0.05)
+  .attr("opacity", 0)
+  .transition()
+  .duration(1000)
+  .attr("opacity", 1)
+  .text( 'If the shaded areas for two lines overlap, it is an indication that the estimates may be statistically similar.' );
+
 
   update_comparison_figure();
 }
@@ -1514,7 +1687,7 @@ function showSection_end() {
     .style("opacity", 0)
     .remove();
 
-    svg_story
+  svg_story
     .selectAll("#section_vis_placeholder_text_2")
     .transition()
     .duration(750)
@@ -1625,11 +1798,8 @@ function change_over_time_update_level_two_rates() {
     .style("fill", function (d) {
       return color_cause_group(d.cause_name);
     });
-  // .style("fill", function (d) {
-  //   return "#c9c9c9";
-  // });
 
-  console.log(x_over_time_rate_change(0));
+  // console.log(x_over_time_rate_change(0));
 
   svg_story
     .selectAll(".name")
@@ -1721,8 +1891,6 @@ function change_over_time_update_level_two_rates() {
       }
     });
 
-  // console.log(chosen_over_time_change_df);
-  // console.log(d3.max([Math.abs(abs_min), Math.abs(abs_max)]));
 }
 
 d3.select("#select_over_tie_rate_measure_filter_button").on(
@@ -1734,58 +1902,275 @@ d3.select("#select_over_tie_rate_measure_filter_button").on(
 
 // ! Function to redraw comparison
 function update_comparison_figure() {
-  svg_story
-    .selectAll("#section_vis_placeholder_text")
-    .transition()
-    .duration(750)
-    .style("opacity", 0)
-    .remove();
+svg_story
+  .selectAll("#section_vis_placeholder_text")
+  .transition()
+  .duration(750)
+  .style("opacity", 0)
+  .remove();
 
- 
+svg_story
+  .selectAll("#section_vis_placeholder_text_2")
+  .transition()
+  .duration(750)
+  .style("opacity", 0)
+  .remove();
+
+svg_story.selectAll('#rate_comparison_dots')
+  .transition()
+  .duration(500)
+  .attr('opacity', 0)
+  .remove()
+
+svg_story.selectAll('.rate_over_time_comparison_lines')
+  .transition()
+  .duration(500)
+  .attr('opacity', 0)
+  .remove()
+
+svg_story.selectAll('.comparison_figure_key')
+  .remove()
 
   var selectedAreaComparisonOption = d3
-    .select("#select_comparison_area_filter_button")
-    .property("value");
+  .select("#select_comparison_area_filter_button")
+  .property("value");
 
-  var selectedMeasureComparisonOption = d3
-    .select("#select_comparison_measure_filter_button")
-    .property("value");
+var selectedMeasureComparisonOption = d3
+  .select("#select_comparison_measure_filter_button")
+  .property("value");
 
-  svg_story
-    .append("text")
-    .attr("text-anchor", "middle")
-    .attr("id", "section_vis_placeholder_text")
-    .attr("y", 200)
-    .attr("x", svg_width * 0.5)
-    .attr("opacity", 0)
-    .transition()
-    .duration(1000)
-    .attr("opacity", 1)
-    .style("font-weight", "bold")
-    .text(
-      "Rates for " +
-        selectedMeasureComparisonOption +
-        " in West Sussex compared to " +
-        selectedAreaComparisonOption +
-        '.'
+var selectedCauseComparisonOption = d3
+  .select("#select_comparison_cause_filter_button")
+  .property("value");
+
+var selectedAgeComparisonOption = d3
+ .select("#select_comparison_age_filter_button")
+ .property("value");
+ 
+svg_story
+  .append("text")
+  .attr("text-anchor", "left")
+  .attr("id", "section_vis_placeholder_text")
+  .attr("y", svg_height * 0.05)
+  .attr("x", svg_width * 0.05)
+  .attr("opacity", 0)
+  .transition()
+  .duration(1000)
+  .attr("opacity", 1)
+  .style("font-weight", "bold")
+  .text(
+    "Rate of " +
+      selectedMeasureComparisonOption +
+      " per 100,000 (" +
+      selectedAgeComparisonOption +
+      ") in West Sussex"
     );
 
-    svg_story
-    .append("text")
-    .attr("text-anchor", "middle")
-    .attr("id", "section_vis_placeholder_text_2")
-    .attr("y", 250)
-    .attr("x", svg_width * 0.5)
-    .attr("opacity", 0)
-    .transition()
-    .duration(1000)
-    .attr("opacity", 1)
-    .style("font-weight", "bold")
-    .text(
-      'This section is not quite finished. It will be ready as soon as possible.'
+svg_story
+  .append("text")
+  .attr("text-anchor", "left")
+  .attr("id", "section_vis_placeholder_text_2")
+  .attr("x", svg_width * 0.05)
+  .attr("y", svg_height * 0.05 + 17.5)
+  .attr("opacity", 0)
+  .transition()
+  .duration(1000)
+  .attr("opacity", 1)
+  .style("font-weight", "bold")
+  .text(
+    " compared to " +
+    selectedAreaComparisonOption +
+    " from the cause category " +
+    selectedCauseComparisonOption +
+    '.'
     );
 
+  // Add one dot in the legend for each name.
+  svg_story.selectAll("myratedots")
+  .data(['higher', 'similar', 'lower'])
+  .enter()
+  .append("circle")
+  .attr('class', 'comparison_figure_key comparison_figure')
+  //  .attr("cx", 80)
+  //  .attr("cy", function(d,i){ return 15 + i*15}) // 100 is where the first dot appears. 25 is the distance between dots
+  .attr("cx", function(d,i){ return (svg_width * .055 + 20)  + i * 135}) // 100 is where the first dot appears. 25 is the distance between dots
+  .attr('cy', svg_height * .05 + 35)
+  .attr("r", 6)
+  .style("fill", function(d){ return comparison_colours(d)})
   
+  // Add one dot in the legend for each name.
+  svg_story.selectAll("myratelabels")
+    .data(['Significantly higher', 'Similar', 'Significantly lower'])
+    .enter()
+    .append("text")
+    .attr('class', 'comparison_figure_key comparison_figure')
+    .attr("x",  function(d,i){ return (svg_width * .055 + 30)  + i * 135})
+    .attr('y', svg_height * .05 + 40)
+    .text(function(d){ return d})
+    .attr("text-anchor", "left")
+    .attr('font-size', '.8rem')
+   
+chosen_wsx_compare_df = wsx_compare_df.filter(function (d) {
+      return d.Measure === selectedMeasureComparisonOption &&
+             d.Area === 'West Sussex' &&
+             d.Cause === selectedCauseComparisonOption &&
+             d.Age === selectedAgeComparisonOption;
+    });
+
+chosen_se_compare_df = wsx_compare_df.filter(function (d) {
+   return d.Measure === selectedMeasureComparisonOption &&
+          d.Area === 'South East England' &&
+          d.Cause === selectedCauseComparisonOption &&
+          d.Age === selectedAgeComparisonOption;
+    });    
+
+chosen_england_compare_df = wsx_compare_df.filter(function (d) {
+   return d.Measure === selectedMeasureComparisonOption &&
+          d.Area === 'England' &&
+          d.Cause === selectedCauseComparisonOption &&
+          d.Age === selectedAgeComparisonOption;
+    });   
+  
+all_areas_compare_df = wsx_compare_df.filter(function (d) {
+  return d.Measure === selectedMeasureComparisonOption &&
+         d.Cause === selectedCauseComparisonOption &&
+         d.Age === selectedAgeComparisonOption;
+   });   
+
+y_comparison_rate.domain([0, d3.max(all_areas_compare_df, function (d) { return +d.Upper_estimate; })])
+    .nice();
+
+svg_story
+ .selectAll(".comparison_figure_y_axis")
+ .attr("opacity", 1)
+ .transition()
+ .duration(1000)
+ .call(d3.axisLeft(y_comparison_rate));
+
+ svg_story.append("path")
+ .datum(chosen_wsx_compare_df)
+ .attr('class', 'rate_over_time_comparison_lines rate_over_time_comparison_figure')
+ .attr("fill", "none")
+ .attr("stroke-width", 1)
+ .attr("stroke", function(d) { return comparison_area_colours(d.Area)})
+ .attr("d", d3.line()
+   .x(function(d) { return x_comparison_rate(d.Year) })
+   .y(function(d) { return y_comparison_rate(d.Rate_estimate) })
+   )
+ .attr('opacity', 0)
+ .transition()
+ .duration(500)
+ .attr('opacity', 1)  
+
+
+if(selectedAreaComparisonOption == 'England') {
+
+ svg_story.selectAll("comparison_dots")
+ .data(chosen_wsx_compare_df)
+ .enter()
+ .append("circle")
+ .attr('class', 'rate_over_time_comparison_figure')
+ .attr('id', 'rate_comparison_dots')
+ .attr("cx", function(d) { return x_comparison_rate(d.Year) } )
+ .attr("cy", function(d) { return y_comparison_rate(d.Rate_estimate) } )
+ .attr("r", 6)
+ .attr("fill", function(d) {return comparison_colours(d.Compare_Eng ) } )
+ .attr('opacity', 0)
+ .transition()
+ .duration(1000)
+ .attr('opacity', 1)
+
+ // Show confidence interval
+svg_story.append("path")
+.datum(chosen_england_compare_df)
+.attr('class', 'rate_over_time_comparison_lines rate_over_time_comparison_figure')
+.attr("fill", "#999")
+.attr('opacity', .1)
+.attr("stroke", "none")
+.attr("d", d3.area()
+ .x(function(d) { return x_comparison_rate(d.Year) })
+ .y0(function(d) { return y_comparison_rate(d.Lower_estimate) })
+ .y1(function(d) { return y_comparison_rate(d.Upper_estimate) })
+)
+
+svg_story.append("path")
+.datum(chosen_england_compare_df)
+.attr('class', 'rate_over_time_comparison_lines rate_over_time_comparison_figure')
+.attr("fill", "none")
+.attr("stroke", "#999")
+.attr("stroke-width", 1)
+.attr("d", d3.line()
+  .x(function(d) { return x_comparison_rate(d.Year) })
+  .y(function(d) { return y_comparison_rate(d.Rate_estimate) })
+    )
+    .attr('opacity', 0)
+    .transition()
+    .duration(500)
+    .attr('opacity', 1)
+
+}
+
+if(selectedAreaComparisonOption == 'South East England') {
+
+  svg_story.selectAll("comparison_dots")
+  .data(chosen_wsx_compare_df)
+  .enter()
+  .append("circle")
+  .attr('class', 'rate_over_time_comparison_figure')
+  .attr('id', 'rate_comparison_dots')
+  .attr("cx", function(d) { return x_comparison_rate(d.Year) } )
+  .attr("cy", function(d) { return y_comparison_rate(d.Rate_estimate) } )
+  .attr("r", 6)
+  .attr("fill", function(d) {return comparison_colours(d.Compare_SE) } )
+  .attr('opacity', 0)
+  .transition()
+  .duration(1000)
+  .attr('opacity', 1)
+
+    // Show confidence interval
+svg_story.append("path")
+.datum(chosen_se_compare_df)
+.attr('class', 'rate_over_time_comparison_lines rate_over_time_comparison_figure')
+.attr("fill", "#999")
+.attr('opacity', .1)
+.attr("stroke", "none")
+.attr("d", d3.area()
+ .x(function(d) { return x_comparison_rate(d.Year) })
+ .y0(function(d) { return y_comparison_rate(d.Lower_estimate) })
+ .y1(function(d) { return y_comparison_rate(d.Upper_estimate) })
+)
+
+svg_story.append("path")
+ .datum(chosen_se_compare_df)
+ .attr('class', 'rate_over_time_comparison_lines rate_over_time_comparison_figure')
+ .attr("fill", "none")
+ .attr("stroke-width", 1)
+ .attr("d", d3.line()
+ .x(function(d) { return x_comparison_rate(d.Year) })
+ .y(function(d) { return y_comparison_rate(d.Rate_estimate) })
+  ) 
+  .attr("stroke", '#999')
+  .attr('opacity', 0)
+  .transition()
+  .duration(500)
+  .attr('opacity', 1)
+ 
+ }
+
+  // Show confidence interval
+svg_story.append("path")
+.datum(chosen_wsx_compare_df)
+.attr('class', 'rate_over_time_comparison_lines rate_over_time_comparison_figure')
+.attr("fill", "#30336B")
+.attr('opacity', .1)
+.attr("stroke", "none")
+.attr("d", d3.area()
+ .x(function(d) { return x_comparison_rate(d.Year) })
+ .y0(function(d) { return y_comparison_rate(d.Lower_estimate) })
+ .y1(function(d) { return y_comparison_rate(d.Upper_estimate) })
+)
+
+
 }
 
 d3.select("#select_comparison_area_filter_button").on("change", function (d) {
@@ -1798,6 +2183,21 @@ d3.select("#select_comparison_measure_filter_button").on(
     update_comparison_figure();
   }
 );
+
+d3.select("#select_comparison_cause_filter_button").on(
+  "change",
+  function (d) {
+    update_comparison_figure();
+  }
+);
+
+d3.select("#select_comparison_age_filter_button").on(
+  "change",
+  function (d) {
+    update_comparison_figure();
+  }
+);
+
 
 // ! Function to redraw mortality top ten
 // When the drop down menu button for sex is changed run this (basically filter the data for mortality, sort by rank and keep the top ten). This function is called again any time you go back into section four.
@@ -2152,7 +2552,7 @@ function update_level_three_bubbles() {
   var showTooltip_level_three_bubbles = function (d) {
     tooltip_level_three_bubbles
       .html(
-        "<p>In 2019 there were <b>" +
+        "<p>In 2019 there were an estimated <b>" +
           d3.format(",.0f")(d.val) +
           "</b> " +
           label_key(d.measure_name) +
@@ -2239,7 +2639,7 @@ function update_level_three_bubbles() {
     d.fy = null;
   }
 
-  if (svg_width > 700) {
+  if (svg_width > 720) {
     // Labels (this might break)
     svg_story
       .append("text")

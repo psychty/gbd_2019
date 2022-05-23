@@ -1,6 +1,6 @@
 p {
   font-size: 0.9rem;
-  text-align: justify;
+  /* text-align: justify; */
   color: #4c4c4e;
 }
 
@@ -65,6 +65,10 @@ h1 {
   margin-top: 20vh;
 }
 
+.no_space_required p select{
+ margin: 5px;
+}
+
 .title {
   font-size: 1.2rem;
   font-weight: bold;
@@ -84,6 +88,11 @@ h1 {
   width: calc(90%);
   margin: auto;
   margin-right: 0;
+}
+
+.figure_caption {
+  font-size: .8rem;
+  font-style: italic;
 }
 
 /* .how_big_should_i_be {
