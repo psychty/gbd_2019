@@ -1987,7 +1987,7 @@ svg_story
 
   // Add one dot in the legend for each name.
   svg_story.selectAll("myratedots")
-  .data(['higher', 'similar', 'lower'])
+  .data(['lower', 'similar', 'higher'])
   .enter()
   .append("circle")
   .attr('class', 'comparison_figure_key comparison_figure')
@@ -2000,7 +2000,7 @@ svg_story
   
   // Add one dot in the legend for each name.
   svg_story.selectAll("myratelabels")
-    .data(['Significantly higher', 'Similar', 'Significantly lower'])
+    .data(['Significantly lower', 'Similar', 'Significantly higher'])
     .enter()
     .append("text")
     .attr('class', 'comparison_figure_key comparison_figure')
