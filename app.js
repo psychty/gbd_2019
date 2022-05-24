@@ -540,7 +540,6 @@ var chosen_position_5 = $("#scroll-five").offset().top - vis_position;
 var chosen_position_6 = $("#scroll-six").offset().top - vis_position;
 var chosen_position_7 = $("#scroll-seven").offset().top - vis_position;
 var chosen_position_8 = $("#scroll-eight").offset().top - vis_position;
-var chosen_position_9 = $("#scroll-nine").offset().top - vis_position;
 var end_position = $("#end-section").offset().top - vis_position;
 
 var section_array = [
@@ -552,7 +551,6 @@ var section_array = [
   chosen_position_6,
   chosen_position_7,
   chosen_position_8,
-  chosen_position_9,
   end_position,
 ];
 
@@ -565,7 +563,6 @@ var section_labels = [
   "Sixth section",
   "Seventh section",
   "Eighth section",
-  "Ninth section",
   "End section",
 ];
 
@@ -578,7 +575,6 @@ var trigger_functions = [
   showSection_6(),
   showSection_7(),
   showSection_8(),
-  showSection_9(),
   showSection_end(),
 ];
 
@@ -626,14 +622,9 @@ if (current_scroll_position < chosen_position_2) {
   active_section = section_index(chosen_position_7);
 } else if (
   current_scroll_position >= chosen_position_8 &&
-  current_scroll_position < chosen_position_9
-) {
-  active_section = section_index(chosen_position_8);
-} else if (
-  current_scroll_position >= chosen_position_9 &&
   current_scroll_position < end_position
 ) {
-  active_section = section_index(chosen_position_9);
+  active_section = section_index(chosen_position_8);
 } else {
   active_section = "You have reached the end";
 }
@@ -664,9 +655,6 @@ switch (active_section) {
     break;
   case "Eighth section":
     showSection_8();
-    break;
-  case "Ninth section":
-    showSection_9();
     break;
   case "End section":
     showSection_end();
@@ -720,17 +708,11 @@ function check_scroll_pos() {
     active_section = section_index(chosen_position_7);
   } else if (
     current_scroll_position >= chosen_position_8 &&
-    current_scroll_position < chosen_position_9
-  ) {
-    old_active = active_section;
-    active_section = section_index(chosen_position_8);
-  } else if (
-    current_scroll_position >= chosen_position_9 &&
     current_scroll_position < end_position
   ) {
     old_active = active_section;
-    active_section = section_index(chosen_position_9);
-  } else {
+    active_section = section_index(chosen_position_8);
+  } else  {
     old_active = active_section;
     active_section = "You have reached the end";
   }
@@ -771,9 +753,6 @@ function check_scroll_pos() {
         break;
       case "Eighth section":
         showSection_8();
-        break;
-      case "Ninth section":
-        showSection_9();
         break;
       case "End section":
         showSection_end();
@@ -1537,29 +1516,15 @@ function showSection_7() {
     .style("opacity", 0)
     .remove();
 
-  // svg_story
-  //   .append("text")
-  //   .attr("text-anchor", "middle")
-  //   .attr("id", "section_vis_placeholder_text")
-  //   .attr("y", 200)
-  //   .attr("x", svg_width * 0.5)
-  //   .attr("opacity", 0)
-  //   .transition()
-  //   .duration(1000)
-  //   .attr("opacity", 1)
-  //   .style("font-weight", "bold")
-  //   .text("Changes over time - NUMBERS");
-
-  change_over_time_update_level_two_numbers();
+    change_over_time_update_level_two_rates();
 }
 
 function showSection_8() {
   svg_story.selectAll(".life_expectancy_figure").remove();
   svg_story.selectAll(".mortality_1_figure").remove();
-  svg_story.selectAll(".level_three_bubbles_figure").remove();  
+  svg_story.selectAll(".level_three_bubbles_figure").remove();
+  svg_story.selectAll(".rate_over_time_comparison_figure").remove();
   svg_story.selectAll(".comparison_figure").remove();
-
-  
 
   svg_story
     .selectAll("#section_vis_placeholder_text")
@@ -1582,100 +1547,69 @@ function showSection_8() {
     .style("opacity", 0)
     .remove();
 
-  change_over_time_update_level_two_rates();
-}
-
-function showSection_9() {
-  console.log("You are in section nine mother flipper");
-  svg_story.selectAll(".life_expectancy_figure").remove();
-  svg_story.selectAll(".mortality_1_figure").remove();
-  svg_story.selectAll(".level_three_bubbles_figure").remove();
-  svg_story.selectAll(".rate_over_time_comparison_figure").remove();
-  svg_story.selectAll(".comparison_figure").remove();
-
-  svg_story
-    .selectAll("#section_vis_placeholder_text")
-    .transition()
-    .duration(750)
-    .style("opacity", 0)
-    .remove();
-
-  svg_story
-    .selectAll("#section_vis_placeholder_text_2")
-    .transition()
-    .duration(750)
-    .style("opacity", 0)
-    .remove();
-
-  svg_story
-    .selectAll("#section_placeholder_image")
-    .transition()
-    .duration(750)
-    .style("opacity", 0)
-    .remove();
-
+  
 // append the axis to the svg_story
 svg_story
-    .append("g")
-    .attr("class", "comparison_figure comparison_figure_x_axis axis_text")
-    .attr("transform", "translate(0," + (svg_height - 200) + ")")
-    .call(d3.axisBottom(x_comparison_rate).tickFormat(d3.format("d")))
-    .selectAll("text")
-    .style("text-anchor", "middle")
-    .attr("opacity", 0)
-    .transition()
-    .duration(1000)
-    .attr("opacity", 1);
-
-  svg_story
-    .append("g")
-    .attr("class", "comparison_figure comparison_figure_y_axis axis_text")
-    .attr("transform", "translate(50, 0)")
-    .call(d3.axisLeft(y_comparison_rate))
-    .attr("opacity", 0)
-    .transition()
-    .duration(1000)
-    .attr("opacity", 1);
+.append("g")
+.attr("class", "comparison_figure comparison_figure_x_axis axis_text")
+.attr("transform", "translate(0," + (svg_height - 200) + ")")
+.call(d3.axisBottom(x_comparison_rate).tickFormat(d3.format("d")))
+.selectAll("text")
+.style("text-anchor", "middle")
+.attr("opacity", 0)
+.transition()
+.duration(1000)
+.attr("opacity", 1);
 
 svg_story
-  .append("text")
-  .attr("text-anchor", "left")
-  .attr("class", "comparison_figure figure_caption")
-  .attr("y", svg_height - 150)
-  .attr("x", svg_width * 0.05)
-  .attr("opacity", 0)
-  .transition()
-  .duration(1000)
-  .attr("opacity", 1)
-  .text( 'The black line and dots represent West Sussex whilst the grey line with no dots represents the comparison area.' );
+.append("g")
+.attr("class", "comparison_figure comparison_figure_y_axis axis_text")
+.attr("transform", "translate(50, 0)")
+.call(d3.axisLeft(y_comparison_rate))
+.attr("opacity", 0)
+.transition()
+.duration(1000)
+.attr("opacity", 1);
+
+svg_story
+.append("text")
+.attr("text-anchor", "left")
+.attr("class", "comparison_figure figure_caption")
+.attr("y", svg_height - 150)
+.attr("x", svg_width * 0.05)
+.attr("opacity", 0)
+.transition()
+.duration(1000)
+.attr("opacity", 1)
+.text( 'The black line and dots represent West Sussex whilst the grey line with no dots represents the comparison area.' );
 
 
 svg_story
-  .append("text")
-  .attr("text-anchor", "left")
-  .attr("class", "comparison_figure figure_caption")
-  .attr("y", svg_height - 125)
-  .attr("x", svg_width * 0.05)
-  .attr("opacity", 0)
-  .transition()
-  .duration(1000)
-  .attr("opacity", 1)
-  .text( 'Wider shaded areas around the lines denote greater uncertainty in the estimate.' );
+.append("text")
+.attr("text-anchor", "left")
+.attr("class", "comparison_figure figure_caption")
+.attr("y", svg_height - 125)
+.attr("x", svg_width * 0.05)
+.attr("opacity", 0)
+.transition()
+.duration(1000)
+.attr("opacity", 1)
+.text( 'Wider shaded areas around the lines denote greater uncertainty in the estimate.' );
 
-  svg_story
-  .append("text")
-  .attr("text-anchor", "left")
-  .attr("class", "comparison_figure figure_caption")
-  .attr("y", svg_height - 100)
-  .attr("x", svg_width * 0.05)
-  .attr("opacity", 0)
-  .transition()
-  .duration(1000)
-  .attr("opacity", 1)
-  .text( 'If the shaded areas for two lines overlap, it is an indication that the estimates may be statistically similar.' );
+svg_story
+.append("text")
+.attr("text-anchor", "left")
+.attr("class", "comparison_figure figure_caption")
+.attr("y", svg_height - 100)
+.attr("x", svg_width * 0.05)
+.attr("opacity", 0)
+.transition()
+.duration(1000)
+.attr("opacity", 1)
+.text( 'If the shaded areas for two lines overlap, it is an indication that the estimates may be statistically similar.' );
 
 
-  update_comparison_figure();
+update_comparison_figure();
 }
 
 function showSection_end() {
