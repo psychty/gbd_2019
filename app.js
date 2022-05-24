@@ -522,6 +522,10 @@ var comparison_area_colours = d3.scaleOrdinal()
 .range(['#000000','#30336b','#999999'
 ])    
 
+var comparison_label = d3.scaleOrdinal()
+.domain(['lower', 'similar', 'higher'])
+.range(['significantly lower', 'similar', 'significantly higher'])
+
 
 // ! Scrolly
 
@@ -2063,24 +2067,44 @@ svg_story
  .attr('opacity', 1)  
 
 
+
+ var tooltip_comparison_fg = d3
+ .select("#vis")
+ .append("div")
+ .style("opacity", 0)
+ .attr("class", "tooltips")
+ .style("position", "absolute")
+ .style("z-index", "10");
+
+// The tooltip function
+var showTooltip_comparison_fg = function (d) {
+ tooltip_comparison_fg.transition().duration(200).style("opacity", 1);
+
+ tooltip_comparison_fg
+   .html(
+     "<p>The estimated number of " +
+     label_key(d.Measure) + 
+     ' as a result of <b>' +
+     d.Cause +
+     "</b> in " +
+     d.Year +
+     ' among males and females was <b>' +
+     d.label +
+     "</b> per 100,000 population (" +
+     d.Age +
+     ").</p><p>This is <b>" +
+     comparison_label(d.Compare_SE) +
+     ' compared to the South East region</b> and <b>' +
+     comparison_label(d.Compare_Eng) +
+     ' compared to England</b>.'
+   )
+   .style("opacity", 1);
+};
+
+
 if(selectedAreaComparisonOption == 'England') {
 
- svg_story.selectAll("comparison_dots")
- .data(chosen_wsx_compare_df)
- .enter()
- .append("circle")
- .attr('class', 'rate_over_time_comparison_figure')
- .attr('id', 'rate_comparison_dots')
- .attr("cx", function(d) { return x_comparison_rate(d.Year) } )
- .attr("cy", function(d) { return y_comparison_rate(d.Rate_estimate) } )
- .attr("r", 6)
- .attr("fill", function(d) {return comparison_colours(d.Compare_Eng ) } )
- .attr('opacity', 0)
- .transition()
- .duration(1000)
- .attr('opacity', 1)
-
- // Show confidence interval
+// Show confidence interval
 svg_story.append("path")
 .datum(chosen_england_compare_df)
 .attr('class', 'rate_over_time_comparison_lines rate_over_time_comparison_figure')
@@ -2108,26 +2132,51 @@ svg_story.append("path")
     .duration(500)
     .attr('opacity', 1)
 
+// Show WSx confidence interval
+svg_story.append("path")
+ .datum(chosen_wsx_compare_df)
+ .attr('class', 'rate_over_time_comparison_lines rate_over_time_comparison_figure')
+ .attr("fill", "#30336B")
+ .attr('opacity', .1)
+ .attr("stroke", "none")
+ .attr("d", d3.area()
+  .x(function(d) { return x_comparison_rate(d.Year) })
+  .y0(function(d) { return y_comparison_rate(d.Lower_estimate) })
+  .y1(function(d) { return y_comparison_rate(d.Upper_estimate) })
+ )
+      
+svg_story.selectAll("comparison_dots")
+ .data(chosen_wsx_compare_df)
+ .enter()
+ .append("circle")
+ .attr('class', 'rate_over_time_comparison_figure')
+ .attr('id', 'rate_comparison_dots')
+ .attr("cx", function(d) { return x_comparison_rate(d.Year) } )
+ .attr("cy", function(d) { return y_comparison_rate(d.Rate_estimate) } )
+ .attr("r", 6)
+ .attr("fill", function(d) {return comparison_colours(d.Compare_Eng ) } )
+ .attr('opacity', 0)
+ .transition()
+ .duration(1000)
+ .attr('opacity', 1)
+      
+    svg_story
+    .selectAll("#rate_comparison_dots")
+    .on("mouseover", function () {
+      return tooltip_comparison_fg.style("visibility", "visible");
+      })
+    .on("mousemove", showTooltip_comparison_fg)
+    .on("mouseout", function () {
+      return tooltip_comparison_fg.style("visibility", "hidden");
+      });  
+    
+
 }
 
 if(selectedAreaComparisonOption == 'South East England') {
 
-  svg_story.selectAll("comparison_dots")
-  .data(chosen_wsx_compare_df)
-  .enter()
-  .append("circle")
-  .attr('class', 'rate_over_time_comparison_figure')
-  .attr('id', 'rate_comparison_dots')
-  .attr("cx", function(d) { return x_comparison_rate(d.Year) } )
-  .attr("cy", function(d) { return y_comparison_rate(d.Rate_estimate) } )
-  .attr("r", 6)
-  .attr("fill", function(d) {return comparison_colours(d.Compare_SE) } )
-  .attr('opacity', 0)
-  .transition()
-  .duration(1000)
-  .attr('opacity', 1)
 
-    // Show confidence interval
+// Show confidence interval
 svg_story.append("path")
 .datum(chosen_se_compare_df)
 .attr('class', 'rate_over_time_comparison_lines rate_over_time_comparison_figure')
@@ -2155,20 +2204,45 @@ svg_story.append("path")
   .duration(500)
   .attr('opacity', 1)
  
- }
-
-  // Show confidence interval
+// Show WSx confidence interval
 svg_story.append("path")
-.datum(chosen_wsx_compare_df)
-.attr('class', 'rate_over_time_comparison_lines rate_over_time_comparison_figure')
-.attr("fill", "#30336B")
-.attr('opacity', .1)
-.attr("stroke", "none")
-.attr("d", d3.area()
- .x(function(d) { return x_comparison_rate(d.Year) })
- .y0(function(d) { return y_comparison_rate(d.Lower_estimate) })
- .y1(function(d) { return y_comparison_rate(d.Upper_estimate) })
-)
+ .datum(chosen_wsx_compare_df)
+ .attr('class', 'rate_over_time_comparison_lines rate_over_time_comparison_figure')
+ .attr("fill", "#30336B")
+ .attr('opacity', .1)
+ .attr("stroke", "none")
+ .attr("d", d3.area()
+  .x(function(d) { return x_comparison_rate(d.Year) })
+  .y0(function(d) { return y_comparison_rate(d.Lower_estimate) })
+  .y1(function(d) { return y_comparison_rate(d.Upper_estimate) })
+ )
+  
+svg_story.selectAll("comparison_dots")
+ .data(chosen_wsx_compare_df)
+ .enter()
+ .append("circle")
+ .attr('class', 'rate_over_time_comparison_figure')
+ .attr('id', 'rate_comparison_dots')
+ .attr("cx", function(d) { return x_comparison_rate(d.Year) } )
+ .attr("cy", function(d) { return y_comparison_rate(d.Rate_estimate) } )
+ .attr("r", 6)
+ .attr("fill", function(d) {return comparison_colours(d.Compare_SE) } )
+ .attr('opacity', 0)
+ .transition()
+ .duration(1000)
+ .attr('opacity', 1)
+
+svg_story
+ .selectAll("#rate_comparison_dots")
+ .on("mouseover", function () {
+   return tooltip_comparison_fg.style("visibility", "visible");
+   })
+ .on("mousemove", showTooltip_comparison_fg)
+ .on("mouseout", function () {
+   return tooltip_comparison_fg.style("visibility", "hidden");
+   });  
+  
+ }
 
 
 }
