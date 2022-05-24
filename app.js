@@ -147,7 +147,7 @@ d3.select("#sub_optimal_health_text_1").html(function () {
     d3.format(".1%")(
       area_male_le_2019[0]["Sub_optimal_health"] / area_male_le_2019[0]["LE"]
     ) +
-    " of thier lifetime)</b> with the burden of ill health."
+    " of their lifetime)</b> with the burden of ill health."
   );
 });
 
@@ -728,37 +728,35 @@ function check_scroll_pos() {
       ". The relevant viz should occur now"
     );
 
-    // We can now trigger the relevant function based on whatever the active_section is.
-    switch (active_section) {
-      case "First section":
-        showSection_1();
-        break;
-      case "Second section":
-        showSection_2();
-        break;
-      case "Third section":
-        showSection_3();
-        break;
-      case "Fourth section":
-        showSection_4();
-        break;
-      case "Fifth section":
-        showSection_5();
-        break;
-      case "Sixth section":
-        showSection_6();
-        break;
-      case "Seventh section":
-        showSection_7();
-        break;
-      case "Eighth section":
-        showSection_8();
-        break;
-      case "End section":
-        showSection_end();
-    }
-
-    // console.log(active_section);
+// We can now trigger the relevant function based on whatever the active_section is.
+switch (active_section) {
+    case "First section":
+      showSection_1();
+      break;
+    case "Second section":
+      showSection_2();
+      break;
+    case "Third section":
+      showSection_3();
+      break;
+    case "Fourth section":
+      showSection_4();
+      break;
+    case "Fifth section":
+      showSection_5();
+      break;
+    case "Sixth section":
+      showSection_6();
+      break;
+    case "Seventh section":
+      showSection_7();
+      break;
+    case "Eighth section":
+      showSection_8();
+      break;
+    case "End section":
+      showSection_end();
+   }
   }
 }
 
@@ -783,78 +781,78 @@ function showSection_1() {
   );
   d3.selectAll("#top_ten_table_title").classed("top_ten_table_off", true);
 
-  svg_story
-    .selectAll("#section_vis_placeholder_text")
-    .transition()
-    .duration(750)
-    .style("opacity", 0)
-    .remove();
+svg_story
+  .selectAll("#section_vis_placeholder_text")
+  .transition()
+  .duration(750)
+  .style("opacity", 0)
+  .remove();
 
-    svg_story
-    .selectAll("#section_vis_placeholder_text_2")
-    .transition()
-    .duration(750)
-    .style("opacity", 0)
-    .remove();
+svg_story
+  .selectAll("#section_vis_placeholder_text_2")
+  .transition()
+  .duration(750)
+  .style("opacity", 0)
+  .remove();
     
-  svg_story
-    .selectAll("#section_placeholder_image")
-    .transition()
-    .duration(750)
-    .style("opacity", 0)
-    .remove();
+svg_story
+  .selectAll("#section_placeholder_image")
+  .transition()
+  .duration(750)
+  .style("opacity", 0)
+  .remove();
 
-  svg_story
-    .append("image")
-    .attr("id", "section_placeholder_image")
-    .attr("xlink:href", "Outputs/key_findings.svg")
-    .attr("width", svg_width)
-    .attr("height", svg_height)
-    .attr("opacity", 0)
-    .transition()
-    .duration(1000)
-    .attr("opacity", 1);
+svg_story
+  .append("image")
+  .attr("id", "section_placeholder_image")
+  .attr("xlink:href", "Outputs/key_findings.svg")
+  .attr("width", svg_width)
+  .attr("height", svg_height)
+  .attr("opacity", 0)
+  .transition()
+  .duration(1000)
+  .attr("opacity", 1);
 }
 
 // ! Section 2 Whats a DALY
 function showSection_2() {
-  svg_story.selectAll(".life_expectancy_figure").remove();
-  svg_story.selectAll(".mortality_1_figure").remove();
-  svg_story.selectAll(".level_three_bubbles_figure").remove();
-  svg_story.selectAll(".rate_over_time_comparison_figure").remove();
-  svg_story.selectAll(".comparison_figure").remove();
+svg_story.selectAll(".life_expectancy_figure").remove();
+svg_story.selectAll(".mortality_1_figure").remove();
+svg_story.selectAll(".level_three_bubbles_figure").remove();
+svg_story.selectAll(".rate_over_time_comparison_figure").remove();
+svg_story.selectAll(".comparison_figure").remove();
 
-  svg_story
-    .selectAll("#section_vis_placeholder_text")
-    .transition()
-    .duration(750)
-    .style("opacity", 0)
-    .remove();
+svg_story
+  .selectAll("#section_vis_placeholder_text")
+  .transition()
+  .duration(750)
+  .style("opacity", 0)
+  .remove();
 
-    svg_story
-    .selectAll("#section_vis_placeholder_text_2")
-    .transition()
-    .duration(750)
-    .style("opacity", 0)
-    .remove();
+svg_story
+  .selectAll("#section_vis_placeholder_text_2")
+  .transition()
+  .duration(750)
+  .style("opacity", 0)
+  .remove();
 
-  svg_story
-    .selectAll("#section_placeholder_image")
-    .transition()
-    .duration(750)
-    .style("opacity", 0)
-    .remove();
+svg_story
+  .selectAll("#section_placeholder_image")
+  .transition()
+  .duration(750)
+  .style("opacity", 0)
+  .remove();
 
-  svg_story
-    .append("image")
-    .attr("id", "section_placeholder_image")
-    .attr("xlink:href", "Outputs/daly.svg")
-    .attr("width", svg_width)
-    .attr("height", svg_height)
-    .attr("opacity", 0)
-    .transition()
-    .duration(1000)
-    .attr("opacity", 1);
+svg_story
+  .append("image")
+  .attr("id", "section_placeholder_image")
+  .attr("xlink:href", "Outputs/daly.svg")
+  .attr("width", svg_width)
+  .attr("height", svg_height)
+  .attr("opacity", 0)
+  .transition()
+  .duration(1000)
+  .attr("opacity", 1);
 }
 
 // ! Section 3 Life Expectancy
