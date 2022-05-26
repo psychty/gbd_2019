@@ -1660,7 +1660,7 @@ function change_over_time_update_level_two_rates() {
     .duration(1000)
     .attr("opacity", 1)
     .style("font-weight", "bold")
-    .text("Change in age standardised rate per 100,000 population;");
+    .text("Change in rate (all ages) per 100,000 population;");
 
   svg_story
     .append("text")
@@ -1674,6 +1674,16 @@ function change_over_time_update_level_two_rates() {
     .attr("opacity", 1)
     .style("font-weight", "bold")
     .text(selectedMeasureOverTimeOption + "; West Sussex; persons; 2009-2019;");
+
+    svg_story
+    .append("text")
+    .attr("text-anchor", "start")
+    .attr("class", "rate_over_time_comparison_figure")
+    .attr("y", svg_height * 0.95)
+    .attr("x", svg_width * 0.05)
+    .attr("opacity", 1)
+    .text("The 2019 rate per 100,000 population estimates are given in brackets.");
+
 
   chosen_over_time_change_df = change_over_time_df.filter(function (d) {
     return d.measure_name === selectedMeasureOverTimeOption;
@@ -1745,13 +1755,13 @@ function change_over_time_update_level_two_rates() {
     .attr("class", "rate_over_time_comparison_figure")
     .attr("x", function (d) {
       return d.Percentage_change_on_rate < 0
-        ? x_over_time_rate_change(0) + 2.55
-        : x_over_time_rate_change(0) - 2.55;
+        ? x_over_time_rate_change(0) + 5.5
+        : x_over_time_rate_change(0) - 5.5;
     })
     .attr("y", function (d) {
       return y_over_time_rate_change(d.cause_name);
     })
-    .attr("dy", y_over_time_rate_change.bandwidth() - 2.55)
+    .attr("dy", y_over_time_rate_change.bandwidth() - 2.5)
     .attr("text-anchor", function (d) {
       return d.Percentage_change_on_rate < 0 ? "start" : "end";
     })
@@ -1783,7 +1793,7 @@ function change_over_time_update_level_two_rates() {
     .attr("y", function (d) {
       return y_over_time_rate_change(d.cause_name);
     })
-    .attr("dy", y_over_time_rate_change.bandwidth() - 2.55)
+    .attr("dy", y_over_time_rate_change.bandwidth() - 2.5)
     .attr("text-anchor", function (d) {
       if (d.Percentage_change_on_rate < 0) {
         return x_over_time_rate_change(d.Percentage_change_on_rate * -1) -
@@ -1818,11 +1828,11 @@ function change_over_time_update_level_two_rates() {
       if (d.Percentage_change_on_rate < 0) {
         // add an if else function to say if > 0 then increase, if < 0 then decrease.
         return (
-          d3.format(".1%")(Math.abs(d.Percentage_change_on_rate)) + " decrease"
+          d3.format(".1%")(Math.abs(d.Percentage_change_on_rate)) + " decrease (to " + d3.format(',.1f')(d.val_2019) + ')'
         );
       } else {
         return (
-          d3.format(".1%")(Math.abs(d.Percentage_change_on_rate)) + " increase"
+          d3.format(".1%")(Math.abs(d.Percentage_change_on_rate)) + " increase (to " + d3.format(',.1f')(d.val_2019) + ')'
         );
       }
     });

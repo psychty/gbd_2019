@@ -1,0 +1,586 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   id="vis_placeholder"
+   height="768.8"
+   width="1149"
+   class=""
+   version="1.1"
+   sodipodi:docname="daly_change.svg"
+   inkscape:version="1.2 (dc2aedaf03, 2022-05-15)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs8657" />
+  <sodipodi:namedview
+     id="namedview8655"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="1.1797607"
+     inkscape:cx="411.94795"
+     inkscape:cy="497.55853"
+     inkscape:window-width="1920"
+     inkscape:window-height="974"
+     inkscape:window-x="-11"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="vis_placeholder" />
+  <g
+     id="g8512" />
+  <g
+     id="g8514" />
+  <text
+     text-anchor="start"
+     class="rate_over_time_comparison_figure"
+     y="35.596889"
+     x="34.564003"
+     opacity="1"
+     style="font-weight:bold;font-size:24px"
+     id="text8518">DALYs (Disability-Adjusted Life Years)</text>
+  <rect
+     class="rate_over_time_comparison_figure"
+     x="406.30634"
+     width="168.19368"
+     y="56.025227"
+     height="24.100901"
+     fill="#f8ddeb"
+     id="rect8520" />
+  <rect
+     class="rate_over_time_comparison_figure"
+     x="574.5"
+     width="64.073784"
+     y="86.151352"
+     height="24.100901"
+     fill="#f2b9bf"
+     id="rect8522" />
+  <rect
+     class="rate_over_time_comparison_figure"
+     x="323.41724"
+     width="251.08276"
+     y="116.27748"
+     height="24.100901"
+     fill="#ee9187"
+     id="rect8524" />
+  <rect
+     class="rate_over_time_comparison_figure"
+     x="540.17474"
+     width="34.325241"
+     y="146.40361"
+     height="24.100901"
+     fill="#ea695c"
+     id="rect8526" />
+  <rect
+     class="rate_over_time_comparison_figure"
+     x="548.56537"
+     width="25.934626"
+     y="176.52972"
+     height="24.100901"
+     fill="#d84d42"
+     id="rect8528" />
+  <rect
+     class="rate_over_time_comparison_figure"
+     x="367.15012"
+     width="207.34987"
+     y="206.65585"
+     height="24.100901"
+     fill="#ad3730"
+     id="rect8530" />
+  <rect
+     class="rate_over_time_comparison_figure"
+     x="574.5"
+     width="3.8139155"
+     y="236.78198"
+     height="24.100901"
+     fill="#7a1c1c"
+     id="rect8532" />
+  <rect
+     class="rate_over_time_comparison_figure"
+     x="574.5"
+     width="71.574478"
+     y="266.90811"
+     height="24.100901"
+     fill="#bcd6f7"
+     id="rect8534" />
+  <rect
+     class="rate_over_time_comparison_figure"
+     x="509.79056"
+     width="64.709435"
+     y="297.03424"
+     height="24.100901"
+     fill="#97c4f0"
+     id="rect8536" />
+  <rect
+     class="rate_over_time_comparison_figure"
+     x="574.5"
+     width="35.469414"
+     y="327.16037"
+     height="24.100901"
+     fill="#67a8e7"
+     id="rect8538" />
+  <rect
+     class="rate_over_time_comparison_figure"
+     x="574.5"
+     width="131.32582"
+     y="357.2865"
+     height="24.100901"
+     fill="#528cdb"
+     id="rect8540" />
+  <rect
+     class="rate_over_time_comparison_figure"
+     x="574.5"
+     width="43.478638"
+     y="387.4126"
+     height="24.100901"
+     fill="#376acb"
+     id="rect8542" />
+  <rect
+     class="rate_over_time_comparison_figure"
+     x="574.5"
+     width="18.815317"
+     y="417.53873"
+     height="24.100901"
+     fill="#1845a5"
+     id="rect8544" />
+  <rect
+     class="rate_over_time_comparison_figure"
+     x="574.5"
+     width="71.320221"
+     y="447.66486"
+     height="24.100901"
+     fill="#cfd6f6"
+     id="rect8546" />
+  <rect
+     class="rate_over_time_comparison_figure"
+     x="574.5"
+     width="348.97327"
+     y="477.79099"
+     height="24.100901"
+     fill="#adb9ed"
+     id="rect8548" />
+  <rect
+     class="rate_over_time_comparison_figure"
+     x="574.5"
+     width="13.730096"
+     y="507.91711"
+     height="24.100901"
+     fill="#8b96dd"
+     id="rect8550" />
+  <rect
+     class="rate_over_time_comparison_figure"
+     x="574.5"
+     width="56.827339"
+     y="538.04321"
+     height="24.100901"
+     fill="#6978d0"
+     id="rect8552" />
+  <rect
+     class="rate_over_time_comparison_figure"
+     x="562.0412"
+     width="12.458791"
+     y="568.16937"
+     height="24.100901"
+     fill="#4e4fb8"
+     id="rect8554" />
+  <rect
+     class="rate_over_time_comparison_figure"
+     x="574.5"
+     width="31.401237"
+     y="598.29547"
+     height="24.100901"
+     fill="#3e3294"
+     id="rect8556" />
+  <rect
+     class="rate_over_time_comparison_figure"
+     x="363.33621"
+     width="211.16379"
+     y="628.42163"
+     height="24.100901"
+     fill="#b5dcd0"
+     id="rect8558" />
+  <rect
+     class="rate_over_time_comparison_figure"
+     x="574.5"
+     width="122.80807"
+     y="658.54773"
+     height="24.100901"
+     fill="#76b786"
+     id="rect8560" />
+  <rect
+     class="rate_over_time_comparison_figure"
+     x="517.03699"
+     width="57.462994"
+     y="688.67389"
+     height="24.100901"
+     fill="#477a49"
+     id="rect8562" />
+  <text
+     class="rate_over_time_comparison_figure"
+     x="577.04999"
+     y="56.025227"
+     dy="21.550901"
+     text-anchor="start"
+     id="text8564"
+     style="-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:16px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">HIV/AIDS and sexually transmitted infections</text>
+  <text
+     class="rate_over_time_comparison_figure"
+     x="571.95001"
+     y="86.151352"
+     dy="21.550901"
+     text-anchor="end"
+     id="text8566"
+     style="-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:16px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Respiratory infections and tuberculosis</text>
+  <text
+     class="rate_over_time_comparison_figure"
+     x="577.04999"
+     y="116.27748"
+     dy="21.550901"
+     text-anchor="start"
+     id="text8568"
+     style="-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:16px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Enteric infections</text>
+  <text
+     class="rate_over_time_comparison_figure"
+     x="577.04999"
+     y="146.40361"
+     dy="21.550901"
+     text-anchor="start"
+     id="text8570"
+     style="-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:16px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Neglected tropical diseases and malaria</text>
+  <text
+     class="rate_over_time_comparison_figure"
+     x="577.04999"
+     y="176.52972"
+     dy="21.550901"
+     text-anchor="start"
+     id="text8572"
+     style="-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:16px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Other infectious diseases</text>
+  <text
+     class="rate_over_time_comparison_figure"
+     x="577.04999"
+     y="206.65585"
+     dy="21.550901"
+     text-anchor="start"
+     id="text8574"
+     style="-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:16px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Maternal and neonatal disorders</text>
+  <text
+     class="rate_over_time_comparison_figure"
+     x="571.95001"
+     y="236.78198"
+     dy="21.550901"
+     text-anchor="end"
+     id="text8576"
+     style="-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:16px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Nutritional deficiencies</text>
+  <text
+     class="rate_over_time_comparison_figure"
+     x="571.95001"
+     y="266.90811"
+     dy="21.550901"
+     text-anchor="end"
+     id="text8578"
+     style="-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:16px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Neoplasms</text>
+  <text
+     class="rate_over_time_comparison_figure"
+     x="577.04999"
+     y="297.03424"
+     dy="21.550901"
+     text-anchor="start"
+     id="text8580"
+     style="-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:16px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Cardiovascular diseases</text>
+  <text
+     class="rate_over_time_comparison_figure"
+     x="571.95001"
+     y="327.16037"
+     dy="21.550901"
+     text-anchor="end"
+     id="text8582"
+     style="-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:16px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Chronic respiratory diseases</text>
+  <text
+     class="rate_over_time_comparison_figure"
+     x="571.95001"
+     y="357.2865"
+     dy="21.550901"
+     text-anchor="end"
+     id="text8584"
+     style="-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:16px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Digestive diseases</text>
+  <text
+     class="rate_over_time_comparison_figure"
+     x="571.95001"
+     y="387.4126"
+     dy="21.550901"
+     text-anchor="end"
+     id="text8586"
+     style="-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:16px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Neurological disorders</text>
+  <text
+     class="rate_over_time_comparison_figure"
+     x="571.95001"
+     y="417.53873"
+     dy="21.550901"
+     text-anchor="end"
+     id="text8588"
+     style="-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:16px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Mental disorders</text>
+  <text
+     class="rate_over_time_comparison_figure"
+     x="571.95001"
+     y="447.66486"
+     dy="21.550901"
+     text-anchor="end"
+     id="text8590"
+     style="-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:16px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Substance use disorders</text>
+  <text
+     class="rate_over_time_comparison_figure"
+     x="571.95001"
+     y="477.79099"
+     dy="21.550901"
+     text-anchor="end"
+     id="text8592"
+     style="-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:16px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Diabetes and kidney diseases</text>
+  <text
+     class="rate_over_time_comparison_figure"
+     x="571.95001"
+     y="507.91711"
+     dy="21.550901"
+     text-anchor="end"
+     id="text8594"
+     style="-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:16px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Skin and subcutaneous diseases</text>
+  <text
+     class="rate_over_time_comparison_figure"
+     x="571.95001"
+     y="538.04321"
+     dy="21.550901"
+     text-anchor="end"
+     id="text8596"
+     style="-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:16px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Sense organ diseases</text>
+  <text
+     class="rate_over_time_comparison_figure"
+     x="577.04999"
+     y="568.16937"
+     dy="21.550901"
+     text-anchor="start"
+     id="text8598"
+     style="-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:16px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Musculoskeletal disorders</text>
+  <text
+     class="rate_over_time_comparison_figure"
+     x="571.95001"
+     y="598.29547"
+     dy="21.550901"
+     text-anchor="end"
+     id="text8600"
+     style="-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:16px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Other non-communicable diseases</text>
+  <text
+     class="rate_over_time_comparison_figure"
+     x="577.04999"
+     y="628.42163"
+     dy="21.550901"
+     text-anchor="start"
+     id="text8602"
+     style="-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:16px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Transport injuries</text>
+  <text
+     class="rate_over_time_comparison_figure"
+     x="571.95001"
+     y="658.54773"
+     dy="21.550901"
+     text-anchor="end"
+     id="text8604"
+     style="-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:16px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Unintentional injuries</text>
+  <text
+     class="rate_over_time_comparison_figure"
+     x="577.04999"
+     y="688.67389"
+     dy="21.550901"
+     text-anchor="start"
+     id="text8606"
+     style="-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:16px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Self-harm and interpersonal violence</text>
+  <text
+     class="rate_over_time_comparison_figure"
+     x="199.48474"
+     y="50.939449"
+     dy="21.550901"
+     text-anchor="start"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000"
+     id="text8608">13.2% decrease (to 37.5)</text>
+  <text
+     class="rate_over_time_comparison_figure"
+     x="638.57379"
+     y="86.151352"
+     dy="21.550901"
+     text-anchor="start"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000"
+     id="text8610">5.0% increase (to 935.1)</text>
+  <text
+     class="rate_over_time_comparison_figure"
+     x="111.50985"
+     y="111.1917"
+     dy="21.550901"
+     text-anchor="start"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000"
+     id="text8612">19.8% decrease (to 83.8)</text>
+  <text
+     class="rate_over_time_comparison_figure"
+     x="526.61267"
+     y="145.55598"
+     dy="21.550901"
+     text-anchor="end"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000"
+     id="text8614">2.7% decrease (to 4.4)</text>
+  <text
+     class="rate_over_time_comparison_figure"
+     x="548.56537"
+     y="176.52972"
+     dy="21.550901"
+     text-anchor="end"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000"
+     id="text8616">2.0% decrease (to 66.2)</text>
+  <text
+     class="rate_over_time_comparison_figure"
+     x="150.15695"
+     y="203.26535"
+     dy="21.550901"
+     text-anchor="start"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000"
+     id="text8618">16.3% decrease (to 287.2)</text>
+  <text
+     class="rate_over_time_comparison_figure"
+     x="579.3139"
+     y="236.78198"
+     dy="21.550901"
+     text-anchor="start"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000"
+     id="text8620">0.3% increase (to 157.9)</text>
+  <text
+     class="rate_over_time_comparison_figure"
+     x="646.07446"
+     y="266.90811"
+     dy="21.550901"
+     text-anchor="start"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000"
+     id="text8622">5.6% increase (to 6,093.3)</text>
+  <text
+     class="rate_over_time_comparison_figure"
+     x="509.79056"
+     y="297.03424"
+     dy="21.550901"
+     text-anchor="end"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000"
+     id="text8624">5.1% decrease (to 4,779.1)</text>
+  <text
+     class="rate_over_time_comparison_figure"
+     x="609.96942"
+     y="327.16037"
+     dy="21.550901"
+     text-anchor="start"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000"
+     id="text8626">2.8% increase (to 1993.6)</text>
+  <text
+     class="rate_over_time_comparison_figure"
+     x="938.92395"
+     y="354.74362"
+     dy="21.550901"
+     text-anchor="end"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000"
+     id="text8628">10.3% increase (to 1,377.5)</text>
+  <text
+     class="rate_over_time_comparison_figure"
+     x="617.97864"
+     y="387.4126"
+     dy="21.550901"
+     text-anchor="start"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000"
+     id="text8630">3.4% increase (to 2,244.1)</text>
+  <text
+     class="rate_over_time_comparison_figure"
+     x="594.31531"
+     y="417.53873"
+     dy="21.550901"
+     text-anchor="start"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000"
+     id="text8632">1.5% increase (to 2,100.2)</text>
+  <text
+     class="rate_over_time_comparison_figure"
+     x="645.82019"
+     y="447.66486"
+     dy="21.550901"
+     text-anchor="start"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000"
+     id="text8634">5.6% increase (to 784.5)</text>
+  <text
+     class="rate_over_time_comparison_figure"
+     x="923.47327"
+     y="477.79099"
+     dy="21.550901"
+     text-anchor="end"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000"
+     id="text8636">27.5% increase (to 1,304.5)</text>
+  <text
+     class="rate_over_time_comparison_figure"
+     x="589.2301"
+     y="507.91711"
+     dy="21.550901"
+     text-anchor="start"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000"
+     id="text8638">1.1% increase (to 681.3)</text>
+  <text
+     class="rate_over_time_comparison_figure"
+     x="631.32733"
+     y="538.04321"
+     dy="21.550901"
+     text-anchor="start"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000"
+     id="text8640">4.5% increase (to 920.3)</text>
+  <text
+     class="rate_over_time_comparison_figure"
+     x="561.0412"
+     y="568.16937"
+     dy="21.550901"
+     text-anchor="end"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000"
+     id="text8642">1.0% decrease (to 3,363.4)</text>
+  <text
+     class="rate_over_time_comparison_figure"
+     x="605.90125"
+     y="598.29547"
+     dy="21.550901"
+     text-anchor="start"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000"
+     id="text8644">2.5% increase (to 1,840.7)</text>
+  <text
+     class="rate_over_time_comparison_figure"
+     x="157.36224"
+     y="625.87872"
+     dy="21.550901"
+     text-anchor="start"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000"
+     id="text8646">16.6% decrease (to 258)</text>
+  <text
+     class="rate_over_time_comparison_figure"
+     x="903.28204"
+     y="656.85248"
+     dy="21.550901"
+     text-anchor="end"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000"
+     id="text8648">9.7% increase (to 1,266)</text>
+  <text
+     class="rate_over_time_comparison_figure"
+     x="517.03699"
+     y="688.67389"
+     dy="21.550901"
+     text-anchor="end"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000"
+     id="text8650">4.5% decrease (to 390.2)</text>
+  <text
+     xml:space="preserve"
+     style="font-size:16px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';fill:#477a49"
+     x="33.982147"
+     y="746.94922"
+     id="text442"><tspan
+       sodipodi:role="line"
+       id="tspan440"
+       x="33.982147"
+       y="746.94922"
+       style="fill:#000000">The 2019 rate per 100,000 population estimates are given in brackets.</tspan></text>
+</svg>
