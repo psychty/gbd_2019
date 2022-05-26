@@ -1,0 +1,1673 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   id="vis_placeholder"
+   height="676"
+   width="1040"
+   class=""
+   version="1.1"
+   sodipodi:docname="yld_bubbles.svg"
+   inkscape:version="1.2 (dc2aedaf03, 2022-05-15)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs6510" />
+  <sodipodi:namedview
+     id="namedview6508"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="1.341716"
+     inkscape:cx="520.22933"
+     inkscape:cy="338.37266"
+     inkscape:window-width="2880"
+     inkscape:window-height="1514"
+     inkscape:window-x="-11"
+     inkscape:window-y="9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="vis_placeholder" />
+  <rect
+     id="rect6167"
+     width="0"
+     height="0"
+     x="0"
+     y="0" />
+  <rect
+     id="rect6169"
+     width="0"
+     height="0"
+     x="0"
+     y="0" />
+  <rect
+     id="rect6171"
+     width="0"
+     height="0"
+     x="0"
+     y="0" />
+  <rect
+     id="rect6173"
+     width="0"
+     height="0"
+     x="0"
+     y="0" />
+  <rect
+     id="rect6175"
+     width="0"
+     height="0"
+     x="0"
+     y="0" />
+  <rect
+     id="rect6177"
+     width="0"
+     height="0"
+     x="0"
+     y="0" />
+  <rect
+     id="rect6179"
+     width="0"
+     height="0"
+     x="0"
+     y="0" />
+  <rect
+     id="rect6181"
+     width="0"
+     height="0"
+     x="0"
+     y="0" />
+  <rect
+     id="rect6183"
+     width="0"
+     height="0"
+     x="0"
+     y="0" />
+  <rect
+     id="rect6185"
+     width="0"
+     height="0"
+     x="0"
+     y="0" />
+  <text
+     text-anchor="start"
+     class="level_three_bubbles_figure"
+     y="33.799999"
+     x="52"
+     opacity="1"
+     style="font-weight:bold;font-size:24px"
+     id="text6191">YLDs (Years Lived with Disability)</text>
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="4.2530732"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="802.93152"
+     cy="397.71909"
+     stroke="#ffffff"
+     fill="#76b786"
+     id="circle6193" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="5.4332695"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="791.9989"
+     cy="454.01978"
+     stroke="#ffffff"
+     fill="#76b786"
+     id="circle6195" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="12.653307"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="696.66528"
+     cy="358.20996"
+     stroke="#ffffff"
+     fill="#76b786"
+     id="circle6197" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="13.639024"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="722.95184"
+     cy="368.34381"
+     stroke="#ffffff"
+     fill="#76b786"
+     id="circle6199" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="1.7019961"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="777.39569"
+     cy="445.37183"
+     stroke="#ffffff"
+     fill="#76b786"
+     id="circle6201" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="2.5890067"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="762.18573"
+     cy="367.97827"
+     stroke="#ffffff"
+     fill="#76b786"
+     id="circle6203" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="29.163727"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="764.22089"
+     cy="314.03687"
+     stroke="#ffffff"
+     fill="#76b786"
+     id="circle6205" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="1.3418949"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="780.15125"
+     cy="404.58679"
+     stroke="#ffffff"
+     fill="#76b786"
+     id="circle6207" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="7.5163369"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="729.19641"
+     cy="440.23901"
+     stroke="#ffffff"
+     fill="#76b786"
+     id="circle6209" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="3.931838"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="762.89313"
+     cy="438.11182"
+     stroke="#ffffff"
+     fill="#76b786"
+     id="circle6211" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="0.46837997"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="768.16254"
+     cy="410.37378"
+     stroke="#ffffff"
+     fill="#76b786"
+     id="circle6213" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="10.399779"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="780.43079"
+     cy="432.59933"
+     stroke="#ffffff"
+     fill="#b5dcd0"
+     id="circle6215" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="3.7995005"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="739.98096"
+     cy="445.40027"
+     stroke="#ffffff"
+     fill="#b5dcd0"
+     id="circle6217" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="20.09911"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="840.29852"
+     cy="352.73514"
+     stroke="#ffffff"
+     fill="#cfd6f6"
+     id="circle6219" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="19.504852"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="702.46503"
+     cy="398.50647"
+     stroke="#ffffff"
+     fill="#cfd6f6"
+     id="circle6221" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="0.97869396"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="773.28613"
+     cy="422.47501"
+     stroke="#ffffff"
+     fill="#8b96dd"
+     id="circle6223" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="8.973341"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="759.62994"
+     cy="417.21469"
+     stroke="#ffffff"
+     fill="#8b96dd"
+     id="circle6225" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="8.9124613"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="740.78326"
+     cy="346.26666"
+     stroke="#ffffff"
+     fill="#8b96dd"
+     id="circle6227" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="10.727271"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="797.28217"
+     cy="371.21851"
+     stroke="#ffffff"
+     fill="#8b96dd"
+     id="circle6229" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="3.567214"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="795.00964"
+     cy="330.14078"
+     stroke="#ffffff"
+     fill="#8b96dd"
+     id="circle6231" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="3.6638632"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="704.89014"
+     cy="373.83511"
+     stroke="#ffffff"
+     fill="#8b96dd"
+     id="circle6233" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="7.293952"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="730.96637"
+     cy="394.66391"
+     stroke="#ffffff"
+     fill="#8b96dd"
+     id="circle6235" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="2.6293373"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="748.53082"
+     cy="422.70734"
+     stroke="#ffffff"
+     fill="#8b96dd"
+     id="circle6237" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="10.532974"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="795.11792"
+     cy="410.61563"
+     stroke="#ffffff"
+     fill="#8b96dd"
+     id="circle6239" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="4.0808315"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="784.67493"
+     cy="341.11362"
+     stroke="#ffffff"
+     fill="#8b96dd"
+     id="circle6241" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="13.274761"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="717.77679"
+     cy="340.03442"
+     stroke="#ffffff"
+     fill="#8b96dd"
+     id="circle6243" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="13.502188"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="827.77545"
+     cy="432.52304"
+     stroke="#ffffff"
+     fill="#8b96dd"
+     id="circle6245" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="28.598106"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="760.86432"
+     cy="471.96423"
+     stroke="#ffffff"
+     fill="#6978d0"
+     id="circle6247" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="11.260058"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="763.99896"
+     cy="381.93399"
+     stroke="#ffffff"
+     fill="#6978d0"
+     id="circle6249" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="17.05517"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="822.64655"
+     cy="387.59189"
+     stroke="#ffffff"
+     fill="#6978d0"
+     id="circle6251" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="1.8294752"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="810.82245"
+     cy="371.0347"
+     stroke="#ffffff"
+     fill="#477a49"
+     id="circle6253" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="4.6641974"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="729.61627"
+     cy="454.52655"
+     stroke="#ffffff"
+     fill="#477a49"
+     id="circle6255" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="7.1130667"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="776.5177"
+     cy="414.02966"
+     stroke="#ffffff"
+     fill="#477a49"
+     id="circle6257" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="1.6603916"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="826.43427"
+     cy="412.30322"
+     stroke="#ffffff"
+     fill="#f2b9bf"
+     id="circle6259" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="2.8831983"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="767.75232"
+     cy="427.6781"
+     stroke="#ffffff"
+     fill="#f2b9bf"
+     id="circle6261" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="10.73993"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="809.74738"
+     cy="451.55627"
+     stroke="#ffffff"
+     fill="#f2b9bf"
+     id="circle6263" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="4.9248281"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="816.18689"
+     cy="364.93311"
+     stroke="#ffffff"
+     fill="#f2b9bf"
+     id="circle6265" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="24.301983"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="841.92743"
+     cy="469.60394"
+     stroke="#ffffff"
+     fill="#3e3294"
+     id="circle6267" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="23.325691"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="668.62061"
+     cy="427.87134"
+     stroke="#ffffff"
+     fill="#3e3294"
+     id="circle6269" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="9.4883661"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="801.72101"
+     cy="431.14847"
+     stroke="#ffffff"
+     fill="#3e3294"
+     id="circle6271" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="10.464205"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="805.57489"
+     cy="474.23987"
+     stroke="#ffffff"
+     fill="#3e3294"
+     id="circle6273" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="24.394762"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="662.27753"
+     cy="376.54309"
+     stroke="#ffffff"
+     fill="#3e3294"
+     id="circle6275" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="3.8200822"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="781.06506"
+     cy="376.93677"
+     stroke="#ffffff"
+     fill="#3e3294"
+     id="circle6277" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="1.957918"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="812.57336"
+     cy="437.96515"
+     stroke="#ffffff"
+     fill="#d84d42"
+     id="circle6279" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="2.8344333"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="812.72626"
+     cy="424.60706"
+     stroke="#ffffff"
+     fill="#d84d42"
+     id="circle6281" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="2.2866721"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="748.52002"
+     cy="417.655"
+     stroke="#ffffff"
+     fill="#d84d42"
+     id="circle6283" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="1.6991794"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="770.63281"
+     cy="422.67508"
+     stroke="#ffffff"
+     fill="#d84d42"
+     id="circle6285" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="0.1"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="777.23572"
+     cy="381.28943"
+     stroke="#ffffff"
+     fill="#d84d42"
+     id="circle6287" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="1.0822549"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="812.46686"
+     cy="403.35034"
+     stroke="#ffffff"
+     fill="#d84d42"
+     id="circle6289" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="0.10789935"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="768.08289"
+     cy="434.85083"
+     stroke="#ffffff"
+     fill="#d84d42"
+     id="circle6291" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="0.17566489"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="777.33319"
+     cy="383.42154"
+     stroke="#ffffff"
+     fill="#d84d42"
+     id="circle6293" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="2.4831207"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="807.73779"
+     cy="403.61588"
+     stroke="#ffffff"
+     fill="#d84d42"
+     id="circle6295" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="5.520927"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="798.61426"
+     cy="388.73358"
+     stroke="#ffffff"
+     fill="#7a1c1c"
+     id="circle6297" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="3.5418782"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="793.49103"
+     cy="443.396"
+     stroke="#ffffff"
+     fill="#7a1c1c"
+     id="circle6299" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="0.59413576"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="751.8866"
+     cy="410.78494"
+     stroke="#ffffff"
+     fill="#7a1c1c"
+     id="circle6301" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="9.5449743"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="750.58765"
+     cy="363.64407"
+     stroke="#ffffff"
+     fill="#7a1c1c"
+     id="circle6303" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="8.7758083"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="748.92456"
+     cy="434.65118"
+     stroke="#ffffff"
+     fill="#7a1c1c"
+     id="circle6305" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="30.858774"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="505.89517"
+     cy="321.44104"
+     stroke="#ffffff"
+     fill="#376acb"
+     id="circle6307" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="18.101192"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="521.58374"
+     cy="369.9176"
+     stroke="#ffffff"
+     fill="#376acb"
+     id="circle6309" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="7.8137546"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="480.58994"
+     cy="353.27509"
+     stroke="#ffffff"
+     fill="#376acb"
+     id="circle6311" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="10.117859"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="546.80609"
+     cy="334.58585"
+     stroke="#ffffff"
+     fill="#376acb"
+     id="circle6313" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="7.1809773"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="496.0798"
+     cy="360.25287"
+     stroke="#ffffff"
+     fill="#376acb"
+     id="circle6315" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="2.380933"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="477.01517"
+     cy="341.62109"
+     stroke="#ffffff"
+     fill="#376acb"
+     id="circle6317" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="5.7672715"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="534.4187"
+     cy="347.47443"
+     stroke="#ffffff"
+     fill="#376acb"
+     id="circle6319" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="3.0693886"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="206.01825"
+     cy="100.26448"
+     stroke="#ffffff"
+     fill="#bcd6f7"
+     id="circle6321" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="1.7552955"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="220.09973"
+     cy="93.198677"
+     stroke="#ffffff"
+     fill="#bcd6f7"
+     id="circle6323" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="2.6023426"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="205.7359"
+     cy="121.16232"
+     stroke="#ffffff"
+     fill="#bcd6f7"
+     id="circle6325" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="2.1991286"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="226.45271"
+     cy="97.950935"
+     stroke="#ffffff"
+     fill="#bcd6f7"
+     id="circle6327" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="3.1647925"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="223.97255"
+     cy="128.81091"
+     stroke="#ffffff"
+     fill="#bcd6f7"
+     id="circle6329" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="2.0448248"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="220.49826"
+     cy="102.37354"
+     stroke="#ffffff"
+     fill="#bcd6f7"
+     id="circle6331" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="4.9211488"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="200.31799"
+     cy="91.833504"
+     stroke="#ffffff"
+     fill="#bcd6f7"
+     id="circle6333" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="9.7124281"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="231.15836"
+     cy="111.02383"
+     stroke="#ffffff"
+     fill="#bcd6f7"
+     id="circle6335" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="1.548131"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="223.96117"
+     cy="122.14886"
+     stroke="#ffffff"
+     fill="#bcd6f7"
+     id="circle6337" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="3.4605629"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="198.91048"
+     cy="117.00878"
+     stroke="#ffffff"
+     fill="#bcd6f7"
+     id="circle6339" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="8.9159575"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="210.77951"
+     cy="133.67517"
+     stroke="#ffffff"
+     fill="#bcd6f7"
+     id="circle6341" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="7.8210588"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="189.30206"
+     cy="104.02119"
+     stroke="#ffffff"
+     fill="#bcd6f7"
+     id="circle6343" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="2.4588125"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="213.19981"
+     cy="102.36399"
+     stroke="#ffffff"
+     fill="#bcd6f7"
+     id="circle6345" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="1.0365062"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="221.33128"
+     cy="97.538582"
+     stroke="#ffffff"
+     fill="#bcd6f7"
+     id="circle6347" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="1.6572843"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="198.99486"
+     cy="110.03178"
+     stroke="#ffffff"
+     fill="#bcd6f7"
+     id="circle6349" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="1.331925"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="199.67041"
+     cy="99.977943"
+     stroke="#ffffff"
+     fill="#bcd6f7"
+     id="circle6351" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="2.5250456"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="217.31613"
+     cy="107.95758"
+     stroke="#ffffff"
+     fill="#bcd6f7"
+     id="circle6353" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="3.014828"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="213.20792"
+     cy="119.99589"
+     stroke="#ffffff"
+     fill="#bcd6f7"
+     id="circle6355" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="4.1053753"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="197.61548"
+     cy="126.45031"
+     stroke="#ffffff"
+     fill="#bcd6f7"
+     id="circle6357" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="2.2266202"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="232.46982"
+     cy="95.802956"
+     stroke="#ffffff"
+     fill="#bcd6f7"
+     id="circle6359" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="1.8646474"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="219.93661"
+     cy="118.60577"
+     stroke="#ffffff"
+     fill="#bcd6f7"
+     id="circle6361" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="1.6674986"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="218.80182"
+     cy="123.99516"
+     stroke="#ffffff"
+     fill="#bcd6f7"
+     id="circle6363" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="1.7807387"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="216.56125"
+     cy="114.12371"
+     stroke="#ffffff"
+     fill="#bcd6f7"
+     id="circle6365" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="5.3782024"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="207.93646"
+     cy="111.04278"
+     stroke="#ffffff"
+     fill="#bcd6f7"
+     id="circle6367" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="3.3556392"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="221.86584"
+     cy="86.412361"
+     stroke="#ffffff"
+     fill="#bcd6f7"
+     id="circle6369" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="4.3103571"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="233.23541"
+     cy="126.90585"
+     stroke="#ffffff"
+     fill="#bcd6f7"
+     id="circle6371" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="5.6376696"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="188.1066"
+     cy="119.43349"
+     stroke="#ffffff"
+     fill="#bcd6f7"
+     id="circle6373" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="1.8703666"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="200.98349"
+     cy="104.95551"
+     stroke="#ffffff"
+     fill="#bcd6f7"
+     id="circle6375" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="4.6102519"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="211.81883"
+     cy="92.546196"
+     stroke="#ffffff"
+     fill="#bcd6f7"
+     id="circle6377" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="1.2380068"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="217.14812"
+     cy="98.296791"
+     stroke="#ffffff"
+     fill="#bcd6f7"
+     id="circle6379" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="0.2261425"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="823.52795"
+     cy="407.737"
+     stroke="#ffffff"
+     fill="#ea695c"
+     id="circle6381" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="0.10394967"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="784.08807"
+     cy="452.85199"
+     stroke="#ffffff"
+     fill="#ea695c"
+     id="circle6383" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="2.4359982"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="769.54889"
+     cy="440.7041"
+     stroke="#ffffff"
+     fill="#ea695c"
+     id="circle6385" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="10.323347"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="758.91064"
+     cy="176.89636"
+     stroke="#ffffff"
+     fill="#4e4fb8"
+     id="circle6387" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="26.975107"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="704.57599"
+     cy="174.39124"
+     stroke="#ffffff"
+     fill="#4e4fb8"
+     id="circle6389" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="45"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="754.5506"
+     cy="119.8513"
+     stroke="#ffffff"
+     fill="#4e4fb8"
+     id="circle6391" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="28.071867"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="750.37933"
+     cy="216.2453"
+     stroke="#ffffff"
+     fill="#4e4fb8"
+     id="circle6393" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="7.0453796"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="740.41486"
+     cy="171.97958"
+     stroke="#ffffff"
+     fill="#4e4fb8"
+     id="circle6395" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="25.915075"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="796.95398"
+     cy="179.30869"
+     stroke="#ffffff"
+     fill="#4e4fb8"
+     id="circle6397" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="33.317059"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="697.6955"
+     cy="481.52264"
+     stroke="#ffffff"
+     fill="#1845a5"
+     id="circle6399" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="18.697758"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="817.84796"
+     cy="318.65356"
+     stroke="#ffffff"
+     fill="#1845a5"
+     id="circle6401" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="24.170107"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="800.04083"
+     cy="510.2074"
+     stroke="#ffffff"
+     fill="#1845a5"
+     id="circle6403" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="9.7069798"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="749.33838"
+     cy="399.612"
+     stroke="#ffffff"
+     fill="#1845a5"
+     id="circle6405" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="12.199364"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="801.08392"
+     cy="346.8624"
+     stroke="#ffffff"
+     fill="#1845a5"
+     id="circle6407" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="3.8919883"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="770.43646"
+     cy="505.04999"
+     stroke="#ffffff"
+     fill="#1845a5"
+     id="circle6409" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="8.3660355"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="742.41925"
+     cy="381.37115"
+     stroke="#ffffff"
+     fill="#1845a5"
+     id="circle6411" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="4.1914878"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="719.58594"
+     cy="448.97229"
+     stroke="#ffffff"
+     fill="#1845a5"
+     id="circle6413" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="13.652464"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="731.6767"
+     cy="417.51483"
+     stroke="#ffffff"
+     fill="#1845a5"
+     id="circle6415" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="15.654832"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="688.9494"
+     cy="328.98526"
+     stroke="#ffffff"
+     fill="#1845a5"
+     id="circle6417" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="2.513329"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="792.67413"
+     cy="467.04895"
+     stroke="#ffffff"
+     fill="#ad3730"
+     id="circle6419" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="13.745772"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="707.16028"
+     cy="433.45297"
+     stroke="#ffffff"
+     fill="#ad3730"
+     id="circle6421" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="3.4793873"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="815.79053"
+     cy="355.45367"
+     stroke="#ffffff"
+     fill="#f8ddeb"
+     id="circle6423" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="3.5216861"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="797.45404"
+     cy="461.25763"
+     stroke="#ffffff"
+     fill="#f8ddeb"
+     id="circle6425" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="9.0267916"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="783.14032"
+     cy="392.90594"
+     stroke="#ffffff"
+     fill="#ee9187"
+     id="circle6427" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="0.14008482"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="785.25922"
+     cy="453.66571"
+     stroke="#ffffff"
+     fill="#ee9187"
+     id="circle6429" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="0.16232482"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="767.20435"
+     cy="432.80209"
+     stroke="#ffffff"
+     fill="#ee9187"
+     id="circle6431" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="0.34456113"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="775.40497"
+     cy="422.52414"
+     stroke="#ffffff"
+     fill="#ee9187"
+     id="circle6433" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="1.8030474"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="814.98163"
+     cy="464.18469"
+     stroke="#ffffff"
+     fill="#528cdb"
+     id="circle6435" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="2.3799925"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="748.25635"
+     cy="412.48486"
+     stroke="#ffffff"
+     fill="#528cdb"
+     id="circle6437" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="6.9984565"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="767.47754"
+     cy="401.42142"
+     stroke="#ffffff"
+     fill="#528cdb"
+     id="circle6439" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="7.8542018"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="815.07343"
+     cy="413.14044"
+     stroke="#ffffff"
+     fill="#528cdb"
+     id="circle6441" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="1.7866915"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="758.0423"
+     cy="427.79779"
+     stroke="#ffffff"
+     fill="#528cdb"
+     id="circle6443" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="18.693283"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="739.42444"
+     cy="516.27203"
+     stroke="#ffffff"
+     fill="#528cdb"
+     id="circle6445" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="2.8929396"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="762.33069"
+     cy="431.16867"
+     stroke="#ffffff"
+     fill="#528cdb"
+     id="circle6447" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="13.634604"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="774.93683"
+     cy="357.53171"
+     stroke="#ffffff"
+     fill="#528cdb"
+     id="circle6449" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="4.0377188"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="784.86987"
+     cy="447.40485"
+     stroke="#ffffff"
+     fill="#528cdb"
+     id="circle6451" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="3.3644798"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="732.7179"
+     cy="328.81625"
+     stroke="#ffffff"
+     fill="#528cdb"
+     id="circle6453" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="35.123489"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="872.36694"
+     cy="408.83966"
+     stroke="#ffffff"
+     fill="#adb9ed"
+     id="circle6455" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="0.21521954"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="786.05768"
+     cy="380.32184"
+     stroke="#ffffff"
+     fill="#adb9ed"
+     id="circle6457" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="12.050534"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="721.04602"
+     cy="312.94662"
+     stroke="#ffffff"
+     fill="#adb9ed"
+     id="circle6459" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="25.189129"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="502.44885"
+     cy="144.14853"
+     stroke="#ffffff"
+     fill="#67a8e7"
+     id="circle6461" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="1.4773836"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="483.74368"
+     cy="122.55707"
+     stroke="#ffffff"
+     fill="#67a8e7"
+     id="circle6463" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="23.516399"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="487.05795"
+     cy="95.84465"
+     stroke="#ffffff"
+     fill="#67a8e7"
+     id="circle6465" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="5.0293779"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="475.9494"
+     cy="125.77606"
+     stroke="#ffffff"
+     fill="#67a8e7"
+     id="circle6467" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="4.0767794"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="467.76437"
+     cy="118.2774"
+     stroke="#ffffff"
+     fill="#67a8e7"
+     id="circle6469" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="6.1736307"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="275.26514"
+     cy="328.69202"
+     stroke="#ffffff"
+     fill="#97c4f0"
+     id="circle6471" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="2.0639458"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="265.12106"
+     cy="328.28934"
+     stroke="#ffffff"
+     fill="#97c4f0"
+     id="circle6473" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="10.862194"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="266.48206"
+     cy="308.75064"
+     stroke="#ffffff"
+     fill="#97c4f0"
+     id="circle6475" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="14.982417"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="252.79613"
+     cy="342.77945"
+     stroke="#ffffff"
+     fill="#97c4f0"
+     id="circle6477" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="3.4609041"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="259.44897"
+     cy="323.4548"
+     stroke="#ffffff"
+     fill="#97c4f0"
+     id="circle6479" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="3.9895275"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="250.55753"
+     cy="320.42133"
+     stroke="#ffffff"
+     fill="#97c4f0"
+     id="circle6481" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="17.053024"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="227.4054"
+     cy="320.08151"
+     stroke="#ffffff"
+     fill="#97c4f0"
+     id="circle6483" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="4.741384"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="248.92586"
+     cy="309.88318"
+     stroke="#ffffff"
+     fill="#97c4f0"
+     id="circle6485" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="1.1841911"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="246.56139"
+     cy="326.09378"
+     stroke="#ffffff"
+     fill="#97c4f0"
+     id="circle6487" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="5.4629345"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="241.63768"
+     cy="300.11862"
+     stroke="#ffffff"
+     fill="#97c4f0"
+     id="circle6489" />
+  <text
+     text-anchor="start"
+     class="level_three_bubbles_figure"
+     y="67.599998"
+     x="156"
+     opacity="1"
+     id="text6493"
+     style="font-size:16px">Neoplasms</text>
+  <text
+     text-anchor="middle"
+     class="level_three_bubbles_figure"
+     y="67.599998"
+     x="520"
+     opacity="1"
+     id="text6495"
+     style="font-size:16px">Chronic respiratory diseases</text>
+  <text
+     text-anchor="end"
+     class="level_three_bubbles_figure"
+     y="67.599998"
+     x="884"
+     opacity="1"
+     id="text6497"
+     style="font-size:16px">Musculoskeletal disorders</text>
+  <text
+     text-anchor="start"
+     class="level_three_bubbles_figure"
+     y="276.13892"
+     x="155.25468"
+     opacity="1"
+     id="text6499"
+     style="font-size:16px">Cardiovascular diseases</text>
+  <text
+     text-anchor="middle"
+     class="level_three_bubbles_figure"
+     y="276.13892"
+     x="519.2547"
+     opacity="1"
+     id="text6501"
+     style="font-size:16px">Neurological disorders</text>
+  <text
+     text-anchor="end"
+     class="level_three_bubbles_figure"
+     y="276.13892"
+     x="883.2547"
+     opacity="1"
+     id="text6503"
+     style="font-size:16px">Other conditions/disorders</text>
+  <circle
+     cx="132.66441"
+     cy="636.92114"
+     r="1.3489969"
+     stroke="#000000"
+     class="legend_key_class"
+     fill="none"
+     id="circle6512" />
+  <circle
+     cx="132.66441"
+     cy="615.72009"
+     r="22.549999"
+     stroke="#000000"
+     class="legend_key_class"
+     fill="none"
+     id="circle6514" />
+  <circle
+     cx="132.66441"
+     cy="606.42102"
+     r="31.849094"
+     stroke="#000000"
+     class="legend_key_class"
+     fill="none"
+     id="circle6516" />
+  <circle
+     cx="132.66441"
+     cy="593.27014"
+     r="45"
+     stroke="#000000"
+     class="legend_key_class"
+     fill="none"
+     id="circle6518" />
+  <line
+     x1="134.01341"
+     x2="222.66441"
+     y1="636.92114"
+     y2="636.92114"
+     stroke="#000000"
+     class="legend_key_class"
+     style="stroke-dasharray:2, 2"
+     id="line6520" />
+  <line
+     x1="155.21442"
+     x2="222.66441"
+     y1="615.72009"
+     y2="615.72009"
+     stroke="#000000"
+     class="legend_key_class"
+     style="stroke-dasharray:2, 2"
+     id="line6522" />
+  <line
+     x1="164.5135"
+     x2="222.66441"
+     y1="606.42102"
+     y2="606.42102"
+     stroke="#000000"
+     class="legend_key_class"
+     style="stroke-dasharray:2, 2"
+     id="line6524" />
+  <line
+     x1="177.66441"
+     x2="222.66441"
+     y1="593.27014"
+     y2="593.27014"
+     stroke="#000000"
+     class="legend_key_class"
+     style="stroke-dasharray:2, 2"
+     id="line6526" />
+  <text
+     x="222.66441"
+     y="636.92114"
+     font-size="11"
+     alignment-baseline="top"
+     class="legend_key_class"
+     id="text6528"
+     style="font-size:14.6667px">10 YLDs</text>
+  <text
+     x="222.66441"
+     y="619.72009"
+     font-size="11"
+     alignment-baseline="top"
+     class="legend_key_class"
+     id="text6530"
+     style="font-size:14.6667px">3,231 YLDs</text>
+  <text
+     x="222.66441"
+     y="606.42102"
+     font-size="11"
+     alignment-baseline="top"
+     class="legend_key_class"
+     id="text6532"
+     style="font-size:14.6667px">6,462 YLDs</text>
+  <text
+     x="222.66441"
+     y="593.27014"
+     font-size="11"
+     alignment-baseline="top"
+     class="legend_key_class"
+     id="text6534"
+     style="font-size:14.6667px">12,923 YLDs</text>
+  <text
+     text-anchor="start"
+     class="level_three_bubbles_figure"
+     y="553.70697"
+     x="403.83276"
+     opacity="1"
+     style="font-weight:bold;font-size:16px"
+     id="text594-3-6">Colours</text>
+  <text
+     text-anchor="start"
+     class="level_three_bubbles_figure"
+     y="529.89734"
+     x="90.404991"
+     opacity="1"
+     style="font-weight:bold;font-size:16px"
+     id="text594-3-6-5">Size</text>
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="11.370381"
+     style="fill:#ffaaaa;fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="421.23669"
+     cy="576.31592"
+     stroke="#ffffff"
+     fill="#67a8e7"
+     id="circle808-5" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="11.370381"
+     style="fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="421.23669"
+     cy="600.24567"
+     stroke="#ffffff"
+     fill="#67a8e7"
+     id="circle808-8" />
+  <circle
+     class="level_three_bubbles_figure level_three_bubbles"
+     r="11.370381"
+     style="fill:#8dd35f;fill-opacity:1;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)"
+     cx="421.23669"
+     cy="624.17542"
+     stroke="#ffffff"
+     fill="#67a8e7"
+     id="circle808-2" />
+  <text
+     xml:space="preserve"
+     style="font-size:14.6667px;fill:#000000"
+     x="436.91785"
+     y="581.17877"
+     id="text1664"><tspan
+       sodipodi:role="line"
+       id="tspan1662"
+       x="436.91785"
+       y="581.17877">Communicable diseases and conditions are shaded red</tspan><tspan
+       sodipodi:role="line"
+       x="436.91785"
+       y="599.51215"
+       id="tspan1668" /></text>
+  <text
+     xml:space="preserve"
+     style="font-size:14.6667px;fill:#000000"
+     x="436.30914"
+     y="605.63141"
+     id="text1722"><tspan
+       sodipodi:role="line"
+       id="tspan1720"
+       x="436.30914"
+       y="605.63141">Non-communicable diseases are shaded blue</tspan><tspan
+       sodipodi:role="line"
+       x="436.30914"
+       y="623.96478"
+       id="tspan1724" /></text>
+  <text
+     xml:space="preserve"
+     style="font-size:14.6667px;fill:#000000"
+     x="436.76031"
+     y="630.08398"
+     id="text1728"><tspan
+       sodipodi:role="line"
+       id="tspan1726"
+       x="436.76031"
+       y="630.08398">Injury conditions are shaded green</tspan></text>
+</svg>
