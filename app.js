@@ -1745,8 +1745,7 @@ function change_over_time_update_level_two_rates() {
       return color_cause_group(d.cause_name);
     });
 
-  // console.log(x_over_time_rate_change(0));
-
+// condition name
   svg_story
     .selectAll(".name")
     .data(chosen_over_time_change_df)
@@ -1769,6 +1768,7 @@ function change_over_time_update_level_two_rates() {
       return d.cause_name;
     });
 
+ // percentage change label  
   svg_story
     .selectAll(".value")
     .data(chosen_over_time_change_df)
@@ -1794,36 +1794,37 @@ function change_over_time_update_level_two_rates() {
       return y_over_time_rate_change(d.cause_name);
     })
     .attr("dy", y_over_time_rate_change.bandwidth() - 2.5)
+    // .attr('text-anchor', 'start')
     .attr("text-anchor", function (d) {
       if (d.Percentage_change_on_rate < 0) {
         return x_over_time_rate_change(d.Percentage_change_on_rate * -1) -
           x_over_time_rate_change(0) >
-          90
+          190
           ? "start"
           : "end";
       } else {
         return x_over_time_rate_change(d.Percentage_change_on_rate) -
           x_over_time_rate_change(0) >
-          90
+          190
           ? "end"
           : "start";
       }
     })
-    .style("fill", function (d) {
-      if (d.Percentage_change_on_rate < 0) {
-        return x_over_time_rate_change(d.Percentage_change_on_rate * -1) -
-          x_over_time_rate_change(0) >
-          90
-          ? "#000"
-          : "#000";
-      } else {
-        return x_over_time_rate_change(d.Percentage_change_on_rate) -
-          x_over_time_rate_change(0) >
-          90
-          ? "#000"
-          : "#000";
-      }
-    })
+    // .style("fill", function (d) {
+    //   if (d.Percentage_change_on_rate < 0) {
+    //     return x_over_time_rate_change(d.Percentage_change_on_rate * -1) -
+    //       x_over_time_rate_change(0) >
+    //       90
+    //       ? "#000"
+    //       : "#000";
+    //   } else {
+    //     return x_over_time_rate_change(d.Percentage_change_on_rate) -
+    //       x_over_time_rate_change(0) >
+    //       90
+    //       ? "#000"
+    //       : "#000";
+    //   }
+    // })
     .text(function (d) {
       if (d.Percentage_change_on_rate < 0) {
         // add an if else function to say if > 0 then increase, if < 0 then decrease.

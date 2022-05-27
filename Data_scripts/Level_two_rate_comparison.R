@@ -52,7 +52,7 @@ wsx_df <- compare_df %>%
   mutate(Compare_Eng = ifelse(Lower_estimate > Eng_upper, 'higher', ifelse(Upper_estimate < Eng_lower, 'lower', 'similar'))) %>%
   bind_rows(subset(compare_df, Area %in% c('South East England', 'England'))) %>% 
   left_join(compare_df_number, by = c('Area','Cause', 'Measure', 'Year', 'Age')) %>% 
-  mutate(label = paste0(format(round(Rate_estimate, 1), big.mark = ',', trim = TRUE), ' (', format(round(Lower_estimate,1),big.mark = ',', trim = TRUE), '-', format(round(Upper_estimate,1),big.mark = ',', trim = TRUE), ')')) %>% 
+  mutate(label = paste0(format(round(Rate_estimate, 0), big.mark = ',', trim = TRUE), ' (', format(round(Lower_estimate, 0),big.mark = ',', trim = TRUE), '-', format(round(Upper_estimate, 0),big.mark = ',', trim = TRUE), ')')) %>% 
   select(Area, Age, Cause, Measure, Year, Rate_estimate, Number_estimate, Lower_estimate, Upper_estimate, Compare_SE, Compare_Eng, label) %>% 
   bind_rows(data.frame(Area = rep(c('West Sussex', 'England', 'South East England'), 11), Cause = rep("Sense organ diseases", 11 * 3), Year = rep(seq(2009, 2019, 1), 3), Rate_estimate = 0, label = 'No estimate', Measure = 'Deaths', Age = 'All ages')) %>% 
   bind_rows(data.frame(Area = rep(c('West Sussex', 'England', 'South East England'), 11), Cause = rep("Sense organ diseases", 11 * 3), Year = rep(seq(2009, 2019, 1), 3), Rate_estimate = 0, label = 'No estimate', Measure = 'YLLs (Years of Life Lost)', Age = 'All ages')) %>% 
